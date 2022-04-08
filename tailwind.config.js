@@ -13,6 +13,7 @@ module.exports = {
             colors: {
                 'vicm': {
                     'green': {
+                        90: '#ccdcdc',
                         400: '#35DDD3',
                         500: '#37C8C3',
                         600: '#06ADB3',
@@ -24,14 +25,14 @@ module.exports = {
                             200: '#D4E2E2',
                         },
                     },
-                    
+
                 },
             },
             borderRadius: {
                 '4xl': '2rem'
             }
         },
-        
+
     },
     plugins: [],
 }
