@@ -4,7 +4,7 @@ import PageNavigateBtn from "../components/button/pagenavigate";
 import Header from "../components/header/default";
 import InputDefault from "../components/input/default";
 import ButtonDefault from "../components/button/default";
-import { signIn } from "next-auth/react"
+import { getSession, signIn } from "next-auth/react"
 import Link from "next/link";
 
 const SignupPage = () => {
@@ -25,7 +25,9 @@ const SignupPage = () => {
                 <ButtonDefault type='submit' className='w-full bg-primary'>Sign up</ButtonDefault>
             </form>
             <div className='text-divider font-semibold py-8'>OR</div>
-            <ButtonDefault type='submit' className='w-full bg-[#FF5733]' callback={() => signIn("google")}>
+            <ButtonDefault type='submit' className='w-full bg-[#FF5733]' callback={() => signIn("google", {
+                redirect: "/"
+            })}>
                 Login with Google
             </ButtonDefault>
             {/* <div className='flex justify-center'>
@@ -34,6 +36,25 @@ const SignupPage = () => {
             <div>Scan</div> */}
         </BackgroundContainer>
     )
+}
+
+export async function getServerSideProps(context) {
+    const ss = await getSession(context)
+
+    if (ss) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: true,
+            },
+        }
+    }
+
+    return {
+        props: {
+
+        }
+    }
 }
 
 export default SignupPage

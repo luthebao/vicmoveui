@@ -7,7 +7,7 @@ import ButtonDefault from "../components/button/default";
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import HyperLink from "../components/text/hyperlink";
-import { signIn, useSession } from "next-auth/react"
+import { signIn, getSession } from "next-auth/react"
 import Link from "next/link";
 
 const LoginPage = () => {
@@ -21,12 +21,12 @@ const LoginPage = () => {
             <PageNavigateBtn>
                 <Link href={"/"}>
                     <a>
-                    <FiX /></a>
+                        <FiX /></a>
                 </Link>
             </PageNavigateBtn>
             <Header size='lg' classes='text-left'>Login</Header>
-            <InputDefault type='email' name='email' placeholder='Email' required/>
-            <InputDefault type='password' name='password' placeholder='Password' required/>
+            <InputDefault type='email' name='email' placeholder='Email' required />
+            <InputDefault type='password' name='password' placeholder='Password' required />
             <div className='pt-2 pb-6 pl-2 text-left'>
                 <FormControlLabel control={<Switch defaultChecked />} label='Save my info?' />
             </div>
@@ -36,7 +36,9 @@ const LoginPage = () => {
                 <HyperLink path='#'>Click here</HyperLink>
             </div>
             <div className='text-divider font-semibold py-8'>OR</div>
-            <ButtonDefault className='w-full bg-[#FF5733]' callback={() => signIn("google")}>
+            <ButtonDefault className='w-full bg-[#FF5733]' callback={() => signIn("google", {
+                redirect: "/"
+            })}>
                 Sign in with Google
             </ButtonDefault>
             {/* <div className='flex justify-center'>
@@ -45,6 +47,25 @@ const LoginPage = () => {
             <div>Scan</div> */}
         </BackgroundContainer>
     )
+}
+
+export async function getServerSideProps(context) {
+    const ss = await getSession(context)
+
+    if (ss) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: true,
+            },
+        }
+    }
+
+    return {
+        props: {
+
+        }
+    }
 }
 
 export default LoginPage

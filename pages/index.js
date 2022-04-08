@@ -16,7 +16,7 @@ import VerticalListContainer from "../components/list/vertical";
 import Menu from "../containers/menu/default";
 
 export default function Home() {
-    const { data: session } = useSession()
+    const { data: session, status } = useSession()
 
     if (session) {
         return (

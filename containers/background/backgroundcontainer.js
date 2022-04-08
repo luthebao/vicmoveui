@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 const BackgroundContainer = ({ children, type, padding, hasMenu, className }) => {
     let classes = 'h-screen overflow-y-auto flex flex-col';
     classes += (!padding || padding !== 'none') ? ' p-6 pb-12' : '';
-    classes += hasMenu  ? ' pb-12' : '';
+    classes += hasMenu ? ' pb-12' : '';
     switch (type) {
         case 'gradient':
             classes += ' bg-gradient-to-b from-vicm-green-400 to-vicm-green-700 text-white text-white ';
