@@ -33,7 +33,10 @@ module.exports = {
                     },
                     'red' : {
                         100: '#FB0000'
-                    }
+                    },
+                    'gray' : {
+                        100: '#888888'
+                    },
                 },
             },
             borderRadius: {

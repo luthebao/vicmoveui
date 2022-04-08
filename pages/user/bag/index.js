@@ -12,6 +12,8 @@ import LayoutMenu from "../../../layouts/layoutmenu";
 import { AppBar, Tab, Tabs } from "@mui/material";
 import { useState } from "react";
 import SneakersList from "../../../containers/user/bag/sneakers";
+import BoxesList from "../../../containers/user/bag/boxes";
+import GemsList from "../../../containers/user/bag/gems";
 
 export default function BagIndex() {
     const { data: session, status } = useSession()
@@ -43,7 +45,9 @@ export default function BagIndex() {
                     </Tabs>
                 </AppBar>
                 <SectionContainer className='basis-full'>
-                    <SneakersList />
+                    {tabindex === 0 && <SneakersList />}
+                    {tabindex === 1 && <BoxesList />}
+                    {tabindex === 2 && <GemsList />}
                 </SectionContainer>
             </LayoutMenu>
         )

@@ -8,13 +8,13 @@ const Menu = ({ className, active }) => {
       <ButtonLink href={'/'} buttonStyle='flat' className={`btn-menu ${active === "profile" ? "btn-circle-active" : ""}`} shapes="circle">
         <img src={"/images/icons/profile.png"} />
       </ButtonLink>
-      <ButtonLink href={'/'} buttonStyle='flat' className={`btn-menu ${active === "shoes" ? "btn-circle-active" : ""}`} shapes="circle">
+      <ButtonLink href={'/user/bag'} buttonStyle='flat' className={`btn-menu ${active === "bag" ? "btn-circle-active" : ""}`} shapes="circle">
         <img src={"/images/icons/shoes.png"} />
       </ButtonLink>
       <ButtonLink href={'/'} buttonStyle='flat' className='btn-menu btn-hightlight' shapes="circle">
         <img src={"/images/icons/start.png"} />
       </ButtonLink>
-      <ButtonLink href={'/user/bag'} buttonStyle='flat' className={`btn-menu ${active === "bag" ? "btn-circle-active" : ""}`} shapes="circle">
+      <ButtonLink href={'/'} buttonStyle='flat' className={`btn-menu ${active === "coming" ? "btn-circle-active" : ""}`} shapes="circle">
         <img src={"/images/icons/coming.png"} />
       </ButtonLink>
       <ButtonLink href={'/'} buttonStyle='flat' className={`btn-menu ${active === "market" ? "btn-circle-active" : ""}`} shapes="circle">
@@ -29,7 +29,7 @@ Menu.propTypes = {
   className: PropTypes.string
 };
 
-Menu.defaulProps = {
+Menu.defaultProps = {
   active: ""
 }
 
