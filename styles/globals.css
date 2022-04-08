@@ -82,7 +82,7 @@ body {
 .btn-hightlight img {
   height: 48px;
   max-width: unset !important;
-  margin-left: 10px;
+  /* margin-left: 10px; */
   position: absolute;
 }
 

@@ -25,7 +25,15 @@ module.exports = {
                             200: '#D4E2E2',
                         },
                     },
-
+                    'violet': {
+                        100: '#f43f7e'
+                    },
+                    'yellow': {
+                        100: '#fb9700',
+                    },
+                    'red' : {
+                        100: '#FB0000'
+                    }
                 },
             },
             borderRadius: {

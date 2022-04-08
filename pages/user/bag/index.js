@@ -7,13 +7,11 @@ import HeaderContainer from "../../../containers/header/default";
 import UserAvatar from "../../../components/user/avatar";
 import { AiOutlineDollar, AiOutlineLogout } from "react-icons/ai";
 import SectionContainer from "../../../containers/section/section";
-import BoxCard from "../../../components/card/box";
-import ButtonDefault from "../../../components/button/default";
-import VerticalListContainer from "../../../components/list/vertical";
 import LoadingContainer from "../../../containers/loading";
 import LayoutMenu from "../../../layouts/layoutmenu";
 import { AppBar, Tab, Tabs } from "@mui/material";
 import { useState } from "react";
+import SneakersList from "../../../containers/user/bag/sneakers";
 
 export default function BagIndex() {
     const { data: session, status } = useSession()
@@ -24,7 +22,7 @@ export default function BagIndex() {
 
     if (session) {
         return (
-            <LayoutMenu>
+            <LayoutMenu active={"bag"}>
                 <HeaderContainer>
                     <div className='flex items-center'>
                         <UserAvatar />
@@ -37,36 +35,15 @@ export default function BagIndex() {
                         <AiOutlineLogout className='text-2xl text-vicm-green-500 mr-4' onClick={signOut} />
                     </div>
                 </HeaderContainer>
-                <AppBar position="static" className="w-2/3 mx-auto bg-vicm-green-90 mb-[20px] rounded-full border-[2px] border-white">
-                    <Tabs value={tabindex} onChange={(event, newValue) => setTabindex(newValue)} aria-label="simple tabs example" TabIndicatorProps={{
-                        style: {
-                            backgroundColor: "transparent"
-                        }
-                    }}>
-                        <Tab value={0} className={tabindex === 0 ? "bg-vicm-green-600 rounded-full text-white font-bold" : "text-white font-bold"} label="Item 1" />
-                        <Tab value={1} className={tabindex === 1 ? "bg-vicm-green-600 rounded-full text-white font-bold" : "text-white font-bold"} label="Item 1" />
-                        <Tab value={2} className={tabindex === 2 ? "bg-vicm-green-600 rounded-full text-white font-bold" : "text-white font-bold"} label="Item 1" />
+                <AppBar position="static" className="w-auto mx-auto bg-vicm-green-90 mb-[20px] rounded-full border-[2px] border-white normal-case">
+                    <Tabs className="normal-case" value={tabindex} onChange={(event, newValue) => setTabindex(newValue)} aria-label="simple tabs example" TabIndicatorProps={{ style: { backgroundColor: "transparent" } }}>
+                        <Tab value={0} className={tabindex === 0 ? "bg-vicm-green-600 rounded-full text-white normal-case" : "text-white normal-case"} label="Sneaker" />
+                        <Tab value={1} className={tabindex === 1 ? "bg-vicm-green-600 rounded-full text-white normal-case" : "text-white normal-case"} label="Box" />
+                        <Tab value={2} className={tabindex === 2 ? "bg-vicm-green-600 rounded-full text-white normal-case" : "text-white normal-case"} label="Gem" />
                     </Tabs>
                 </AppBar>
                 <SectionContainer className='basis-full'>
-                    <VerticalListContainer className={"mb-5"}>
-                        <BoxCard className='inline-block text-center mr-4'>
-                            <img src={"/images/box/00.png"} />
-                            <ButtonDefault className='bg-primary' size='sm'>Open</ButtonDefault>
-                        </BoxCard>
-                        <BoxCard className='inline-block text-center mr-4'>
-                            <img src={"/images/box/00.png"} />
-                            <ButtonDefault className='bg-primary' size='sm'>Open</ButtonDefault>
-                        </BoxCard>
-                        <BoxCard className='inline-block text-center mr-4'>
-                            <img src={"/images/box/00.png"} />
-                            <ButtonDefault className='bg-primary' size='sm'>Open</ButtonDefault>
-                        </BoxCard>
-                        <BoxCard className='inline-block text-center mr-4'>
-                            <img src={"/images/box/00.png"} />
-                            <ButtonDefault className='bg-primary' size='sm'>Open</ButtonDefault>
-                        </BoxCard>
-                    </VerticalListContainer>
+                    <SneakersList />
                 </SectionContainer>
             </LayoutMenu>
         )
