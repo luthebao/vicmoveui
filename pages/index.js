@@ -34,7 +34,7 @@ export default function Home() {
                     </div>
                 </HeaderContainer>
                 <SectionContainer className='basis-full'>
-                    <BoxCard className='box-decoration flex justify-center' style={{ height: '80vw' }}>
+                    <BoxCard className='box-decoration flex justify-center '>
                         <ButtonDefault className='absolute top-4 right-4 bg-primary text-2xl' shapes='circle'>
                             <FiPlus />
                         </ButtonDefault>
