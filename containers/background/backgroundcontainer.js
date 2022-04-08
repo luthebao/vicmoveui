@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { max_width } from '../../utils/config';
 
 const BackgroundContainer = ({ children, type, padding, hasMenu, className }) => {
-    let classes = 'overflow-y-auto flex flex-col ' + max_width ;
+    let classes = 'h-screen overflow-y-auto flex flex-col ' + max_width ;
     classes += (!padding || padding !== 'none') ? ' p-6 pb-12' : '';
     classes += hasMenu ? ' pb-12' : '';
     switch (type) {

@@ -14,9 +14,13 @@ import ButtonDefault from "../components/button/default";
 import TextHeader from "../components/text/textheader";
 import VerticalListContainer from "../components/list/vertical";
 import Menu from "../containers/menu/default";
+import LoadingContainer from "../containers/loading";
 
 export default function Home() {
     const { data: session, status } = useSession()
+
+    if (status === "loading")
+        return <LoadingContainer />
 
     if (session) {
         return (
@@ -82,8 +86,8 @@ export default function Home() {
             <ParagraphDecoration />
 
             <div className='w-full text-center flex flex-col mt-4 pt-8'>
-                <ButtonLink href='/login' className='w-full bg-white-09 text-[#000]'>Login</ButtonLink>
-                <ButtonLink href='/signup' className='w-full bg-white-025 mt-6 bg-primary'>Sign up</ButtonLink>
+                <ButtonLink href='/login' className='w-full bg-white-09 text-black'>Login</ButtonLink>
+                <ButtonLink href='/signup' className='w-full bg-white-025 mt-6 bg-primary text-white'>Sign up</ButtonLink>
             </div>
             <p className='border-t-2 mt-12 pt-4 border-vicm-green-500 text-center'>
                 Powered by VicMove

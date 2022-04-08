@@ -7,7 +7,7 @@ const ButtonLink = ({ children, buttonStyle, shapes, href, className }) => {
     classes += shapes === 'circle' ? 'rounded-full ' : 'px-8 py-4 rounded-xl ';
     return (
         <Link href={href || '/'}>
-            <a className={classes + 'uppercase btn text-white hover:opacity-90 ' + (className || '')}>
+            <a className={classes + 'uppercase btn hover:opacity-90 ' + (className || '')}>
                 {children}
                 </a>
         </Link>

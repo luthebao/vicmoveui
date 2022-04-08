@@ -1,6 +1,7 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
+    important: true,
     content: [
         "./pages/**/*.{js,ts,jsx,tsx}",
         "./components/**/*.{js,ts,jsx,tsx}",
@@ -22,13 +23,15 @@ module.exports = {
                             100: '#EBF5F5',
                             200: '#D4E2E2',
                         },
-                    }
+                    },
+                    
                 },
             },
             borderRadius: {
                 '4xl': '2rem'
             }
         },
+        
     },
     plugins: [],
 }

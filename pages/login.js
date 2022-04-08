@@ -12,10 +12,6 @@ import Link from "next/link";
 
 const LoginPage = () => {
 
-    const handleLogin = () => {
-        signIn("google")
-    }
-
     return (
         <BackgroundContainer type='light' className='text-center'>
             <PageNavigateBtn>
