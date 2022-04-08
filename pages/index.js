@@ -20,7 +20,7 @@ export default function Home() {
 
     if (session) {
         return (
-            <BackgroundContainer type='light-2' padding='none' hasMenu={true}>
+            <BackgroundContainer type='light-2' padding='none' hasMenu={true} className="min-h-[100vh]">
                 <HeaderContainer>
                     <div className='flex items-center'>
                         <UserAvatar />
@@ -43,7 +43,7 @@ export default function Home() {
 
                     <TextHeader size='sm' className='mt-8'>Mystery Box</TextHeader>
 
-                    <VerticalListContainer>
+                    <VerticalListContainer className={"mb-5"}>
                         <BoxCard className='inline-block text-center mr-4'>
                             <img src={"/images/box/00.png"} />
                             <ButtonDefault className='bg-primary' size='sm'>Open</ButtonDefault>
