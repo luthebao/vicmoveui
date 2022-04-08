@@ -65,9 +65,9 @@ export default NextAuth({
             return true // Do different verification for other providers that don't have `email_verified`
         },
     },
-    secret: "test",
+    secret: "bao*&^234dep)@$38@6trai!#5@55@",
     jwt: {
-        secret: "test",
+        secret: "bao*&^234dep)@$38@6trai!#5@55@",
         encryption: true,
     },
 })
