@@ -17,7 +17,7 @@ const Menu = ({ className, active }) => {
       <ButtonLink href={'/'} buttonStyle='flat' className={`btn-menu ${active === "coming" ? "btn-circle-active" : ""}`} shapes="circle">
         <img src={"/images/icons/coming.png"} />
       </ButtonLink>
-      <ButtonLink href={'/'} buttonStyle='flat' className={`btn-menu ${active === "market" ? "btn-circle-active" : ""}`} shapes="circle">
+      <ButtonLink href={'/user/market'} buttonStyle='flat' className={`btn-menu ${active === "market" ? "btn-circle-active" : ""}`} shapes="circle">
         <img src={"/images/icons/store.png"} />
       </ButtonLink>
     </div>

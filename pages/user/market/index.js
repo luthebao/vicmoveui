@@ -7,13 +7,13 @@ import LoadingContainer from "../../../containers/loading";
 import LayoutMenu from "../../../layouts/layoutmenu";
 import { AppBar, Tab, Tabs } from "@mui/material";
 import { useState } from "react";
-import SneakersList from "../../../containers/user/bag/sneakers";
-import BoxesList from "../../../containers/user/bag/boxes";
-import GemsList from "../../../containers/user/bag/gems";
+import SneakersListMarket from "../../../containers/user/market/sneakers";
 import WelcomePage from "../../welcome";
 import HeaderUser from "../../../containers/header/headeruser";
+import BoxesListMarket from "../../../containers/user/market/boxes";
+import GemsListMarket from "../../../containers/user/market/gems";
 
-export default function BagIndex() {
+export default function MarketIndex() {
     const { data: session, status } = useSession()
     const [tabindex, setTabindex] = useState(0)
 
@@ -32,9 +32,9 @@ export default function BagIndex() {
                     </Tabs>
                 </AppBar>
                 <SectionContainer className='basis-full mb-10'>
-                    {tabindex === 0 && <SneakersList />}
-                    {tabindex === 1 && <BoxesList />}
-                    {tabindex === 2 && <GemsList />}
+                    {tabindex === 0 && <SneakersListMarket />}
+                    {tabindex === 1 && <BoxesListMarket />}
+                    {tabindex === 2 && <GemsListMarket />}
                 </SectionContainer>
             </LayoutMenu>
         )

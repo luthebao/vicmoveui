@@ -23,6 +23,7 @@ module.exports = {
                         'green': {
                             100: '#EBF5F5',
                             200: '#D4E2E2',
+                            200_04: 'rgba(212, 226, 226, 0.4)',
                         },
                     },
                     'violet': {
@@ -41,6 +42,9 @@ module.exports = {
             },
             borderRadius: {
                 '4xl': '2rem'
+            },
+            borderWidth: {
+                '6': '6px',
             }
         },
 

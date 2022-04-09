@@ -1,11 +1,10 @@
-import { useSession, signIn, signOut } from "next-auth/react"
+import { useSession } from "next-auth/react"
 import SectionContainer from "../../../containers/section/section";
 import LoadingContainer from "../../../containers/loading";
 import LayoutMenu from "../../../layouts/layoutmenu";
-import { useState } from "react";
-import SneakersList from "../../../containers/user/bag/sneakers";
 import WelcomePage from "../../welcome";
 import HeaderBack from "../../../containers/header/headerback";
+import ChangeShoseList from "../../../containers/user/bag/changeshose";
 
 export default function ChangeShose() {
     const { data: session, status } = useSession()
@@ -17,9 +16,8 @@ export default function ChangeShose() {
         return (
             <LayoutMenu active={"bag"}>
                 <HeaderBack />
-
-                <SectionContainer className='basis-full'>
-                    <SneakersList />
+                <SectionContainer className='basis-full mb-10'>
+                    <ChangeShoseList />
                 </SectionContainer>
             </LayoutMenu>
         )

@@ -425,7 +425,6 @@
 }
 
 /* end font */
-
 body {
     color: #888888;
     font-family: "Josefin Sans", sans-serif;
@@ -486,6 +485,37 @@ body {
     background: url('/images/balance.png') bottom right / cover no-repeat;
 }
 
+.image-decoration {
+    background: url('/images/2_trans.png') center / contain no-repeat;
+}
+
+button {
+    user-select: none;
+}
+
+.grid4 {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.grid4>div {
+    width: 50%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.grid4>div:first-child, .grid4>div:nth-child(3) {
+    border-right: 1px solid #CCDCDC;
+}
+
+.grid4>div:first-child, .grid4>div:nth-child(2) {
+    border-bottom: 1px solid #CCDCDC;
+}
+
 .btn-menu {
     opacity: 0.6;
     height: 48px;
@@ -510,7 +540,7 @@ body {
 .btn-hightlight img {
     height: 48px;
     max-width: unset !important;
-    /* margin-left: 10px; */
+    margin-left: 10px;
     position: absolute;
 }
 
@@ -518,17 +548,4 @@ body {
     opacity: 1;
     background: rgba(255, 255, 255, 0.2);
     box-shadow: 0px 6px 8px 6px rgb(0 0 0 / 2%);
-}
-
-/* Hide scrollbar for Chrome, Safari and Opera */
-.no-scrollbar::-webkit-scrollbar {
-    display: none;
-}
-
-/* Hide scrollbar for IE, Edge and Firefox */
-.no-scrollbar {
-    -ms-overflow-style: none;
-    /* IE and Edge */
-    scrollbar-width: none;
-    /* Firefox */
 }

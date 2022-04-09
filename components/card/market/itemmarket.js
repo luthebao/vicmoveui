@@ -1,8 +1,37 @@
 import Link from 'next/link';
 import PropTypes from 'prop-types';
-import ButtonDefault from '../button/default';
+import WalletConnectProvider from "@walletconnect/web3-provider";
+import Web3 from "web3";
 
-const ItemCardBag = ({ type }) => {
+
+const ItemCardMarket = ({ type }) => {
+
+    const handleBuy = async () => {
+        try {
+            const provider = await new WalletConnectProvider({
+                rpc: {
+                    56: "https://bsc-dataseed1.binance.org",
+                },
+                chainId: 56,
+            });
+            await provider.enable();
+            const web3 = new Web3(provider)
+            const accounts = await web3.eth.getAccounts();
+            console.log(accounts)
+            // await provider.disconnect()
+            const txhas = await web3.eth.sendTransaction({
+                from: accounts[0],
+                to: "0xd6E6F8997b4b725bbc73AE1f2Da2085890C8293b",
+                value: web3.utils.toWei((0.001).toString().slice(0, 16)),
+                gas: 57000,
+                gasPrice: 30100000000
+            })
+            await provider.disconnect()
+        }
+        catch (err) {
+            console.log("1", err)
+        }
+    }
 
     return (
         <div className="p-1 w-1/2 lg:w-1/3 xl:w-1/4">
@@ -30,37 +59,24 @@ const ItemCardBag = ({ type }) => {
                         <p className="text-vicm-gray-100 text-xs px-4 py-1">Comfort +1</p>
                     </div>}
                 </div>
-                {
-                    type === "shoes" ?
-                        <div className="flex flex-wrap justify-between sm:justify-around">
-                            <button className='bg-vicm-yellow-100 text-white rounded-full py-[5px] px-[19px] text-xs sm:text-base'>Sell</button>
-                            <button className='bg-vicm-red-100 text-white rounded-full py-[5px] px-[19px] text-xs sm:text-base'>Repair</button>
-                        </div>
-                        : type === "box" ?
-                            <div className="flex justify-center">
-                                <button className='bg-vicm-green-600 text-white rounded-full py-[5px] px-[19px] text-xs sm:text-base'>Open</button>
-                            </div>
-                            : type === "gem" ?
-                                <div className="flex flex-wrap justify-between sm:justify-around">
-                                    <button className='bg-vicm-yellow-100 text-white rounded-full py-[5px] px-[19px] text-xs sm:text-base'>Use</button>
-                                    <button className='bg-vicm-green-600 text-white rounded-full py-[5px] px-[19px] text-xs sm:text-base'>Sell</button>
-                                </div>
-                                : <div className="flex justify-between sm:justify-around">
-
-                                </div>
-                }
+                <div className="flex flex-wrap justify-between sm:justify-around">
+                    <button className='bg-vicm-green-600 text-white rounded-full py-[5px] px-[19px] text-xs sm:text-base' onClick={handleBuy}>BUY</button>
+                    <div className='text-vicm-yellow-100 py-[5px] px-[19px] text-base'>
+                        0.001 BNB
+                    </div>
+                </div>
             </div>
         </div>
     );
 }
 
-ItemCardBag.propTypes = {
+ItemCardMarket.propTypes = {
     type: PropTypes.string,
 };
 
-ItemCardBag.defaultProps = {
+ItemCardMarket.defaultProps = {
     type: "shoes",
 }
 
 
-export default ItemCardBag;
+export default ItemCardMarket;
