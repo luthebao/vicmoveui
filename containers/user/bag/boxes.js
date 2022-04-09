@@ -1,17 +1,15 @@
-import ItemCard from "../../../components/card/item";
+import ItemCardBag from "../../../components/card/itembag";
 
 
 export default function BoxesList(props) {
 
     return (
         <div className="flex flex-wrap">
-            <ItemCard type="box" />
-            <ItemCard type="box" />
-            <ItemCard type="box" />
-            <ItemCard type="box" />
-            <ItemCard type="box" />
-            <ItemCard type="box" />
-            <ItemCard type="box" />
+            <ItemCardBag type="box" />
+            <ItemCardBag type="box" />
+            <ItemCardBag type="box" />
+            <ItemCardBag type="box" />
+            <ItemCardBag type="box" />
         </div>
     )
 }

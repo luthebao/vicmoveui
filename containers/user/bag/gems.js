@@ -1,17 +1,16 @@
-import ItemCard from "../../../components/card/item";
+import ItemCardBag from "../../../components/card/itembag";
 
 
 export default function GemsList(props) {
 
     return (
         <div className="flex flex-wrap">
-            <ItemCard type="gem" />
-            <ItemCard type="gem" />
-            <ItemCard type="gem" />
-            <ItemCard type="gem" />
-            <ItemCard type="gem" />
-            <ItemCard type="gem" />
-            <ItemCard type="gem" />
+            <ItemCardBag type="gem" />
+            <ItemCardBag type="gem" />
+            <ItemCardBag type="gem" />
+            <ItemCardBag type="gem" />
+            <ItemCardBag type="gem" />
+            <ItemCardBag type="gem" />
         </div>
     )
 }

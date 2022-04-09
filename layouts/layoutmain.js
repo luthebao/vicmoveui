@@ -20,7 +20,7 @@ const MainLayout = ({ children, type, bottom}) => {
                             <div className="header__logo header__logo--text">
                                 <a>Vic<strong>Move</strong></a>
                             </div>
-                            <div className="header__icon open-panel" data-panel="left" onClick={signOut}>
+                            <div className="header__icon open-panel" data-panel="left" onClick={() => signOut({ redirect: true, callbackUrl: "/" })}>
                                 <img src="/images/icons/logout.svg" alt="image" title="image" />
                             </div>
                         </div>}

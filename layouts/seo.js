@@ -7,7 +7,7 @@ export default function SEOLayout({ children }) {
     return (
         <React.Fragment>
             <Head>
-                <meta charset="utf-8" />
+                <meta charSet="utf-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
                 <link rel="icon" type="image/png" href="/favicon/favicon-32x32.png" id="favicon" />
                 <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png?v=8" />

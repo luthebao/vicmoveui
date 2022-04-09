@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import ButtonDefault from '../button/default';
 
-const ItemCard = ({ type, page }) => {
+const ItemCardBag = ({ type }) => {
 
     return (
         <div className="p-1 w-1/2 lg:w-1/3 xl:w-1/4">
@@ -30,28 +30,19 @@ const ItemCard = ({ type, page }) => {
                 </div>
                 {
                     type === "shoes" ?
-                        page === "bag" ? <div className="flex justify-between sm:justify-around">
+                        <div className="flex justify-between sm:justify-around">
                             <button className='bg-vicm-yellow-100 text-white rounded-full py-[5px] px-[19px] text-xs sm:text-base'>Sell</button>
                             <button className='bg-vicm-red-100 text-white rounded-full py-[5px] px-[19px] text-xs sm:text-base'>Repair</button>
                         </div>
-                            : <div className="flex justify-between sm:justify-around">
-
-                            </div>
                         : type === "box" ?
-                            page === "bag" ? <div className="flex justify-center">
+                            <div className="flex justify-center">
                                 <button className='bg-vicm-green-600 text-white rounded-full py-[5px] px-[19px] text-xs sm:text-base'>Open</button>
                             </div>
-                                : <div className="flex justify-between sm:justify-around">
-
-                                </div>
                             : type === "gem" ?
-                                page === "bag" ? <div className="flex justify-between sm:justify-around">
+                                <div className="flex justify-between sm:justify-around">
                                     <button className='bg-vicm-yellow-100 text-white rounded-full py-[5px] px-[19px] text-xs sm:text-base'>Use</button>
                                     <button className='bg-vicm-green-600 text-white rounded-full py-[5px] px-[19px] text-xs sm:text-base'>Sell</button>
                                 </div>
-                                    : <div className="flex justify-between sm:justify-around">
-
-                                    </div>
                                 : <div className="flex justify-between sm:justify-around">
 
                                 </div>
@@ -61,15 +52,13 @@ const ItemCard = ({ type, page }) => {
     );
 }
 
-ItemCard.propTypes = {
+ItemCardBag.propTypes = {
     type: PropTypes.string,
-    page: PropTypes.string,
 };
 
-ItemCard.defaultProps = {
+ItemCardBag.defaultProps = {
     type: "shoes",
-    page: "bag",
 }
 
 
-export default ItemCard;
+export default ItemCardBag;

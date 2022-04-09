@@ -1,20 +1,15 @@
-import ItemCard from "../../../components/card/item";
-
+import ItemCardBag from "../../../components/card/itembag";
 
 export default function SneakersList(props) {
 
     return (
         <div className="flex flex-wrap">
-            <ItemCard />
-            <ItemCard />
-            <ItemCard />
-            <ItemCard />
-            <ItemCard />
-            <ItemCard />
-            <ItemCard />
-            <ItemCard />
-            <ItemCard />
-            
+            <ItemCardBag />
+            <ItemCardBag />
+            <ItemCardBag />
+            <ItemCardBag />
+            <ItemCardBag />
+            <ItemCardBag />
         </div>
     )
 }

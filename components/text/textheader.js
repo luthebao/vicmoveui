@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const TextHeader = ({ children, size, className }) => {
+const TextHeader = ({ children, size, className, onClick }) => {
     let classes = 'text-black';
     switch (size) {
         case 'lg':
@@ -21,7 +21,7 @@ const TextHeader = ({ children, size, className }) => {
     }
 
     return (
-        <div className={classes + (className || '')}>
+        <div className={classes + (className || '')} onClick={onClick}>
             {children}
         </div>
     );
@@ -30,6 +30,7 @@ const TextHeader = ({ children, size, className }) => {
 TextHeader.propTypes = {
     size: PropTypes.string.isRequired,
     className: PropTypes.string,
+    onClick: PropTypes.func
 };
 
 export default TextHeader;

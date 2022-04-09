@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken');
 import NextAuth from 'next-auth'
 import CredentialProvider from "next-auth/providers/credentials"
 import GoogleProvider from "next-auth/providers/google";
@@ -42,21 +43,40 @@ export default NextAuth({
             }
         })
     ],
+    secret: "bao*&^234dep)@$38@6trai!#5@55@",
+    jwt: {
+        secret: "bao*&^234dep)@$38@6trai!#5@55@",
+        encryption: true,
+        encode: async ({ secret, token }) => {
+            return jwt.sign(token, secret, { algorithm: 'HS256' });
+        },
+        decode: async ({ secret, token }) => {
+            return jwt.verify(token, secret, { algorithms: ['HS256'] });
+        },
+    },
+    session: {
+        jwt: true,
+        strategy: "jwt",
+        maxAge: 30 * 24 * 60 * 60, // 30 days
+        updateAge: 24 * 60 * 60, // 24 hours
+    },
     callbacks: {
-        jwt: ({ token, user }) => {
+        jwt: async ({ token, user }) => {
             // first time jwt callback is run, user object is available
             if (user) {
                 token.id = user.id;
             }
 
-            return token;
+            return Promise.resolve(token);
         },
-        session: ({ session, token }) => {
+        session: async ({ session, token }) => {
             if (token) {
                 session.id = token.id;
+                session.token = jwt.sign(token, "bao*&^234dep)@$38@6trai!#5@55@", { algorithm: 'HS256'});
+
             }
 
-            return session;
+            return Promise.resolve(session);
         },
         async signIn({ account, profile }) {
             if (account.provider === "google") {
@@ -65,9 +85,5 @@ export default NextAuth({
             return true // Do different verification for other providers that don't have `email_verified`
         },
     },
-    secret: "bao*&^234dep)@$38@6trai!#5@55@",
-    jwt: {
-        secret: "bao*&^234dep)@$38@6trai!#5@55@",
-        encryption: true,
-    },
+    
 })
