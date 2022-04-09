@@ -22,7 +22,7 @@ export default function MarketIndex() {
 
     if (session) {
         return (
-            <LayoutMenu active={"bag"}>
+            <LayoutMenu active={"market"}>
                 <HeaderUser session={session} signOut={() => signOut({ redirect: true, callbackUrl: "/" })} />
                 <AppBar position="static" className="w-auto mx-auto bg-vicm-green-90 mb-[20px] rounded-full border-[2px] border-white normal-case">
                     <Tabs className="normal-case" value={tabindex} onChange={(event, newValue) => setTabindex(newValue)} aria-label="simple tabs example" TabIndicatorProps={{ style: { backgroundColor: "transparent" } }}>
