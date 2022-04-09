@@ -1,7 +1,4 @@
 import { useSession, signIn, signOut } from "next-auth/react"
-import HeaderContainer from "../../../containers/header/default";
-import UserAvatar from "../../../components/user/avatar";
-import { AiOutlineDollar, AiOutlineLogout } from "react-icons/ai";
 import SectionContainer from "../../../containers/section/section";
 import LoadingContainer from "../../../containers/loading";
 import LayoutMenu from "../../../layouts/layoutmenu";
