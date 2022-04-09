@@ -61,7 +61,7 @@ const ItemCardMarket = ({ type }) => {
                 </div>
                 <div className="flex flex-wrap justify-between sm:justify-around">
                     <button className='bg-vicm-green-600 text-white rounded-full py-[5px] px-[19px] text-xs sm:text-base' onClick={handleBuy}>BUY</button>
-                    <div className='text-vicm-yellow-100 py-[5px] px-[19px] text-base'>
+                    <div className='text-vicm-yellow-100 my-auto text-base'>
                         0.001 BNB
                     </div>
                 </div>
