@@ -15,6 +15,7 @@ import Chip from "../components/card/chip"
 import CircleNumber from "../components/text/circlenumber"
 import { AiOutlineDollar, AiFillTags } from "react-icons/ai";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function Home() {
     const { data: session, status } = useSession()
@@ -36,21 +37,29 @@ export default function Home() {
                         </ButtonLink>
                         <img src={"/images/icons/bw.png"} />
                     </BoxCard>}
-                    {type === 1 && <BoxCard className='box-decoration flex flex-col justify-between min-h-[80vw] p-[1rem]'>
-                        <div className='flex'>
+                    {type === 1 && <BoxCard className='box-decoration flex flex-col  min-h-[80vw] p-[1rem]'>
+                        <div className='flex justify-between'>
                             <ProgressBar percentage='70' className='w-1/3' />
-                            <Chip className='mx-6 text-sm'>Lv.10</Chip>
-                            <ButtonDefault className='bg-primary' size='sm'>Change</ButtonDefault>
+                            <div className="bg-vicm-green-600 text-white rounded-full px-1 flex text-xs">
+                                <p className="my-auto px-2 text-xs">Lv: 10</p>
+                            </div>
+                            <Link href={"/user/bag/changeshose"}>
+                                <button className='bg-vicm-green-600 w-1/4 rounded-full text-xs shadow-2xl text-white hover:opacity-90 px-1' size='sm'>
+                                    Change
+                                </button>
+                            </Link>
                         </div>
                         <div className='flex flex-col absolute top-16'>
                             <CircleNumber className='mb-2 border-red-300' size='sm'>40</CircleNumber>
                             <CircleNumber className='mb-2 border-yellow-300' size='sm'>20</CircleNumber>
                             <CircleNumber className='mb-2 border-emerald-300' size='sm'>10</CircleNumber>
                         </div>
-                        <img className='mt-12' src={"/images/s/NFT2.png"} />
+
+                        <img className='mt-12 ml-10' src={"/images/s/NFT2.png"} />
+
                         <div className='flex flex-wrap justify-between items-end'>
                             <Chip className='bg-vicm-green-600 text-white'>
-                                <AiFillTags className='text-2xl mr-2' /> #123456789
+                                <AiFillTags className='text-xl mr-2' /> #123456789
                             </Chip>
                             <Chip className="text-vicm-violet-100 bg-vicm-green-90" >
                                 <img src={"/images/icons/foot.svg"} className='mr-2' />Walking

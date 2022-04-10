@@ -13,6 +13,7 @@ import ButtonDefault from "../../../../../components/button/default";
 import React, { useState } from "react";
 
 
+
 export default function SneakerDetail({ props }) {
     const { data: session, status } = useSession()
     const [price, setPrice] = useState(() => props?.price || 0.5)
@@ -73,20 +74,18 @@ export default function SneakerDetail({ props }) {
                             </BoxCard>
                         </div>
                         <div className='flex justify-between items-center mt-6'>
+                            {!edit && <ButtonDefault className='bg-vicm-yellow-100 h-12' size='md' >Repair</ButtonDefault>}
                             {!edit && <span className="text-orange-400 text-xl" onClick={() => setEdit(true)}>{price} BNB</span>}
                             {edit && <React.Fragment>
-                                <input type="number" min={0} onKeyDown={(e) => {
-                                    if (e.key === "Enter") {
-                                        setEdit(false)
-                                    }
-                                }} value={price} onChange={(e) => setPrice(e.target.value)} className="text-xl rounded-xl h-12 px-2 w-full bg-transparent border-2 border-gray-400 focus-visible:outline-vicm-green-500 text-orange-400" />
+                                <input type="number" min={0} value={price} onChange={(e) => setPrice(e.target.value)} className="text-xl rounded-xl h-12 px-2 w-full bg-transparent border-2 border-gray-400 focus-visible:outline-vicm-green-500 text-orange-400" />
                                 <select className="mx-1 flex text-xl h-12 text-white items-center bg-vicm-gray-100 rounded-xl" >
                                     <option>BNB</option>
                                     <option>ETH</option>
                                     <option>MATIC</option>
                                 </select>
                             </React.Fragment>}
-                            <ButtonDefault className='bg-vicm-red-100 h-12' size='md' >Sell</ButtonDefault>
+                            {!edit && <ButtonDefault className='bg-vicm-red-100 h-12' size='md'>Sell</ButtonDefault>}
+                            {edit && <ButtonDefault className='bg-vicm-red-100 h-12' size='md' callback={() => setEdit(false)}>SET</ButtonDefault>}
                         </div>
                     </BoxCard>
                 </SectionContainer>

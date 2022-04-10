@@ -5,6 +5,7 @@ import SEOLayout from '../layouts/seo'
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { Backdrop, CircularProgress } from '@mui/material';
+import NotificationPopup from '../containers/section/notipopup';
 
 export default function App({
     Component, pageProps: { session, ...pageProps }
@@ -43,7 +44,7 @@ export default function App({
                         <CircularProgress color="inherit" />
                     </div>
                 </Backdrop>
-
+                <NotificationPopup />
             </SEOLayout>
         </SessionProvider>
     )

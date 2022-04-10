@@ -45,7 +45,7 @@ const ItemCardMarket = ({ type }) => {
                         <p className="my-auto text-xs">Level 10</p>
                     </div>
                 </div>}
-                <Link href={"/user/bag/sneaker/12345678/sell"}>
+                <Link href={"/user/bag/sneaker/12345678/detail"}>
                     <div className="mx-auto mt-4 relative">
                         <img className="relative w-full m-auto" src="/images/bg/bg-item.svg" />
                         <img className="absolute top-0 w-full h-auto" src={type === "shoes" ? "/images/s/NFT1.png" : type === "box" ? "/images/box/walking.png" : "/images/gem/stamina.svg"} />
