@@ -2,11 +2,14 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import Web3 from "web3";
+import { toast } from 'react-toastify';
 
 
 const ItemCardMarket = ({ type }) => {
 
     const handleBuy = async () => {
+        toast("Comming soon ...")
+        return
         try {
             const provider = await new WalletConnectProvider({
                 rpc: {

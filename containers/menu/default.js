@@ -11,7 +11,7 @@ const Menu = ({ className, active }) => {
       <ButtonLink href={'/user/bag'} buttonStyle='flat' className={`btn-menu ${active === "bag" ? "btn-circle-active" : ""}`} shapes="circle">
         <img src={"/images/icons/shoes.png"} />
       </ButtonLink>
-      <ButtonLink href={'/run'} buttonStyle='flat' className='btn-menu btn-hightlight' shapes="circle">
+      <ButtonLink href={'/runnative'} buttonStyle='flat' className='btn-menu btn-hightlight' shapes="circle">
         <img src={"/images/icons/start.png"} />
       </ButtonLink>
       <ButtonLink href={'/fusion'} buttonStyle='flat' className={`btn-menu ${active === "coming" ? "btn-circle-active" : ""}`} shapes="circle">

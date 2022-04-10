@@ -1,3 +1,4 @@
+import 'react-toastify/dist/ReactToastify.css';
 import '../styles/index.css'
 
 import { SessionProvider } from "next-auth/react"
@@ -6,6 +7,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { Backdrop, CircularProgress } from '@mui/material';
 import NotificationPopup from '../containers/section/notipopup';
+import { ToastContainer } from 'react-toastify';
 
 export default function App({
     Component, pageProps: { session, ...pageProps }
@@ -44,7 +46,19 @@ export default function App({
                         <CircularProgress color="inherit" />
                     </div>
                 </Backdrop>
-                <NotificationPopup />
+                {/* <NotificationPopup /> */}
+                <ToastContainer
+                    className="p-4"
+                    position="top-left"
+                    autoClose={4000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                />
             </SEOLayout>
         </SessionProvider>
     )
