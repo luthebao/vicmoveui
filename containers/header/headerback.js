@@ -14,7 +14,7 @@ const HeaderBack = ({ title }) => {
             <div className='flex items-center absolute left-2' onClick={() => rounter.back()}>
                 <FiChevronLeft className='text-4xl' />
             </div>
-            <TextHeader className='w-full text-center m-auto' size='xs'>{title || "Back"}</TextHeader>
+            <TextHeader className='w-full text-center m-auto capitalize' size='xs'>{title || "Back"}</TextHeader>
         </HeaderContainer>
     )
 }

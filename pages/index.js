@@ -27,8 +27,7 @@ export default function Home() {
         new Promise(async (resolve, reject) => {
             const getcurrent = localStorage.getItem("currentShoes")
             console.log(getcurrent)
-            if (getcurrent)
-            {
+            if (getcurrent) {
                 setCurrentShoes(shoes_data.find(val => val.id === Number(getcurrent)))
             }
             resolve(true);
@@ -68,7 +67,7 @@ export default function Home() {
                         <div className='flex flex-col absolute top-16'>
                             <CircleNumber className='mb-2 border-red-300' size='sm'>{currentShoes.stats.comfort}</CircleNumber>
                             <CircleNumber className='mb-2 border-yellow-300' size='sm'>{currentShoes.stats.lucky}</CircleNumber>
-                            <CircleNumber className='mb-2 border-emerald-300' size='sm'>{currentShoes.stats.stamiaa}</CircleNumber>
+                            <CircleNumber className='mb-2 border-emerald-300' size='sm'>{currentShoes.stats.stamina}</CircleNumber>
                         </div>
 
                         <img className='mt-12 ml-10' src={`/images/s/${currentShoes.pic}.png`} />
@@ -88,7 +87,9 @@ export default function Home() {
                             shoes_data.filter(val => val.type === "box").map(val => (
                                 <BoxCard key={`boxindex-${val.id}`} className='inline-block text-center mr-4'>
                                     <img src={`/images/box/${val.style}.png`} width={115} />
-                                    <ButtonDefault className='bg-primary' size='sm'>Open</ButtonDefault>
+                                    <Link href={`/user/bag/item/${val.id}/detail`}>
+                                        <button className="rounded-full text-xs px-6 py-1 shadow-2xl border-2 uppercase btn text-white hover:opacity-90 bg-vicm-green-600">Open</button>
+                                    </Link>
                                 </BoxCard>
                             ))
                         }

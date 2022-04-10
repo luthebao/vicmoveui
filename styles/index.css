@@ -440,7 +440,7 @@
 
 body {
     color: #888888;
-    font-family: "Josefin Sans", sans-serif;
+    font-family: "Josefin Sans", sans-serif !important;
 }
 
 .bg-primary {
