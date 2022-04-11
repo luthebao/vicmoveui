@@ -20,7 +20,7 @@ import { toast } from "react-toastify";
 export default function SneakerDetail(props) {
     const { data: session, status } = useSession()
     const [checking, setChecking] = useState(true)
-    const [price, setPrice] = useState(() => props?.price || 0.5)
+    const [price, setPrice] = useState(() => props?.price || 1)
     const [edit, setEdit] = useState(false)
     const [info, setInfo] = useState(null)
 
