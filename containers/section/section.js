@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 
-const SectionContainer = ({ children, className }) => {
-
+const SectionContainer = ({ children, type, bgColor, className }) => {
+    let classes = type === 'full' ? 'rounded-4xl' : 'rounded-t-4xl';
+    let color = bgColor || ' bg-vicm-light-green-100 ';
     return (
         <div
-            className={'rounded-4xl p-4 bg-vicm-light-green-100 ' + (className || '')}>
+            className={classes + ' p-4 ' + color + ' ' + (className || '')}>
             {children}
         </div>
     );
