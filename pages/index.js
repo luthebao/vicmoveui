@@ -65,7 +65,7 @@ export default function Home() {
                         </div>
                         <div className='flex flex-col absolute top-16'>
                             <CircleNumber className='mb-2 border-red-300' size='sm'>{currentShoes.stats.comfort}</CircleNumber>
-                            <CircleNumber className='mb-2 border-yellow-300' size='sm'>{currentShoes.stats.lucky}</CircleNumber>
+                            <CircleNumber className='mb-2 border-yellow-300' size='sm'>{currentShoes.stats.lucky + currentShoes.gems.reduce((a, b) => a + (b.stat * currentShoes.level || 0), 0)}</CircleNumber>
                             <CircleNumber className='mb-2 border-emerald-300' size='sm'>{currentShoes.stats.stamina}</CircleNumber>
                         </div>
                         <Link href={`/user/bag/item/${currentShoes.id}/detail`}>

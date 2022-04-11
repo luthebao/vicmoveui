@@ -33,9 +33,9 @@ export const item_type = {
         "name": "gem",
         "img": [
             {
-                "comfort": "/images/gem/comfort.svg",
-                "lucky": "/images/gem/lucky.svg",
-                "stamina": "/images/gem/stamina.svg",
+                "stone": "/images/gem/stone.png",
+                "jewel": "/images/gem/jewel.png",
+                "diamond": "/images/gem/diamond.png",
             }
         ]
     }

@@ -19,7 +19,7 @@ const ItemCardBag = ({ id, type, level, pic, style }) => {
                 <Link href={`/user/bag/item/${id}/detail`}>
                     <div className="mx-auto mt-4 relative">
                         <img className="relative w-full m-auto" src="/images/bg/bg-item.svg" />
-                        <img className="absolute top-0 w-full h-auto" src={type === "shoes" ? `/images/s/${pic}.png` : type === "box" ? `/images/box/${pic}.png` : `/images/gem/${pic}.svg`} />
+                        <img className="absolute top-0 w-full h-auto" src={type === "shoes" ? `/images/s/${pic}.png` : type === "box" ? `/images/box/${pic}.png` : `/images/gem/${pic}.png`} />
                     </div>
                 </Link>
                 <div className="mx-auto my-4">

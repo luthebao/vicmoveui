@@ -26,15 +26,15 @@ export const shoes_data = [
         },
         gems: [
             {
-                type: "comfort",
+                type: "jewel",
                 stat: 2
             },
             {
-                type: "lucky",
+                type: "stone",
                 stat: 1
             },
             {
-                type: "lucky",
+                type: "stone",
                 stat: 1
             },
         ],
@@ -52,15 +52,15 @@ export const shoes_data = [
         },
         gems: [
             {
-                type: "comfort",
+                type: "jewel",
                 stat: 2
             },
             {
-                type: "lucky",
+                type: "stone",
                 stat: 1
             },
             {
-                type: "stamina",
+                type: "diamond",
                 stat: 3
             },
         ],
@@ -106,19 +106,19 @@ export const shoes_data = [
         },
         gems: [
             {
-                type: "comfort",
+                type: "jewel",
                 stat: 2
             },
             {
-                type: "lucky",
+                type: "stone",
                 stat: 1
             },
             {
-                type: "stamina",
+                type: "diamond",
                 stat: 3
             },
             {
-                type: "comfort",
+                type: "jewel",
                 stat: 2
             },
         ],
@@ -164,16 +164,16 @@ export const shoes_data = [
     {
         id: 100000005,
         level: 2,
-        pic: "comfort",
+        pic: "jewel",
         stats: {},
         gems: [],
         type: "gem",
-        style: "comfort",
+        style: "lucky",
     },
     {
         id: 100000006,
         level: 1,
-        pic: "lucky",
+        pic: "stone",
         stats: {},
         gems: [],
         type: "gem",
@@ -182,11 +182,11 @@ export const shoes_data = [
     {
         id: 100000007,
         level: 3,
-        pic: "stamina",
+        pic: "diamond",
         stats: {},
         gems: [],
         type: "gem",
-        style: "stamina",
+        style: "lucky",
     },
 ]
 

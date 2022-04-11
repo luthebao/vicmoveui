@@ -10,7 +10,7 @@ export default function GemsListMarket(props) {
                 <div className="min-h-[150px] border-[2px] border-vicm-green-600 rounded-4xl flex flex-col p-2">
                     <div className="mx-auto mt-4 relative">
                         <img className="relative w-full m-auto" src="/images/bg/bg-item.svg" />
-                        <img className="absolute top-0 w-full h-auto" src={"/images/gem/stamina.svg"} />
+                        <img className="absolute top-0 w-full h-auto" src={"/images/gem/diamond.png"} />
                     </div>
                     <div className="mx-auto my-4">
                         <div className="rounded-4xl">
@@ -29,7 +29,7 @@ export default function GemsListMarket(props) {
                 <div className="min-h-[150px] border-[2px] border-vicm-green-600 rounded-4xl flex flex-col p-2">
                     <div className="mx-auto mt-4 relative">
                         <img className="relative w-full m-auto" src="/images/bg/bg-item.svg" />
-                        <img className="absolute top-0 w-full h-auto" src={"/images/gem/comfort.svg"} />
+                        <img className="absolute top-0 w-full h-auto" src={"/images/gem/jewel.png"} />
                     </div>
                     <div className="mx-auto my-4">
                         <div className="rounded-4xl">
@@ -48,7 +48,7 @@ export default function GemsListMarket(props) {
                 <div className="min-h-[150px] border-[2px] border-vicm-green-600 rounded-4xl flex flex-col p-2">
                     <div className="mx-auto mt-4 relative">
                         <img className="relative w-full m-auto" src="/images/bg/bg-item.svg" />
-                        <img className="absolute top-0 w-full h-auto" src={"/images/gem/lucky.svg"} />
+                        <img className="absolute top-0 w-full h-auto" src={"/images/gem/stone.png"} />
                     </div>
                     <div className="mx-auto my-4">
                         <div className="rounded-4xl">

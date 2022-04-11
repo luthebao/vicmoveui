@@ -63,16 +63,16 @@ export default function SneakerDetail(props) {
                             </div>
                             {info.gems.length > 0 && <div className='flex justify-around'>
                                 <div className='bg-vicm-light-green-20004 w-1/4 max-w-[150px] min-h-[70px] p-2 m-1 rounded-xl flex items-center justify-center'>
-                                    {info.gems.length > 0 && <img src={`/images/gem/${info.gems[0].type}.svg`} />}
+                                    {info.gems.length > 0 && <img src={`/images/gem/${info.gems[0].type}.png`} />}
                                 </div>
                                 <div className='bg-vicm-light-green-20004 w-1/4 max-w-[150px] p-2 m-1 rounded-xl flex items-center justify-center'>
-                                    {info.gems.length > 1 && <img src={`/images/gem/${info.gems[1].type}.svg`} />}
+                                    {info.gems.length > 1 && <img src={`/images/gem/${info.gems[1].type}.png`} />}
                                 </div>
                                 <div className='bg-vicm-light-green-20004 w-1/4 max-w-[150px] p-2 m-1 rounded-xl flex items-center justify-center'>
-                                    {info.gems.length > 2 && <img src={`/images/gem/${info.gems[2].type}.svg`} />}
+                                    {info.gems.length > 2 && <img src={`/images/gem/${info.gems[2].type}.png`} />}
                                 </div>
                                 <div className='bg-vicm-light-green-20004 w-1/4 max-w-[150px] p-2 m-1 rounded-xl flex items-center justify-center'>
-                                    {info.gems.length > 3 && <img src={`/images/gem/${info.gems[3].type}.svg`} />}
+                                    {info.gems.length > 3 && <img src={`/images/gem/${info.gems[3].type}.png`} />}
                                 </div>
                             </div>}
                             <BoxCard className='flex flex-col mt-6 items-center w-full'>

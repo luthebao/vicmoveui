@@ -10,7 +10,7 @@ const EncrustGemCard = ({ id, type, level, pic }) => {
 
                 <div className="mx-auto mt-4 relative">
                     <img className="relative w-full m-auto" src="/images/bg/bg-item.svg" />
-                    <img className="absolute top-0 w-full h-auto" src={`/images/gem/${pic}.svg`} />
+                    <img className="absolute top-0 w-full h-auto" src={`/images/gem/${pic}.png`} />
                 </div>
                 <div className="mx-auto my-4">
                     <div className="rounded-4xl">

@@ -49,15 +49,20 @@ export default function SneakerDetail(props) {
                     {info && info.type === "shoes" && <BoxCard className='flex flex-col justify-between' type='flat-border' style={{ 'minHeight': '80vw', 'padding': '1rem' }}>
                         <div className='flex justify-between'>
                             <div className='flex flex-col items-center'>
-                                <Chip className='mb-2 bg-vicm-green-600 text-white'>
-                                    <AiFillTags className='text-xl mr-2' /> #{info.id}
+                                <Chip className='text-sm mb-2 bg-vicm-green-600 text-white'>
+                                    <AiFillTags className=' mr-2' /> #{info.id}
                                 </Chip>
                                 <Chip className='text-sm bg-vicm-green-90 text-vicm-violet-100 capitalize w-[80%] justify-center'>
                                     <img src={"/images/icons/foot.svg"} className='mr-2' />
                                     {info.style}
                                 </Chip>
                             </div>
-                            <ProgressBar percentage={100} className='w-24' />
+                            <div className='flex flex-wrap items-start'>
+                                <Chip className='text-sm mx-auto bg-vicm-green-600 text-white capitalize justify-center'>
+                                    Lvl {info.level}
+                                </Chip>
+                                <ProgressBar percentage={100} className='ml-2 w-24' />
+                            </div>
                         </div>
                         <div>
                             <div className='image-decoration mt-4'>
@@ -65,26 +70,26 @@ export default function SneakerDetail(props) {
                             </div>
                             <div className='flex justify-around'>
                                 <div className='bg-vicm-light-green-20004 w-1/4 max-w-[150px] min-h-[70px] p-2 m-1 rounded-xl flex items-center justify-center'>
-                                    {info.gems.length > 0 ? <img src={`/images/gem/${info.gems[0].type}.svg`} /> :
+                                    {info.gems.length > 0 ? <img src={`/images/gem/${info.gems[0].type}.png`} /> :
                                         <Link href={`/user/bag/item/${info.id}/encrusted`}>
                                             <FiPlus className="text-[50px]" />
                                         </Link>
                                     }
                                 </div>
                                 <div className='bg-vicm-light-green-20004 w-1/4 max-w-[150px] p-2 m-1 rounded-xl flex items-center justify-center'>
-                                    {info.gems.length > 1 ? <img src={`/images/gem/${info.gems[1].type}.svg`} /> :
+                                    {info.gems.length > 1 ? <img src={`/images/gem/${info.gems[1].type}.png`} /> :
                                         <Link href={`/user/bag/item/${info.id}/encrusted`}>
                                             <FiPlus className="text-[50px]" />
                                         </Link>}
                                 </div>
                                 <div className='bg-vicm-light-green-20004 w-1/4 max-w-[150px] p-2 m-1 rounded-xl flex items-center justify-center'>
-                                    {info.gems.length > 2 ? <img src={`/images/gem/${info.gems[2].type}.svg`} /> :
+                                    {info.gems.length > 2 ? <img src={`/images/gem/${info.gems[2].type}.png`} /> :
                                         <Link href={`/user/bag/item/${info.id}/encrusted`}>
                                             <FiPlus className="text-[50px]" />
                                         </Link>}
                                 </div>
                                 <div className='bg-vicm-light-green-20004 w-1/4 max-w-[150px] p-2 m-1 rounded-xl flex items-center justify-center'>
-                                    {info.gems.length > 3 ? <img src={`/images/gem/${info.gems[3].type}.svg`} /> :
+                                    {info.gems.length > 3 ? <img src={`/images/gem/${info.gems[3].type}.png`} /> :
                                         <Link href={`/user/bag/item/${info.id}/encrusted`}>
                                             <FiPlus className="text-[50px]" />
                                         </Link>}
@@ -101,7 +106,7 @@ export default function SneakerDetail(props) {
                                     </div>
                                     <div>
                                         <CircleNumber className='mb-2 border-yellow-300' size='lg'>
-                                            {info.stats.lucky + info.gems.reduce((a, b) => a + (b.stat || 0), 0)}
+                                            {info.stats.lucky + info.gems.reduce((a, b) => a + (b.stat*info.level || 0), 0)}
                                         </CircleNumber>
                                         <span className='text-xs'>Lucky</span>
                                     </div>
@@ -163,7 +168,7 @@ export default function SneakerDetail(props) {
                         </div>
                         <div className="flex image-decoration ">
                             <div className='mt-4 mx-auto'>
-                                <img src={`/images/gem/${info.pic}.svg`} />
+                                <img src={`/images/gem/${info.pic}.png`} />
                             </div>
                         </div>
                         <div className='flex justify-between items-center mt-6'>
