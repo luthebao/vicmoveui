@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 
-const EncrustGemCard = ({ id, type, level, pic, style }) => {
+const EncrustGemCard = ({ id, type, level, pic }) => {
 
 
     return (

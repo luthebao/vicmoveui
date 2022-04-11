@@ -20,7 +20,7 @@ export default function MarketIndex() {
                 <SectionContainer className='basis-full mb-10'>
                     <div className="flex flex-wrap">
                     {
-                        shoes_data.filter(val => val.type === "gem").map(val => <EncrustGemCard {...val} />)
+                        shoes_data.filter(val => val.type === "gem").map(val => <EncrustGemCard key={`encrust-${val.type}-${val.id}`} {...val} />)
                     }
                     </div>
                 </SectionContainer>
