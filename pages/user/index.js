@@ -1,10 +1,17 @@
 import HeaderBack from '../../containers/header/headerback'
 import LayoutMenu from '../../layouts/layoutmenu'
 import { IconButton, Avatar, LinearProgress } from '@mui/material';
-import { FiChevronLeft, FiPlus } from 'react-icons/fi';
+import { FiPlus } from 'react-icons/fi';
+import { FaPuzzlePiece } from 'react-icons/fa';
+import { AiFillEdit } from "react-icons/ai";
 import { useSession } from "next-auth/react"
 import LoadingContainer from '../../containers/loading';
 import WelcomePage from '../welcome';
+import TextHeader from '../../components/text/textheader';
+import ButtonLink from '../../components/button/btnlink';
+import { HiOutlineLightningBolt } from "react-icons/hi";
+import SectionContainer from '../../containers/section/section';
+import BoxCard from '../../components/card/box';
 
 
 const ProfileIndex = () => {
@@ -27,7 +34,41 @@ const ProfileIndex = () => {
                             </IconButton>
                         </label>
                     </div>
+                    <div className='mt-6 text-center'>
+                        <TextHeader size='sm' className='text-center'>{session.user.name}</TextHeader>
+                        <div className='flex items-center'>
+                            <img className='text-vicm-green-500' src={"/images/icons/wallet.svg"} />
+                            <div className='ml-4 text-vicm-green-500'>Create Wallet</div>
+                        </div>
+                        <ButtonLink href='/' size='md' className='inline-block items-center bg-primary mt-4 text-white px-5'><AiFillEdit className='text-2xl pb-1 inline' />&nbsp; Edit</ButtonLink>
+                    </div>
                 </div>
+                <SectionContainer className='basis-full shadow-t-lg p-8' bgColor='bg-white'>
+                    <BoxCard className='mb-8'>
+                        <div className='flex justify-between'>
+                            <div className='rounded-full shadow-t-lg border-2 border-gray-300 h-16 w-16 flex items-center justify-center'>
+                                <HiOutlineLightningBolt className='text-3xl text-vicm-green-500' />
+                            </div>
+                            <div className='grow ml-6'>
+                                <div className='text-gray-700'>Energy</div>
+                                <LinearProgress className='my-2' variant="determinate" color='success' value={80} />
+                                <div>50/60</div>
+                            </div>
+                        </div>
+                    </BoxCard>
+                    <BoxCard className='mb-8'>
+                        <div className='flex justify-between'>
+                            <div className='rounded-full shadow-t-lg border-2 border-gray-300 h-16 w-16 flex items-center justify-center'>
+                                <FaPuzzlePiece className='text-3xl text-vicm-green-500' />
+                            </div>
+                            <div className='grow ml-6'>
+                                <div className='text-gray-700'>Box Pieces</div>
+                                <LinearProgress className='my-2' variant="determinate" color='success' value={80} />
+                                <div>200</div>
+                            </div>
+                        </div>
+                    </BoxCard>
+                </SectionContainer>
             </LayoutMenu>
         )
     return <WelcomePage />

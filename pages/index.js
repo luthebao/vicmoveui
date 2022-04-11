@@ -26,7 +26,6 @@ export default function Home() {
     useEffect(() => {
         new Promise(async (resolve, reject) => {
             const getcurrent = localStorage.getItem("currentShoes")
-            console.log(getcurrent)
             if (getcurrent) {
                 setCurrentShoes(shoes_data.find(val => val.id === Number(getcurrent)))
             }
@@ -69,9 +68,9 @@ export default function Home() {
                             <CircleNumber className='mb-2 border-yellow-300' size='sm'>{currentShoes.stats.lucky}</CircleNumber>
                             <CircleNumber className='mb-2 border-emerald-300' size='sm'>{currentShoes.stats.stamina}</CircleNumber>
                         </div>
-
-                        <img className='mt-12 ml-10' src={`/images/s/${currentShoes.pic}.png`} />
-
+                        <Link href={`/user/bag/item/${currentShoes.id}/detail`}>
+                            <img className='mt-12 ml-10' src={`/images/s/${currentShoes.pic}.png`} />
+                        </Link>
                         <div className='flex flex-wrap justify-between items-end'>
                             <Chip className='bg-vicm-green-600 text-white'>
                                 <AiFillTags className='text-xl mr-2' /> #{currentShoes.id}
@@ -81,7 +80,7 @@ export default function Home() {
                             </Chip>
                         </div>
                     </BoxCard>}
-                    <TextHeader size='sm' className='mt-8'>Mystery Box</TextHeader>
+                    <TextHeader size='sm' className='mt-8'>Shoes Box</TextHeader>
                     <VerticalListContainer className={"mb-5 noscroll"}>
                         {
                             shoes_data.filter(val => val.type === "box").map(val => (

@@ -41,9 +41,8 @@ const ItemCardBag = ({ id, type, level, pic, style }) => {
                                 <button className='bg-vicm-green-600 text-white rounded-full py-[5px] px-[19px] text-xs sm:text-base'>Open</button>
                             </div>
                             : type === "gem" ?
-                                <div className="flex flex-wrap justify-between sm:justify-around">
-                                    <button className='bg-vicm-yellow-100 text-white rounded-full py-[5px] px-[19px] text-xs sm:text-base'>Use</button>
-                                    <button className='bg-vicm-green-600 text-white rounded-full py-[5px] px-[19px] text-xs sm:text-base'>Sell</button>
+                                <div className="flex justify-center">
+                                    <button className='bg-vicm-red-100 text-white rounded-full py-[5px] px-[19px] text-xs sm:text-base'>Sell</button>
                                 </div>
                                 : <div className="flex justify-between sm:justify-around">
 

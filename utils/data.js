@@ -27,15 +27,15 @@ export const shoes_data = [
         gems: [
             {
                 type: "comfort",
-                stat: 10
+                stat: 2
             },
             {
                 type: "lucky",
-                stat: 10
+                stat: 1
             },
             {
                 type: "lucky",
-                stat: 10
+                stat: 1
             },
         ],
         type: "shoes",
@@ -53,15 +53,15 @@ export const shoes_data = [
         gems: [
             {
                 type: "comfort",
-                stat: 10
+                stat: 2
             },
             {
                 type: "lucky",
-                stat: 10
+                stat: 1
             },
             {
                 type: "stamina",
-                stat: 10
+                stat: 3
             },
         ],
         type: "shoes",
@@ -107,19 +107,19 @@ export const shoes_data = [
         gems: [
             {
                 type: "comfort",
-                stat: 10
+                stat: 2
             },
             {
                 type: "lucky",
-                stat: 10
+                stat: 1
             },
             {
                 type: "stamina",
-                stat: 10
+                stat: 3
             },
             {
                 type: "comfort",
-                stat: 10
+                stat: 2
             },
         ],
         type: "shoes",
@@ -163,7 +163,7 @@ export const shoes_data = [
     },
     {
         id: 100000005,
-        level: 10,
+        level: 2,
         pic: "comfort",
         stats: {},
         gems: [],
@@ -172,7 +172,7 @@ export const shoes_data = [
     },
     {
         id: 100000006,
-        level: 10,
+        level: 1,
         pic: "lucky",
         stats: {},
         gems: [],
@@ -181,7 +181,7 @@ export const shoes_data = [
     },
     {
         id: 100000007,
-        level: 10,
+        level: 3,
         pic: "stamina",
         stats: {},
         gems: [],

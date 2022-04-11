@@ -32,7 +32,7 @@ const ItemCardMarket = ({ type }) => {
             await provider.disconnect()
         }
         catch (err) {
-            console.log("1", err)
+            // console.log("1", err)
         }
     }
 
@@ -59,7 +59,7 @@ const ItemCardMarket = ({ type }) => {
                         <p className="text-vicm-violet-100 text-xs px-4 py-1">Walking</p>
                     </div>}
                     {type === "gem" && <div className="rounded-4xl">
-                        <p className="text-vicm-gray-100 text-xs px-4 py-1">Comfort +1</p>
+                        <p className="text-vicm-gray-100 text-xs px-4 py-1">Lucky +3</p>
                     </div>}
                 </div>
                 <div className="flex flex-wrap justify-between sm:justify-around">

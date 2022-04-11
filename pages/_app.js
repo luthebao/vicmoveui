@@ -4,18 +4,25 @@ import '../styles/index.css'
 import { SessionProvider } from "next-auth/react"
 import SEOLayout from '../layouts/seo'
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Backdrop, CircularProgress } from '@mui/material';
 import NotificationPopup from '../containers/section/notipopup';
 import { ToastContainer } from 'react-toastify';
 
-export default function App({
-    Component, pageProps: { session, ...pageProps }
-}) {
+// region redux
+import { Provider } from 'react-redux'
+import { createWrapper } from 'next-redux-wrapper'
+import store from '../store/stores';
+
+// endregion redux
+
+
+function MyApp({ Component, pageProps }) {
     const [rounting, setRounting] = useState(false)
     const router = useRouter()
 
     useEffect(() => {
+
         let routeChangeStart = () => {
             setRounting(true)
         }
@@ -38,29 +45,36 @@ export default function App({
 
 
     return (
-        <SessionProvider session={session}>
-            <SEOLayout>
-                <Component {...pageProps} />
-                <Backdrop open={rounting}>
-                    <div className='flex justify-center m-auto flex flex-col'>
-                        <CircularProgress color="inherit" />
-                    </div>
-                </Backdrop>
-                {/* <NotificationPopup /> */}
-                <ToastContainer
-                    className="p-4"
-                    position="top-left"
-                    autoClose={4000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                />
-            </SEOLayout>
+        <SessionProvider session={pageProps.session}>
+            <Provider store={store}>
+                <SEOLayout>
+                    <Component {...pageProps} />
+                    <Backdrop open={rounting}>
+                        <div className='flex justify-center m-auto flex flex-col'>
+                            <CircularProgress color="inherit" />
+                        </div>
+                    </Backdrop>
+                    {/* <NotificationPopup /> */}
+                    <ToastContainer
+                        className="p-4"
+                        position="top-left"
+                        autoClose={4000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                    />
+                </SEOLayout>
+            </Provider>
         </SessionProvider>
     )
 }
 
+const makestore = () => store
+
+const wrapper = createWrapper(makestore);
+
+export default wrapper.withRedux(MyApp)
