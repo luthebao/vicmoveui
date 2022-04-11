@@ -1,10 +1,10 @@
 import HeaderBack from '../../containers/header/headerback'
 import LayoutMenu from '../../layouts/layoutmenu'
 import { IconButton, Avatar, LinearProgress } from '@mui/material';
-import { FiPlus } from 'react-icons/fi';
+import { FiPlus, FiLogOut } from 'react-icons/fi';
 import { FaPuzzlePiece } from 'react-icons/fa';
 import { AiFillEdit } from "react-icons/ai";
-import { useSession } from "next-auth/react"
+import { useSession, signOut } from "next-auth/react"
 import LoadingContainer from '../../containers/loading';
 import WelcomePage from '../welcome';
 import TextHeader from '../../components/text/textheader';
@@ -36,11 +36,18 @@ const ProfileIndex = () => {
                     </div>
                     <div className='mt-6 text-center'>
                         <TextHeader size='sm' className='text-center'>{session.user.name}</TextHeader>
-                        <div className='flex items-center'>
+                        <div className='flex justify-center'>
                             <img className='text-vicm-green-500' src={"/images/icons/wallet.svg"} />
                             <div className='ml-4 text-vicm-green-500'>Create Wallet</div>
                         </div>
-                        <ButtonLink href='/' size='md' className='inline-block items-center bg-primary mt-4 text-white px-5'><AiFillEdit className='text-2xl pb-1 inline' />&nbsp; Edit</ButtonLink>
+                        <div className='flex'>
+                            <ButtonLink href='/' size='md' className='mx-2 inline-block items-center bg-primary mt-4 text-white px-5'>
+                                <AiFillEdit className='text-2xl pb-1 inline' />&nbsp; Edit
+                            </ButtonLink>
+                            <button className='mx-2 inline-block items-center bg-primary mt-4 text-white px-5 rounded-xl px-2 py-2 shadow-2xl uppercase btn hover:opacity-90' onClick={() => signOut({ redirect: true, callbackUrl: "/" })}>
+                                <FiLogOut className='text-2xl pb-1 inline' />&nbsp;Logout
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <SectionContainer className='basis-full shadow-t-lg p-8' bgColor='bg-white'>

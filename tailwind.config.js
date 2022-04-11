@@ -14,6 +14,7 @@ module.exports = {
                 'vicm': {
                     'green': {
                         90: '#ccdcdc',
+                        300: '#60D2D1',
                         400: '#35DDD3',
                         500: '#37C8C3',
                         600: '#06ADB3',
@@ -24,7 +25,14 @@ module.exports = {
                             100: '#EBF5F5',
                             200: '#D4E2E2',
                             200_04: 'rgba(212, 226, 226, 0.4)',
+                            300: '#CCDCDC',
                         },
+                    },
+                    'whiteTransparent': {
+                        10: 'rgba(255, 255, 255, 0.1)',
+                        25: 'rgba(255, 255, 255, 0.25)',
+                        50: 'rgba(255, 255, 255, 0.5)',
+                        80: 'rgba(255, 255, 255, 0.8)',
                     },
                     'violet': {
                         100: '#f43f7e'
@@ -45,6 +53,16 @@ module.exports = {
             },
             borderWidth: {
                 '6': '6px',
+            },
+            boxShadow: {
+                't-sm': '0 0 10px 0px rgba(0, 0, 0, 0.1)',
+                't-md': '0 10px 20px 0px rgba(0, 0, 0, 0.1)',
+                't-lg': '0 15px 30px 5px rgba(0, 0, 0, 0.1)',
+                't-xl': '0 20px 40px 5px rgba(0, 0, 0, 0.1)',
+            },
+            lineHeight: {
+                '12': '3rem',
+                '14': '4rem',
             }
         },
 
