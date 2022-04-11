@@ -43,7 +43,7 @@ export default function Home() {
     if (session) {
         return (
             <LayoutMenu active={"profile"}>
-                <HeaderUser session={session} signOut={() => signOut({ redirect: true, callbackUrl: "/" })} />
+                <HeaderUser session={session} />
                 <SectionContainer className='basis-full'>
                     {currentShoes === null && <BoxCard className='box-decoration flex justify-center '>
                         <ButtonLink href={"/user/bag/changeshose"} className='shadow-2xl border-2 rounded-full p-2 rounded-full p-2  uppercase btn text-white hover:opacity-90 absolute top-4 right-4 bg-primary text-2xl' shapes='circle'>
