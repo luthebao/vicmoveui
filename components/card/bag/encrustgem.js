@@ -5,7 +5,7 @@ const EncrustGemCard = ({ id, type, level, pic }) => {
 
 
     return (
-        <div className="p-1 w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5" key={`bag-${type}-${id}`}>
+        <div className="p-[2px] w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5" key={`bag-${type}-${id}`}>
             <div className="min-h-[150px] border-[2px] border-vicm-green-600 rounded-4xl flex flex-col p-2">
 
                 <div className="mx-auto mt-4 relative">

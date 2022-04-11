@@ -5,7 +5,7 @@ const SectionContainer = ({ children, type, bgColor, className }) => {
     let color = bgColor || ' bg-vicm-light-green-100 ';
     return (
         <div
-            className={classes + ' p-4 ' + color + ' ' + (className || '')}>
+            className={classes + ' p-2 ' + color + ' ' + (className || '')}>
             {children}
         </div>
     );

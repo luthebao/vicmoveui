@@ -6,7 +6,7 @@ export default function GemsListMarket(props) {
 
     return (
         <div className="flex flex-wrap">
-            <div className="p-1 w-1/2 lg:w-1/3 xl:w-1/4">
+            <div className="p-[2px] w-1/2 lg:w-1/3 xl:w-1/4">
                 <div className="min-h-[150px] border-[2px] border-vicm-green-600 rounded-4xl flex flex-col p-2">
                     <div className="mx-auto mt-4 relative">
                         <img className="relative w-full m-auto" src="/images/bg/bg-item.svg" />
@@ -25,7 +25,7 @@ export default function GemsListMarket(props) {
                     </div>
                 </div>
             </div>
-            <div className="p-1 w-1/2 lg:w-1/3 xl:w-1/4">
+            <div className="p-[2px] w-1/2 lg:w-1/3 xl:w-1/4">
                 <div className="min-h-[150px] border-[2px] border-vicm-green-600 rounded-4xl flex flex-col p-2">
                     <div className="mx-auto mt-4 relative">
                         <img className="relative w-full m-auto" src="/images/bg/bg-item.svg" />
@@ -44,7 +44,7 @@ export default function GemsListMarket(props) {
                     </div>
                 </div>
             </div>
-            <div className="p-1 w-1/2 lg:w-1/3 xl:w-1/4">
+            <div className="p-[2px] w-1/2 lg:w-1/3 xl:w-1/4">
                 <div className="min-h-[150px] border-[2px] border-vicm-green-600 rounded-4xl flex flex-col p-2">
                     <div className="mx-auto mt-4 relative">
                         <img className="relative w-full m-auto" src="/images/bg/bg-item.svg" />

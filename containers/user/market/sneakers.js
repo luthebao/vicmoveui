@@ -8,7 +8,7 @@ export default function SneakersListMarket(props) {
     return (
         <div className="flex flex-wrap">
             {shoes_data.filter(val => val.type === "shoes").map(val => (
-                <div className="p-1 w-1/2 lg:w-1/3 xl:w-1/4" key={`market-${val.type}-${val.id}`}>
+                <div className="p-[2px] w-1/2 lg:w-1/3 xl:w-1/4" key={`market-${val.type}-${val.id}`}>
                     <div className="min-h-[150px] border-[2px] border-vicm-green-600 rounded-4xl flex flex-col p-2">
                         <div className="flex flex-wrap justify-between">
                             <div className="bg-vicm-green-600 text-white rounded-xl p-1 flex h-[24px] md:h-[34px]">

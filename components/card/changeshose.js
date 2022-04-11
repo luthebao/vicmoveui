@@ -16,7 +16,7 @@ const ChangeShoseCard = ({ id, type, pic, level, style }) => {
     }
 
     return (
-        <div className="p-1 w-1/2 lg:w-1/3 xl:w-1/4" key={`change-${type}-${id}`}>
+        <div className="p-[2px] w-1/2 lg:w-1/3 xl:w-1/4" key={`change-${type}-${id}`}>
             <div className="min-h-[150px] border-[2px] border-vicm-green-600 rounded-4xl flex flex-col p-2">
                 <div className="flex justify-between">
                     <div className="bg-vicm-green-600 text-white rounded-xl p-1 flex h-[24px] md:h-[34px]">
