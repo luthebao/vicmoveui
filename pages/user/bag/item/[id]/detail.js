@@ -122,7 +122,7 @@ export default function SneakerDetail(props) {
                             {!edit && <ButtonDefault className='bg-vicm-yellow-100 h-12' size='md' callback={() => toast("Comming soon")}>Repair</ButtonDefault>}
                             {!edit && <span className="text-orange-400 text-xl" onClick={() => setEdit(true)}>{price} BNB</span>}
                             {edit && <React.Fragment>
-                                <input type="number" min={0} value={price} onChange={(e) => setPrice(e.target.value)} className="text-xl rounded-xl h-12 px-2 w-full bg-transparent border-2 border-gray-400 focus-visible:outline-vicm-green-500 text-orange-400" />
+                                <input type="number" min={1} value={price} onChange={(e) => setPrice(e.target.value)} className="text-xl rounded-xl h-12 px-2 w-full bg-transparent border-2 border-gray-400 focus-visible:outline-vicm-green-500 text-orange-400" />
                                 <select className="mx-1 flex text-xl h-12 text-white items-center bg-vicm-gray-100 rounded-xl" >
                                     <option>BNB</option>
                                     <option>ETH</option>
