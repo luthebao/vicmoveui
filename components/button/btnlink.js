@@ -18,11 +18,11 @@ const ButtonLink = ({ children, buttonStyle, shapes, size, style, href, classNam
             break;
     }
     return (
-        // <Link href={href || '/'}>
-            <a href={href || '/'} className={classes + ' uppercase btn hover:opacity-90 ' + (className || '')}>
+        <Link href={href || '/'}>
+            <a className={classes + ' uppercase btn hover:opacity-90 ' + (className || '')}>
                 {children}
             </a>
-        // </Link>
+        </Link>
     );
 }
 
