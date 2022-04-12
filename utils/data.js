@@ -3,7 +3,7 @@
 export const shoes_data = [
     {
         id: 123087040,
-        level: 1,
+        level: 2,
         pic: "NFT1",
         stats: {
             "comfort": 40,
@@ -43,7 +43,7 @@ export const shoes_data = [
     },
     {
         id: 123087042,
-        level: 1,
+        level: 4,
         pic: "NFT4",
         stats: {
             "comfort": 40,
@@ -84,7 +84,7 @@ export const shoes_data = [
     },
     {
         id: 123087045,
-        level: 1,
+        level: 15,
         pic: "NFT7",
         stats: {
             "comfort": 40,
@@ -97,7 +97,7 @@ export const shoes_data = [
     },
     {
         id: 123087046,
-        level: 5,
+        level: 8,
         pic: "NFT9",
         stats: {
             "comfort": 40,
@@ -123,7 +123,7 @@ export const shoes_data = [
             },
         ],
         type: "shoes",
-        style: "running",
+        style: "walking",
     },
     {
         id: 100000001,
