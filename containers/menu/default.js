@@ -20,8 +20,8 @@ const Menu = ({ className, active }) => {
             if (id) {
                 const info = shoes_data.find(val => val.id === Number(id))
                 if (info) {
-                    document.location = `/runnative?lucky=${info.stats.lucky + info.gems.reduce((a, b) => a + (b.stat * info.level || 0), 0)}&stamina=${info.stats.stamina}&comfort=${info.stats.comfort}`
-                    // route.push()
+                    // document.location = `/runnative?lucky=${info.stats.lucky + info.gems.reduce((a, b) => a + (b.stat * info.level || 0), 0)}&stamina=${info.stats.stamina}&comfort=${info.stats.comfort}`
+                    route.push(`/runnative?lucky=${info.stats.lucky + info.gems.reduce((a, b) => a + (b.stat * info.level || 0), 0)}&stamina=${info.stats.stamina}&comfort=${info.stats.comfort}`)
                 } else {
                     toast("Please equip shoes")
                 }
