@@ -1,7 +1,12 @@
 import { Backdrop, CircularProgress } from "@mui/material";
 import LayoutMenu from "../layouts/layoutmenu";
+import Custom404 from './404'
 
 export default function Home() {
+
+    return (
+        <Custom404 />
+    )
 
     return (
         <LayoutMenu>
