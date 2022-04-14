@@ -20,7 +20,7 @@ const Menu = ({ className, active }) => {
                 const id = localStorage.getItem("currentShoes")
                 if (id) {
                     // document.location = `/runnative?shoesid=${id}&token=${session.token}`
-                    route.push(`https://www.facebook.com//runnative?shoesid=${id}&token=${session.token}`)
+                    route.push(`/runnative?shoesid=${id}&token=${session.token}`)
                 } else {
                     toast("Please equip shoes")
                 }
