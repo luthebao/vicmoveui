@@ -8,32 +8,27 @@ import { GiConverseShoe } from 'react-icons/gi';
 import { shoes_data } from '../../utils/data';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
-
+import { useSession } from "next-auth/react"
 
 const Menu = ({ className, active }) => {
-
+    const { data: session } = useSession()
     const route = useRouter()
 
     const handleRunningRoute = async () => {
-        new Promise(async (resolve, reject) => {
-            const id = localStorage.getItem("currentShoes")
-            if (id) {
-                const info = shoes_data.find(val => val.id === Number(id))
-                if (info) {
-                    // document.location = `/runnative?lucky=${info.stats.lucky + info.gems.reduce((a, b) => a + (b.stat * info.level || 0), 0)}&stamina=${info.stats.stamina}&comfort=${info.stats.comfort}`
-                    route.push(`/runnative?lucky=${info.stats.lucky + info.gems.reduce((a, b) => a + (b.stat * info.level || 0), 0)}&stamina=${info.stats.stamina}&comfort=${info.stats.comfort}`)
+        if (session)
+            new Promise(async (resolve, reject) => {
+                const id = localStorage.getItem("currentShoes")
+                if (id) {
+                    route.push(`/runnative?shoesid=${id}&token=${session.token}`)
                 } else {
                     toast("Please equip shoes")
                 }
-            } else {
-                toast("Please equip shoes")
-            }
-            resolve(true);
-        }).then(() => {
-
-        }).catch(() => {
-
-        })
+                resolve(true);
+            }).then(() => {
+            }).catch(() => {
+            })
+        else
+            toast("Application is processing, please wait a few seconds")
     }
 
     return (

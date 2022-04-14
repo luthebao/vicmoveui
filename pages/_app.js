@@ -8,11 +8,13 @@ import React, { useEffect, useState } from 'react';
 import { Backdrop, CircularProgress } from '@mui/material';
 import NotificationPopup from '../containers/section/notipopup';
 import { ToastContainer } from 'react-toastify';
+import { ApolloProvider } from '@apollo/client'
 
 // region redux
 import { Provider } from 'react-redux'
 import { createWrapper } from 'next-redux-wrapper'
 import store from '../store/stores';
+import apolloClient from '../graphql/client';
 
 // endregion redux
 
@@ -45,31 +47,33 @@ function MyApp({ Component, pageProps }) {
 
 
     return (
-        <SessionProvider session={pageProps.session}>
-            <Provider store={store}>
-                <SEOLayout>
-                    <Component {...pageProps} />
-                    <Backdrop open={rounting}>
-                        <div className='flex justify-center m-auto flex flex-col'>
-                            <CircularProgress color="inherit" />
-                        </div>
-                    </Backdrop>
-                    {/* <NotificationPopup /> */}
-                    <ToastContainer
-                        className="p-4"
-                        position="top-left"
-                        autoClose={4000}
-                        hideProgressBar={false}
-                        newestOnTop={false}
-                        closeOnClick
-                        rtl={false}
-                        pauseOnFocusLoss
-                        draggable
-                        pauseOnHover
-                    />
-                </SEOLayout>
-            </Provider>
-        </SessionProvider>
+        <ApolloProvider client={apolloClient}>
+            <SessionProvider session={pageProps.session}>
+                <Provider store={store}>
+                    <SEOLayout>
+                        <Component {...pageProps} />
+                        <Backdrop open={rounting}>
+                            <div className='flex justify-center m-auto flex flex-col'>
+                                <CircularProgress color="inherit" />
+                            </div>
+                        </Backdrop>
+                        {/* <NotificationPopup /> */}
+                        <ToastContainer
+                            className="p-4"
+                            position="top-left"
+                            autoClose={4000}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick
+                            rtl={false}
+                            pauseOnFocusLoss
+                            draggable
+                            pauseOnHover
+                        />
+                    </SEOLayout>
+                </Provider>
+            </SessionProvider>
+        </ApolloProvider>
     )
 }
 

@@ -73,12 +73,13 @@ export default NextAuth({
             if (token) {
                 session.id = token.id;
                 session.token = jwt.sign(token, "bao*&^234dep)@$38@6trai!#5@55@", { algorithm: 'HS256'});
-
+                
             }
 
             return Promise.resolve(session);
         },
         async signIn({ account, profile }) {
+
             if (account.provider === "google") {
                 return profile.email_verified
             }

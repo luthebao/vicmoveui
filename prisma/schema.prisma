@@ -1,0 +1,85 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model accactionlog {
+  id          Int      @id @default(autoincrement())
+  accid       Int      @default(0)
+  type        String   @default("") @db.Text
+  createat    DateTime @default(now()) @db.DateTime(0)
+  description String   @default("") @db.Text
+  token       Float    @default(0)
+  nftid       Int      @default(0)
+  tranhash    String?  @db.Text
+  energy      Int      @default(0)
+}
+
+model account {
+  id          Int      @id @default(autoincrement())
+  email       String   @default("") @db.Text
+  displayname String?  @db.Text
+  address     String?  @db.Text
+  password    String?  @db.Text
+  piecebox    Int      @default(0)
+  vim         Float    @default(0)
+  createat    DateTime @default(now()) @db.DateTime(0)
+  status      String   @default("active") @db.Text
+  provider    String?  @db.Text
+}
+
+model box {
+  id       Int       @id @default(autoincrement())
+  accid    Int       @default(0)
+  buyboxid Int       @default(0)
+  type     Int       @default(0)
+  status   Int       @default(0)
+  buyat    DateTime  @default(now()) @db.DateTime(0)
+  unboxat  DateTime? @db.DateTime(0)
+  note     String?   @db.Text
+}
+
+model login_token {
+  accid    BigInt   @default(0)
+  createAt DateTime @default(now()) @db.DateTime(0)
+  exprieAt DateTime @default(now()) @db.DateTime(0)
+  token    String?  @default("") @db.Text
+  id       BigInt   @id @default(autoincrement())
+  address  String   @default("") @db.Text
+
+  @@index([accid], map: "accid")
+}
+
+model shoes {
+  id       Int      @id @default(autoincrement())
+  nftid    BigInt   @unique(map: "nftid") @default(0)
+  level    Int      @default(1)
+  exp      Int      @default(0)
+  comfort  Int      @default(0)
+  stamina  Int      @default(0)
+  lucky    Int      @default(0)
+  fabric   String   @default("") @db.Text
+  sole     String   @default("") @db.Text
+  createat DateTime @default(now()) @db.DateTime(0)
+  address  String   @default("") @db.Text
+  brand    String?  @default("") @db.Text
+  img      String?  @db.Text
+}
+
+model vimlog {
+  id          Int      @id @default(autoincrement())
+  accid       Int      @default(0)
+  amount      Float    @default(0)
+  type        String   @default("") @db.Text
+  refid       Int      @default(0)
+  description String   @default("") @db.Text
+  createat    DateTime @default(now()) @db.DateTime(0)
+  sync        Boolean  @default(false)
+  balance     Float    @default(0)
+
+  @@index([accid], map: "accid")
+}

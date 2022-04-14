@@ -13,12 +13,10 @@ export default function SneakersListMarket(props) {
         try {
             const provider = new WalletConnectProvider({
                 rpc: {
-                    56: 'https://bsc-dataseed1.defibit.io/'
+                    97: 'https://data-seed-prebsc-1-s1.binance.org:8545/'
                 },
-                chainId: 56,
+                chainId: 97,
             });
-
-            //  Enable session (triggers QR Code modal)
             await provider.enable();
             const web3Provider = new providers.Web3Provider(provider);
             const signer = web3Provider.getSigner()
