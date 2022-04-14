@@ -1,7 +1,7 @@
 export const production = false
 
 export const urls = {
-    "uri" : "http://localhost:3000/"
+    "uri" : production ? "https://app.vicmove.com/" : "http://localhost:3000/"
 }
 
 export const max_width = ''

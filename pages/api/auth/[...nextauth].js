@@ -7,17 +7,19 @@ export default NextAuth({
     providers: [
         CredentialProvider({
             credentials: {
-                username: {
+                email: {
                     label: "Email",
-                    type: "text",
+                    type: "email",
                     placeholder: "email@domain.com",
                 },
-                password: { label: "Password", type: "password" },
+                password: { 
+                    label: "Password", type: "password"
+                },
             },
             authorize: (credentials) => {
                 // database look up
                 if (
-                    credentials.username === "admin" &&
+                    credentials.email === "admin" &&
                     credentials.password === "admin"
                 ) {
                     return {
@@ -75,14 +77,13 @@ export default NextAuth({
                 session.token = jwt.sign(token, "bao*&^234dep)@$38@6trai!#5@55@", { algorithm: 'HS256'});
                 
             }
-
             return Promise.resolve(session);
         },
         async signIn({ account, profile }) {
-
             if (account.provider === "google") {
                 return profile.email_verified
             }
+
             return true // Do different verification for other providers that don't have `email_verified`
         },
     },

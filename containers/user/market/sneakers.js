@@ -5,24 +5,23 @@ import { shoes_data } from "../../../utils/data"
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import Web3 from "web3";
 import { providers } from "ethers";
+import { useWeb3React } from "@web3-react/core"
+import { injected } from "../../../components/wallet/connectors";
 
 export default function SneakersListMarket(props) {
+    const makeweb3 = useWeb3React()
 
     const handleBuy = async () => {
         //  Create WalletConnect Provider
         try {
-            const provider = new WalletConnectProvider({
-                rpc: {
-                    97: 'https://data-seed-prebsc-1-s1.binance.org:8545/'
-                },
-                chainId: 97,
-            });
-            await provider.enable();
+            await makeweb3.activate(injected)
+            const provider = await makeweb3.connector.getProvider()
             const web3Provider = new providers.Web3Provider(provider);
             const signer = web3Provider.getSigner()
             const signature = await signer.signMessage(`Test connection`)
             toast(signature)
-        } catch {
+        } catch (e) {
+            console.log(e)
             toast("Updating")
         }
     }

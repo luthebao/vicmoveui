@@ -28,5 +28,8 @@ export const typeDefs = gql`
     }
 
     type Query {
+        account: Account,
+        box(id: Int): Box,
+        box(accid: Int): [Box],
     }
 `;
