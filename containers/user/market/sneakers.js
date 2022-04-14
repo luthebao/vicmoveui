@@ -4,6 +4,7 @@ import ItemCardMarket from "../../../components/card/market/itemmarket";
 import { shoes_data } from "../../../utils/data"
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import Web3 from "web3";
+import { providers } from "ethers";
 
 export default function SneakersListMarket(props) {
 
@@ -11,13 +12,18 @@ export default function SneakersListMarket(props) {
         //  Create WalletConnect Provider
         try {
             const provider = new WalletConnectProvider({
-                infuraId: "27e484dcd9e3efcfd25a83a78777cdf1",
+                rpc: {
+                    56: 'https://bsc-dataseed1.defibit.io/'
+                },
+                chainId: 56,
             });
+
             //  Enable session (triggers QR Code modal)
             await provider.enable();
-            const web3 = new Web3(provider);
-            const signedMessage = await web3.eth.sign("msg");
-            toast(signedMessage)
+            const web3Provider = new providers.Web3Provider(provider);
+            const signer = web3Provider.getSigner()
+            const signature = await signer.signMessage(`Test connection`)
+            toast(signature)
         } catch {
             toast("Updating")
         }
