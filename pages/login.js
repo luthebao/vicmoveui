@@ -9,8 +9,11 @@ import Switch from '@mui/material/Switch';
 import HyperLink from "../components/text/hyperlink";
 import { signIn, getSession } from "next-auth/react"
 import Link from "next/link";
+import { useState } from "react";
 
 const LoginPage = () => {
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
 
     return (
         <BackgroundContainer type='light' className='text-center'>
@@ -21,12 +24,20 @@ const LoginPage = () => {
                 </Link>
             </PageNavigateBtn>
             <Header size='lg' classes='text-left'>Login</Header>
-            <InputDefault type='email' name='email' placeholder='Email' required />
-            <InputDefault type='password' name='password' placeholder='Password' required />
+
+            <InputDefault type='email' name='email' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} required />
+
+            <InputDefault type='password' name='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} required />
+
             <div className='pt-2 pb-6 pl-2 text-left'>
                 <FormControlLabel control={<Switch defaultChecked />} label='Save my info?' />
             </div>
-            <ButtonDefault type='submit' className='w-full bg-primary'>Sign in</ButtonDefault>
+            <ButtonDefault type='submit' className='w-full bg-primary' callback={() => {
+                signIn("credentials", {
+                    email: email,
+                    password: password
+                })
+            }}>Sign in</ButtonDefault>
             <div className='pt-6'>
                 <span>Forgot password? </span>
                 <HyperLink path='#'>Click here</HyperLink>

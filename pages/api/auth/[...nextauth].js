@@ -19,13 +19,13 @@ export default NextAuth({
             authorize: (credentials) => {
                 // database look up
                 if (
-                    credentials.email === "admin" &&
+                    credentials.email === "admin@domain.com" &&
                     credentials.password === "admin"
                 ) {
                     return {
                         id: 2,
                         name: "Admin",
-                        email: "admin@admin.com",
+                        email: "admin@domain.com",
                     };
                 }
 

@@ -12,6 +12,7 @@ const InputDefault = (props) => {
       type={props?.type}
       value={props?.value}
       required={props?.required}
+      onChange={props?.onChange}
     />
   );
 }
