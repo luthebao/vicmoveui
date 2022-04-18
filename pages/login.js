@@ -35,8 +35,6 @@ const LoginPage = () => {
             <ButtonDefault type='submit' className='w-full bg-primary' callback={() => {
                 signIn("credentials", {
                     redirect: "/",
-                    
-                }, {
                     email: email,
                     password: password,
                 })
