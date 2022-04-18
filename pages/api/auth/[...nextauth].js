@@ -12,7 +12,7 @@ export default NextAuth({
                     type: "email",
                     placeholder: "email@domain.com",
                 },
-                password: { 
+                password: {
                     label: "Password", type: "password"
                 },
             },
@@ -62,6 +62,10 @@ export default NextAuth({
         maxAge: 30 * 24 * 60 * 60, // 30 days
         updateAge: 24 * 60 * 60, // 24 hours
     },
+    pages: {
+        signIn: '/login',
+        signOut: '/',
+    },
     callbacks: {
         jwt: async ({ token, user }) => {
             // first time jwt callback is run, user object is available
@@ -74,8 +78,8 @@ export default NextAuth({
         session: async ({ session, token }) => {
             if (token) {
                 session.id = token.id;
-                session.token = jwt.sign(token, "bao*&^234dep)@$38@6trai!#5@55@", { algorithm: 'HS256'});
-                
+                session.token = jwt.sign(token, "bao*&^234dep)@$38@6trai!#5@55@", { algorithm: 'HS256' });
+
             }
             return Promise.resolve(session);
         },
@@ -87,5 +91,5 @@ export default NextAuth({
             return true // Do different verification for other providers that don't have `email_verified`
         },
     },
-    
+
 })

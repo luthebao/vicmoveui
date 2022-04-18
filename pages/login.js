@@ -34,8 +34,11 @@ const LoginPage = () => {
             </div>
             <ButtonDefault type='submit' className='w-full bg-primary' callback={() => {
                 signIn("credentials", {
+                    redirect: "/",
+                    
+                }, {
                     email: email,
-                    password: password
+                    password: password,
                 })
             }}>Sign in</ButtonDefault>
             <div className='pt-6'>
