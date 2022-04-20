@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 import NextAuth from 'next-auth'
 import CredentialProvider from "next-auth/providers/credentials"
 import GoogleProvider from "next-auth/providers/google";
+import { urls } from '../../../utils/config';
 
 export default NextAuth({
     providers: [
@@ -83,11 +84,27 @@ export default NextAuth({
             }
             return Promise.resolve(session);
         },
-        async signIn({ account, profile }) {
+        async signIn({ account, profile, user }) {
             if (account.provider === "google") {
-                return profile.email_verified
+                try {
+                    const token = jwt.sign(user, "bao*&^234dep)@$38@6trai!#5@55@", { algorithm: 'HS256' });
+                    const user_fetch = await fetch(urls.api + "/api/Account/signinwithgoogle", {
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json',
+                            'token': token,
+                        },
+                        method: "POST",
+                    })
+                    const user_result = await user_fetch.json()
+                    if (user_result.code === 1 && user_result.data)
+                        return profile.email_verified
+                    else
+                        return false
+                } catch {
+                    return false
+                }
             }
-
             return true // Do different verification for other providers that don't have `email_verified`
         },
     },

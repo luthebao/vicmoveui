@@ -36,10 +36,10 @@ const ProfileIndex = () => {
                     </div>
                     <div className='mt-6 text-center'>
                         <TextHeader size='sm' className='text-center'>{session.user.name}</TextHeader>
-                        <div className='flex justify-center'>
+                        {/* <div className='flex justify-center'>
                             <img className='text-vicm-green-500' src={"/images/icons/wallet.svg"} />
                             <div className='ml-4 text-vicm-green-500'>Create Wallet</div>
-                        </div>
+                        </div> */}
                         <div className='flex'>
                             <ButtonLink href='/' size='md' className='mx-2 inline-block items-center bg-primary mt-4 text-white px-5'>
                                 <AiFillEdit className='text-2xl pb-1 inline' />&nbsp; Edit

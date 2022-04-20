@@ -7,6 +7,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model acc_info {
+  accid    Int     @id
+  email    String  @db.Text
+  name     String? @db.Text
+  provider String? @db.Text
+  password String? @db.Text
+}
+
 model accactionlog {
   id          Int      @id @default(autoincrement())
   accid       Int      @default(0)
@@ -16,20 +24,16 @@ model accactionlog {
   token       Float    @default(0)
   nftid       Int      @default(0)
   tranhash    String?  @db.Text
-  energy      Int      @default(0)
 }
 
 model account {
-  id          Int      @id @default(autoincrement())
-  email       String   @default("") @db.Text
-  displayname String?  @db.Text
-  address     String?  @db.Text
-  password    String?  @db.Text
-  piecebox    Int      @default(0)
-  vim         Float    @default(0)
-  createat    DateTime @default(now()) @db.DateTime(0)
-  status      String   @default("active") @db.Text
-  provider    String?  @db.Text
+  id       Int      @id @default(autoincrement())
+  piecebox Int      @default(0)
+  vim      Float    @default(0)
+  createat DateTime @default(now()) @db.DateTime(0)
+  status   String   @default("active") @db.Text
+  energy   Int?     @default(0)
+  address  String?  @db.Text
 }
 
 model box {
@@ -41,6 +45,13 @@ model box {
   buyat    DateTime  @default(now()) @db.DateTime(0)
   unboxat  DateTime? @db.DateTime(0)
   note     String?   @db.Text
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model config {
+  boxprice Float @default(0)
+
+  @@ignore
 }
 
 model login_token {
@@ -56,7 +67,7 @@ model login_token {
 
 model shoes {
   id       Int      @id @default(autoincrement())
-  nftid    BigInt   @unique(map: "nftid") @default(0)
+  nftid    BigInt?
   level    Int      @default(1)
   exp      Int      @default(0)
   comfort  Int      @default(0)
@@ -65,9 +76,9 @@ model shoes {
   fabric   String   @default("") @db.Text
   sole     String   @default("") @db.Text
   createat DateTime @default(now()) @db.DateTime(0)
-  address  String   @default("") @db.Text
   brand    String?  @default("") @db.Text
   img      String?  @db.Text
+  accid    Int
 }
 
 model vimlog {

@@ -1,7 +1,8 @@
 export const production = false
 
 export const urls = {
-    "uri" : production ? "https://app.vicmove.com/" : "http://localhost:3000/"
+    "uri" : production ? "https://app.vicmove.com/" : "http://localhost:3000/",
+    "api" : "https://api.vicmove.com",
 }
 
 export const max_width = ''

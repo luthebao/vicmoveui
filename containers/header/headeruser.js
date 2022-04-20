@@ -19,9 +19,9 @@ const HeaderUser = ({ session, signOut }) => {
                 </div>
             </Link>
             <div className='flex items-center'>
-                <Link href={"/user/wallet"}>
+                {/* <Link href={"/user/wallet"}>
                     <AiOutlineDollar className='text-3xl text-vicm-green-500 mr-4' />
-                </Link>
+                </Link> */}
 
                 <Link href={"/menu"}>
                     <FiMenu className='text-3xl' />

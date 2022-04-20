@@ -10,10 +10,25 @@ import HyperLink from "../components/text/hyperlink";
 import { signIn, getSession } from "next-auth/react"
 import Link from "next/link";
 import { useState } from "react";
+import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
 const LoginPage = () => {
+    const router = useRouter()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+
+    const handleErrorLogin = (type) => {
+        if (type.status === 200) {
+            router.push("/")
+            return
+        }
+        if (type.error === "CredentialsSignin") {
+            toast("Password or email invalid")
+        } else {
+            toast("Can not authenticate with this email")
+        }
+    }
 
     return (
         <BackgroundContainer type='light' className='text-center'>
@@ -24,29 +39,39 @@ const LoginPage = () => {
                 </Link>
             </PageNavigateBtn>
             <Header size='lg' classes='text-left'>Login</Header>
-
-            <InputDefault type='email' name='email' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} required />
-
-            <InputDefault type='password' name='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} required />
-
-            <div className='pt-2 pb-6 pl-2 text-left'>
-                <FormControlLabel control={<Switch defaultChecked />} label='Save my info?' />
-            </div>
-            <ButtonDefault type='submit' className='w-full bg-primary' callback={() => {
+            <form onSubmit={(e) => {
+                e.preventDefault()
                 signIn("credentials", {
-                    redirect: "/",
+                    redirect: false,
                     email: email,
                     password: password,
-                })
-            }}>Sign in</ButtonDefault>
+                }).then(data => {
+                    handleErrorLogin(data)
+                }).catch(() => {
+                    handleErrorLogin("1")
+                });
+            }}>
+                <InputDefault type='email' name='email' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} required />
+
+                <InputDefault type='password' name='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} required />
+
+                <div className='pt-2 pb-6 pl-2 text-left'>
+                    <FormControlLabel control={<Switch defaultChecked />} label='Save my info?' />
+                </div>
+                <ButtonDefault type='submit' className='w-full bg-primary'>Sign in</ButtonDefault>
+            </form>
             <div className='pt-6'>
                 <span>Forgot password? </span>
                 <HyperLink path='#'>Click here</HyperLink>
             </div>
             <div className='text-divider font-semibold py-8'>OR</div>
-            <ButtonDefault className='w-full bg-[#FF5733]' callback={() => signIn("google", {
-                redirect: "/"
-            })}>
+            <ButtonDefault className='w-full bg-[#FF5733]'
+                callback={() => {
+                    signIn("google", {
+                        redirect: false,
+                    })
+                }}
+            >
                 Sign in with Google
             </ButtonDefault>
             {/* <div className='flex justify-center'>
