@@ -43,7 +43,7 @@ const Menu = ({ className, active }) => {
             <button onClick={handleRunningRoute} className='mx-6 btn-menu btn-hightlight rounded-full p-4 uppercase btn hover:opacity-90' shapes="circle">
                 <img src={"/images/icons/start.png"} />
             </button>
-            <ButtonLink href={'/fusion'} buttonStyle='flat' className={`m-auto btn-menu ${active === "coming" ? "btn-circle-active" : ""}`} shapes="circle">
+            <ButtonLink href={'/fusion'} buttonStyle='flat' className={`m-auto btn-menu ${active === "level" ? "btn-circle-active" : ""}`} shapes="circle">
                 <SiAzurefunctions />
             </ButtonLink>
             {/* <ButtonLink href={'/user/market'} buttonStyle='flat' className={`m-auto btn-menu ${active === "market" ? "btn-circle-active" : ""}`} shapes="circle">
