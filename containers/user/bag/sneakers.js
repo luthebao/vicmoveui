@@ -1,12 +1,11 @@
-import ItemCardBag from "../../../components/card/itembag";
-import { shoes_data } from "../../../utils/data";
+import SneakerCardBag from "../../../components/card/bag/sneaker";
 
-export default function SneakersList(props) {
+export default function SneakersList({ data }) {
 
     return (
         <div className="flex flex-wrap">
             {
-                shoes_data.filter(val => val.type === "shoes").map(val => <ItemCardBag {...val} />)
+                data.map(val => <SneakerCardBag {...val} />)
             }
         </div>
     )

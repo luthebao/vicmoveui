@@ -1,8 +1,10 @@
 import { WalletConnectConnector } from "@web3-react/walletconnect-connector"
+import { bsc_chain, bsc_chain_test } from "../../utils/config"
 
 export const injected = new WalletConnectConnector({
     rpc: {
-        56: 'https://bsc-dataseed1.binance.org/'
+        97: bsc_chain_test.rpc_url
     },
-    chainId: 56,
+    chainId: 97,
+    supportedChainIds: [97]
 })

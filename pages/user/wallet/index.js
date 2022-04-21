@@ -21,7 +21,7 @@ function WalletIndex() {
 
     if (session)
         return (
-            <LayoutMenu active={"profile"}>
+            <LayoutMenu active={"profile"} session={session}>
                 <HeaderBack title="Wallet" />
                 <SectionContainer type='full'>
                     <div className='p-4'>

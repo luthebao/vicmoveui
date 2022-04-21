@@ -12,17 +12,19 @@ import BoxesList from "../../../containers/user/bag/boxes";
 import GemsList from "../../../containers/user/bag/gems";
 import WelcomePage from "../../welcome";
 import HeaderUser from "../../../containers/header/headeruser";
+import { useSelector } from "react-redux";
 
 export default function BagIndex() {
     const { data: session, status } = useSession()
     const [tabindex, setTabindex] = useState(0)
+    const { pages } = useSelector(state => state)
 
     if (status === "loading")
         return <LoadingContainer />
 
     if (session) {
         return (
-            <LayoutMenu active={"bag"}>
+            <LayoutMenu active={"bag"} session={session}>
                 <HeaderUser session={session} signOut={() => signOut({ redirect: true, callbackUrl: "/" })} />
                 <AppBar position="static" className="w-auto mx-auto bg-vicm-green-90 mb-[20px] rounded-full border-[2px] border-white normal-case">
                     <Tabs className="normal-case" value={tabindex} onChange={(event, newValue) => setTabindex(newValue)} aria-label="simple tabs example" TabIndicatorProps={{ style: { backgroundColor: "transparent" } }}>
@@ -32,9 +34,9 @@ export default function BagIndex() {
                     </Tabs>
                 </AppBar>
                 <SectionContainer className='basis-full mb-10'>
-                    {tabindex === 0 && <SneakersList />}
-                    {tabindex === 1 && <BoxesList />}
-                    {tabindex === 2 && <GemsList />}
+                    {tabindex === 0 && <SneakersList data={pages.detail?.sneakers || []} />}
+                    {tabindex === 1 && <BoxesList data={pages.detail?.boxs || []} />}
+                    {tabindex === 2 && <BoxesList data={pages.detail?.boxs || []} />}
                 </SectionContainer>
             </LayoutMenu>
         )
@@ -42,4 +44,13 @@ export default function BagIndex() {
 
     return <WelcomePage />
     
+}
+
+export async function getServerSideProps(context) {
+    
+    return {
+        props: {
+
+        }
+    }
 }

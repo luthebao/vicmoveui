@@ -2,28 +2,27 @@ import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../utility';
 
 const initialState = {
-    menumobile: false,
-    accountinfopop: false,
+    loading: true,
+    detail: null
 }
 
-
-const changeMenuMobile = (state, action) => {
+const authStart = (state, action) => {
     return updateObject(state, {
-        menumobile: action.menumobile,
+        loading: true
     });
 }
 
-const changeAccountPop = (state, action) => {
+const authSuccess = (state, action) => {
     return updateObject(state, {
-        accountinfopop: action.accountinfopop,
+        detail: action.detail,
+        loading: false,
     });
 }
-
 
 export const pagesReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.CHANGE_MENU_MOBILE: return changeMenuMobile(state, action);
-        case actionTypes.ACCOUNT_INFO_POPUP: return changeAccountPop(state, action);
+        case actionTypes.AUTH_START: return authStart(state, action);
+        case actionTypes.AUTH_SUCCESS: return authSuccess(state, action);
         default:
             return state;
     }

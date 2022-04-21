@@ -1,13 +1,15 @@
-import ChangeShoseCard from "../../../components/card/changeshose";
-import { shoes_data } from "../../../utils/data";
+import { useSelector } from "react-redux";
+import ChangeShoseCard from "../../../components/card/changeshose"
+
 
 export default function ChangeShoseList(props) {
+    const { pages } = useSelector(state => state)
 
     return (
         <div className="flex flex-wrap">
             {
-                shoes_data.filter(val => val.type === "shoes").map(val => <ChangeShoseCard {...val} />)
-            }            
+                pages.detail && pages.detail.sneakers.map(val => <ChangeShoseCard {...val} />)
+            }
         </div>
     )
 }

@@ -1,26 +1,70 @@
 import * as actionTypes from './actionTypes'
+import apolloClient from "../../graphql/client"
+import { gql } from '@apollo/client'
 
-export const updateMenuMobile = menumobile => {
+export const authStart = () => {
     return {
-        type: actionTypes.CHANGE_MENU_MOBILE,
-        menumobile: menumobile
+        type: actionTypes.AUTH_START,
     }
 }
 
-export const updateAccountPop = accountinfopop => {
+
+export const authSuccess = (detail) => {
     return {
-        type: actionTypes.ACCOUNT_INFO_POPUP,
-        accountinfopop: accountinfopop
+        type: actionTypes.AUTH_SUCCESS,
+        detail: detail,
     }
 }
 
 
-export const resetAllMenuState = () => {
-    return dispatch => {
-        dispatch(updateMenuMobile(false))
-        dispatch(updateAccountPop(false))
+export const handleGetDetail = (id) => {
+    return async dispatch => {
+        dispatch(authStart())
+        const acc_detail = await apolloClient.query({
+            query: gql`
+                query Accountinfo($accountdetailId: Int!) {
+                    accountdetail(id: $accountdetailId) {
+                        id
+                        piecebox
+                        vim
+                        createat
+                        status
+                        energy
+                        address
+                    }
+                    boxs(accid: $accountdetailId) {
+                        id
+                        accid
+                        buyboxid
+                        type
+                        status
+                        buyat
+                        unboxat
+                    }
+                    sneakers(accid: $accountdetailId) {
+                        id
+                        nftid
+                        level
+                        exp
+                        comfort
+                        stamina
+                        lucky
+                        fabric
+                        sole
+                        img
+                        brand
+                        accid
+                        createat
+                }
+              }
+            `,
+            variables: {
+                "accountdetailId": id
+            }
+        })
+        if (acc_detail && acc_detail.data && acc_detail.data.accountdetail)
+        {
+            dispatch(authSuccess(acc_detail.data))
+        }
     }
 }
-
-
-

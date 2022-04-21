@@ -41,7 +41,7 @@ export default function SneakerDetail(props) {
 
     if (session) {
         return (
-            <LayoutMenu active={"market"}>
+            <LayoutMenu active={"market"} session={session}>
                 <HeaderBack title="Detail" />
                 <SectionContainer className='basis-full mb-10'>
                     <BoxCard className='flex flex-col justify-between' type='flat-border' style={{ 'minHeight': '80vw', 'padding': '1rem' }}>

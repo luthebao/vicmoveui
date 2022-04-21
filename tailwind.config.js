@@ -3,10 +3,10 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 module.exports = {
     important: true,
     content: [
-        "./pages/**/*.{js,ts,jsx,tsx}",
-        "./components/**/*.{js,ts,jsx,tsx}",
-        "./containers/**/*.{js,ts,jsx,tsx}",
-        "./layouts/**/*.{js,ts,jsx,tsx}",
+        "./pages/**/*.{js,jsx}",
+        "./components/**/*.{js,jsx}",
+        "./containers/**/*.{js,jsx}",
+        "./layouts/**/*.{js,jsx}",
     ],
     theme: {
         extend: {

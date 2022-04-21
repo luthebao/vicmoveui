@@ -20,10 +20,12 @@ model accactionlog {
   accid       Int      @default(0)
   type        String   @default("") @db.Text
   createat    DateTime @default(now()) @db.DateTime(0)
-  description String   @default("") @db.Text
+  description String?  @db.Text
   token       Float    @default(0)
   nftid       Int      @default(0)
   tranhash    String?  @db.Text
+
+  @@index([accid], map: "accid")
 }
 
 model account {
@@ -47,11 +49,12 @@ model box {
   note     String?   @db.Text
 }
 
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
 model config {
-  boxprice Float @default(0)
-
-  @@ignore
+  box0price Float @default(0)
+  box1price Float @default(0)
+  box2price Float @default(0)
+  box3price Float @default(0)
+  id        Int   @id
 }
 
 model login_token {
@@ -79,6 +82,7 @@ model shoes {
   brand    String?  @default("") @db.Text
   img      String?  @db.Text
   accid    Int
+  type     Int?     @default(-1)
 }
 
 model vimlog {

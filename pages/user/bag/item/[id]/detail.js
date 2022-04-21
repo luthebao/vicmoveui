@@ -15,6 +15,7 @@ import { shoes_data } from '../../../../../utils/data'
 import { FiChevronLeft, FiPlus } from 'react-icons/fi';
 import Link from "next/link";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 
 export default function SneakerDetail(props) {
@@ -23,11 +24,12 @@ export default function SneakerDetail(props) {
     const [price, setPrice] = useState(() => props?.price || 1)
     const [edit, setEdit] = useState(false)
     const [info, setInfo] = useState(null)
+    const { pages } = useSelector(state => state)
 
     useEffect(() => {
         new Promise(async (resolve, reject) => {
-            if (props.id) {
-                setInfo(shoes_data.find(val => val.id === Number(props.id)))
+            if (props.id && pages.detail) {
+                setInfo(pages.detail.sneakers.find(val => val.id === Number(props.id)))
             }
             resolve(true);
         }).then(() => {
@@ -35,7 +37,7 @@ export default function SneakerDetail(props) {
         }).catch(() => {
             setChecking(false)
         })
-    }, [])
+    }, [pages])
 
 
     if (status === "loading" || checking)
@@ -43,10 +45,10 @@ export default function SneakerDetail(props) {
 
     if (session) {
         return (
-            <LayoutMenu active={"bag"}>
+            <LayoutMenu active={"bag"} session={session}>
                 <HeaderBack title="Bag" />
                 <SectionContainer className='basis-full mb-10'>
-                    {info && info.type === "shoes" && <BoxCard className='flex flex-col justify-between' type='flat-border' style={{ 'minHeight': '80vw', 'padding': '1rem' }}>
+                    {info && <BoxCard className='flex flex-col justify-between' type='flat-border' style={{ 'minHeight': '80vw', 'padding': '1rem' }}>
                         <div className='flex justify-between'>
                             <div className='flex flex-col items-center'>
                                 <Chip className='text-sm mb-2 bg-vicm-green-600 text-white'>
@@ -54,7 +56,7 @@ export default function SneakerDetail(props) {
                                 </Chip>
                                 <Chip className='text-sm bg-vicm-green-90 text-vicm-violet-100 capitalize w-[80%] justify-center'>
                                     <img src={"/images/icons/foot.svg"} className='mr-2' />
-                                    {info.style}
+                                    {info.type === 0 ? "walking" : info.type === 1 ? "running" : info.type === 2 ? "cycling" : "versatile"}
                                 </Chip>
                             </div>
                             <div className='flex flex-wrap items-start'>
@@ -66,33 +68,33 @@ export default function SneakerDetail(props) {
                         </div>
                         <div>
                             <div className='image-decoration mt-4'>
-                                <img src={`/images/s/${info.pic}.png`} />
+                                <img src={`/images/s/${info.img}.png`} />
                             </div>
                             <div className='flex justify-around'>
                                 <div className='bg-vicm-light-green-20004 w-1/4 max-w-[150px] min-h-[70px] p-2 m-1 rounded-xl flex items-center justify-center'>
-                                    {info.gems.length > 0 ? <img src={`/images/gem/${info.gems[0].type}.png`} /> :
+                                    {/* {info.gems.length > 0 ? <img src={`/images/gem/${info.gems[0].type}.png`} /> :
                                         <Link href={`/user/bag/item/${info.id}/encrusted`}>
                                             <FiPlus className="text-[50px]" />
                                         </Link>
-                                    }
+                                    } */}
+                                    <Link href={`/user/bag/item/${info.id}/encrusted`}>
+                                        <FiPlus className="text-[50px]" />
+                                    </Link>
                                 </div>
                                 <div className='bg-vicm-light-green-20004 w-1/4 max-w-[150px] p-2 m-1 rounded-xl flex items-center justify-center'>
-                                    {info.gems.length > 1 ? <img src={`/images/gem/${info.gems[1].type}.png`} /> :
-                                        <Link href={`/user/bag/item/${info.id}/encrusted`}>
-                                            <FiPlus className="text-[50px]" />
-                                        </Link>}
+                                    <Link href={`/user/bag/item/${info.id}/encrusted`}>
+                                        <FiPlus className="text-[50px]" />
+                                    </Link>
                                 </div>
                                 <div className='bg-vicm-light-green-20004 w-1/4 max-w-[150px] p-2 m-1 rounded-xl flex items-center justify-center'>
-                                    {info.gems.length > 2 ? <img src={`/images/gem/${info.gems[2].type}.png`} /> :
-                                        <Link href={`/user/bag/item/${info.id}/encrusted`}>
-                                            <FiPlus className="text-[50px]" />
-                                        </Link>}
+                                    <Link href={`/user/bag/item/${info.id}/encrusted`}>
+                                        <FiPlus className="text-[50px]" />
+                                    </Link>
                                 </div>
                                 <div className='bg-vicm-light-green-20004 w-1/4 max-w-[150px] p-2 m-1 rounded-xl flex items-center justify-center'>
-                                    {info.gems.length > 3 ? <img src={`/images/gem/${info.gems[3].type}.png`} /> :
-                                        <Link href={`/user/bag/item/${info.id}/encrusted`}>
-                                            <FiPlus className="text-[50px]" />
-                                        </Link>}
+                                    <Link href={`/user/bag/item/${info.id}/encrusted`}>
+                                        <FiPlus className="text-[50px]" />
+                                    </Link>
                                 </div>
                             </div>
                             <BoxCard className='flex flex-col mt-6 items-center w-full'>
@@ -100,19 +102,19 @@ export default function SneakerDetail(props) {
                                 <div className='grid4'>
                                     <div>
                                         <CircleNumber className='mb-2 border-red-300' size='lg'>
-                                            {info.stats.comfort}
+                                            {info.comfort}
                                         </CircleNumber>
                                         <span className='text-xs'>Comfort</span>
                                     </div>
                                     <div>
                                         <CircleNumber className='mb-2 border-yellow-300' size='lg'>
-                                            {info.stats.lucky + info.gems.reduce((a, b) => a + (b.stat*info.level || 0), 0)}
+                                            {info.lucky}
                                         </CircleNumber>
                                         <span className='text-xs'>Lucky</span>
                                     </div>
                                     <div>
                                         <CircleNumber className='mb-2 border-emerald-300' size='lg'>
-                                            {info.stats.stamina}
+                                            {info.stamina}
                                         </CircleNumber>
                                         <span className='text-xs'>Stamina</span>
                                     </div>

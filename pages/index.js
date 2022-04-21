@@ -16,18 +16,21 @@ import CircleNumber from "../components/text/circlenumber"
 import { AiFillTags } from "react-icons/ai";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { shoes_data } from '../utils/data'
+import { useSelector } from "react-redux";
+import { AppBar, Tab, Tabs } from "@mui/material";
 
 export default function Home() {
     const { data: session, status } = useSession()
     const [checking, setChecking] = useState(true)
     const [currentShoes, setCurrentShoes] = useState(null)
+    const { pages } = useSelector(state => state)
+    const [tabindex, setTabindex] = useState(0)
 
     useEffect(() => {
         new Promise(async (resolve, reject) => {
             const getcurrent = localStorage.getItem("currentShoes")
-            if (getcurrent) {
-                setCurrentShoes(shoes_data.find(val => val.id === Number(getcurrent)))
+            if (getcurrent && pages.detail) {
+                setCurrentShoes(pages.detail.sneakers.find(val => val.id === Number(getcurrent)) || null)
             }
             resolve(true);
         }).then(() => {
@@ -35,63 +38,80 @@ export default function Home() {
         }).catch(() => {
             setChecking(false)
         })
-    }, [session])
+    }, [session, pages])
 
     if (status === "loading" || checking)
         return <LoadingContainer />
 
     if (session) {
         return (
-            <LayoutMenu active={"profile"}>
+            <LayoutMenu session={session} active={"profile"}>
                 <HeaderUser session={session} />
+                {currentShoes && <AppBar position="static" className="w-auto mx-auto bg-vicm-green-90 mb-[20px] rounded-full border-[2px] border-white normal-case block md:hidden">
+                    <Tabs className="normal-case" value={tabindex} onChange={(event, newValue) => setTabindex(newValue)} aria-label="simple tabs example" TabIndicatorProps={{ style: { backgroundColor: "transparent" } }}>
+                        <Tab value={0} className={tabindex === 0 ? "bg-vicm-green-600 rounded-full text-white normal-case" : "text-white normal-case"} label="Current" />
+                        <Tab value={1} className={tabindex === 1 ? "bg-vicm-green-600 rounded-full text-white normal-case" : "text-white normal-case"} label="Upgrade" />
+                    </Tabs>
+                </AppBar>}
                 <SectionContainer className='basis-full'>
-                    {currentShoes === null && <BoxCard className='box-decoration flex justify-center '>
-                        <ButtonLink href={"/user/bag/changeshose"} className='shadow-2xl border-2 rounded-full p-2 rounded-full p-2  uppercase btn text-white hover:opacity-90 absolute top-4 right-4 bg-primary text-2xl' shapes='circle'>
-                            <FiPlus />
-                        </ButtonLink>
-                        <img src={"/images/icons/bw.png"} />
-                    </BoxCard>}
-                    {currentShoes && <BoxCard className='box-decoration flex flex-col  min-h-[80vw] p-[1rem]'>
-                        <div className='flex justify-between'>
-                            <ProgressBar percentage={100} className='w-1/3' />
-                            <div className="bg-vicm-green-600 text-white rounded-full px-1 flex text-xs">
-                                <p className="my-auto px-2 text-xs">Lv: {currentShoes.level}</p>
+                    {currentShoes === null &&
+                        <BoxCard className='box-decoration flex justify-center w-full md:w-1/2'>
+                            <ButtonLink href={"/user/bag/changeshose"} className='shadow-2xl border-2 rounded-full p-2 rounded-full p-2  uppercase btn text-white hover:opacity-90 absolute top-4 right-4 bg-primary text-2xl' shapes='circle'>
+                                <FiPlus />
+                            </ButtonLink>
+                            <img src={"/images/icons/bw.png"} />
+                        </BoxCard>}
+                    {currentShoes &&
+                        <BoxCard className='box-decoration flex flex-col w-full md:w-1/2 p-[6px] m-[4px]'>
+                            <div className='flex justify-between'>
+                                <ProgressBar percentage={100} className='w-1/3' />
+                                <div className="bg-vicm-green-600 text-white rounded-full px-1 flex text-xs">
+                                    <p className="my-auto px-2 text-xs">Lv: {currentShoes.level}</p>
+                                </div>
+                                <Link href={"/user/bag/changeshose"}>
+                                    <button className='bg-vicm-green-600 w-1/4 rounded-full text-xs shadow-2xl text-white hover:opacity-90 px-1' size='sm'>
+                                        Change
+                                    </button>
+                                </Link>
                             </div>
-                            <Link href={"/user/bag/changeshose"}>
-                                <button className='bg-vicm-green-600 w-1/4 rounded-full text-xs shadow-2xl text-white hover:opacity-90 px-1' size='sm'>
-                                    Change
-                                </button>
+                            <div className='flex flex-col absolute top-16'>
+                                <CircleNumber className='mb-2 border-red-300' size='sm'>{currentShoes.comfort}</CircleNumber>
+                                <CircleNumber className='mb-2 border-yellow-300' size='sm'>{currentShoes.lucky}</CircleNumber>
+                                <CircleNumber className='mb-2 border-emerald-300' size='sm'>{currentShoes.stamina}</CircleNumber>
+                            </div>
+                            <Link href={`/user/bag/item/${currentShoes.id}/detail`}>
+                                <img className='mt-12 ml-10' src={`/images/s/${currentShoes.img}.png`} />
                             </Link>
-                        </div>
-                        <div className='flex flex-col absolute top-16'>
-                            <CircleNumber className='mb-2 border-red-300' size='sm'>{currentShoes.stats.comfort}</CircleNumber>
-                            <CircleNumber className='mb-2 border-yellow-300' size='sm'>{currentShoes.stats.lucky + currentShoes.gems.reduce((a, b) => a + (b.stat * currentShoes.level || 0), 0)}</CircleNumber>
-                            <CircleNumber className='mb-2 border-emerald-300' size='sm'>{currentShoes.stats.stamina}</CircleNumber>
-                        </div>
-                        <Link href={`/user/bag/item/${currentShoes.id}/detail`}>
-                            <img className='mt-12 ml-10' src={`/images/s/${currentShoes.pic}.png`} />
-                        </Link>
-                        <div className='flex flex-wrap justify-between items-end'>
-                            <Chip className='bg-vicm-green-600 text-white'>
-                                <AiFillTags className='text-xl mr-2' /> #{currentShoes.id}
-                            </Chip>
-                            <Chip className="text-vicm-violet-100 bg-vicm-green-90 capitalize" >
-                                <img src={"/images/icons/foot.svg"} className='mr-2 ' />{currentShoes.style}
-                            </Chip>
-                        </div>
-                    </BoxCard>}
+                            <div className='flex flex-wrap justify-between items-end'>
+                                <Chip className='bg-vicm-green-600 text-white'>
+                                    <AiFillTags className='text-xl mr-2' /> #{currentShoes.id}
+                                </Chip>
+                                <Chip className="text-vicm-violet-100 bg-vicm-green-90 capitalize" >
+                                    <img src={"/images/icons/foot.svg"} className='mr-2 ' />{currentShoes.type === 0 ? "walking" : currentShoes.type === 1 ? "running" : currentShoes.type === 2 ? "cycling" : "versatile"}
+                                </Chip>
+                            </div>
+                        </BoxCard>
+                    }
                     <TextHeader size='sm' className='mt-8'>Shoes Box</TextHeader>
                     <VerticalListContainer className={"mb-5 noscroll"}>
                         {
-                            shoes_data.filter(val => val.type === "box").map(val => (
+                            pages && pages.detail && pages.detail.boxs && pages.detail.boxs.map(val => (
                                 <BoxCard key={`boxindex-${val.id}`} className='inline-block text-center mr-4'>
-                                    <img src={`/images/box/${val.style}.png`} width={115} />
-                                    <Link href={`/user/bag/item/${val.id}/detail`}>
+                                    <img src={`/images/box/${val.type === 0 ? "walking" : val.type === 1 ? "running" : val.type === 2 ? "cycling" : "versatile"}.png`} width={115} />
+                                    <Link href={`/user/bag/box/${val.id}/detail`}>
                                         <button className="rounded-full text-xs px-6 py-1 shadow-2xl border-2 uppercase btn text-white hover:opacity-90 bg-vicm-green-600">Open</button>
                                     </Link>
                                 </BoxCard>
                             ))
                         }
+                        <BoxCard key={`boxindex-getmore`} className='inline-block text-center mr-4 w-[147px] h-full'>
+                            <FiPlus className="text-[115px] m-auto" />
+                            <Link href={`/user/market`}>
+                                <a target={"_blank"} rel="noreferrer">
+                                    <button className="rounded-full text-xs px-6 py-1 shadow-2xl border-2 uppercase btn text-white hover:opacity-90 bg-vicm-green-600">Get more </button>
+                                </a>
+                            </Link>
+                        </BoxCard>
                     </VerticalListContainer>
                 </SectionContainer>
             </LayoutMenu>
@@ -99,4 +119,13 @@ export default function Home() {
     }
 
     return <WelcomePage />
+}
+
+export async function getServerSideProps(context) {
+    
+    return {
+        props: {
+
+        }
+    }
 }

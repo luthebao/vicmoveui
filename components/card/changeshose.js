@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 
-const ChangeShoseCard = ({ id, type, pic, level, style }) => {
+const ChangeShoseCard = ({ id, nftid, img, level, type }) => {
     const router = useRouter()
 
     const handleChangeCurrentShoes = () => {
@@ -16,7 +16,7 @@ const ChangeShoseCard = ({ id, type, pic, level, style }) => {
     }
 
     return (
-        <div className="p-[2px] w-1/2 lg:w-1/3 xl:w-1/4" key={`change-${type}-${id}`}>
+        <div className="p-[2px] w-1/2 lg:w-1/3 xl:w-1/4" key={`change-${nftid}-${id}`}>
             <div className="min-h-[150px] border-[2px] border-vicm-green-600 rounded-4xl flex flex-col p-2">
                 <div className="flex justify-between">
                     <div className="bg-vicm-green-600 text-white rounded-xl p-1 flex h-[24px] md:h-[34px]">
@@ -29,11 +29,11 @@ const ChangeShoseCard = ({ id, type, pic, level, style }) => {
                 </div>
                 <div className="mx-auto mt-4 relative">
                     <img className="relative w-full m-auto" src="/images/bg/bg-item.svg" />
-                    <img className="absolute top-0 w-full h-auto" src={`/images/s/${pic}.png`} />
+                    <img className="absolute top-0 w-full h-auto" src={`/images/s/${img}.png`} />
                 </div>
                 <div className="mx-auto my-4">
                     <div className="bg-vicm-green-90 rounded-4xl">
-                        <p className="text-vicm-violet-100 text-xs px-4 py-1 capitalize">{style}</p>
+                        <p className="text-vicm-violet-100 text-xs px-4 py-1 capitalize">{type === 0 ? "walking" : type === 1 ? "running" : type === 2 ? "cycling" : "versatile"}</p>
                     </div>
                 </div>
                 <div className="flex justify-center">

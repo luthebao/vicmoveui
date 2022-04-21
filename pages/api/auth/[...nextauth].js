@@ -97,8 +97,11 @@ export default NextAuth({
                         method: "POST",
                     })
                     const user_result = await user_fetch.json()
-                    if (user_result.code === 1 && user_result.data)
+                    console.log(token)
+                    if (user_result.code === 1 && user_result.data) {
+                        user.id = user_result.data.id
                         return profile.email_verified
+                    }
                     else
                         return false
                 } catch {

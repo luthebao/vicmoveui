@@ -1,8 +1,32 @@
-export const production = false
+export const production = true
 
 export const urls = {
-    "uri" : production ? "https://app.vicmove.com/" : "http://localhost:3000/",
-    "api" : "https://api.vicmove.com",
+    "uri": production ? "https://app.vicmove.com/" : "http://localhost:3000/",
+    "api": "https://api.vicmove.com",
+}
+
+export const bsc_chain = {
+    "rpc_url": "https://bsc-dataseed.binance.org/",
+    "chainId": "0x38",
+    "chainName": 'Smart Chain',
+    "nativeCurrency": {
+        "name": 'BNB',
+        "symbol": 'BNB',
+        "decimals": 18
+    },
+    "blockExplorerUrl": "https://bscscan.com/"
+}
+
+export const bsc_chain_test = {
+    "rpc_url": "https://data-seed-prebsc-1-s1.binance.org:8545/",
+    "chainId": "0x61",
+    "chainName": 'Smart Chain Test',
+    "nativeCurrency": {
+        "name": 'BNB',
+        "symbol": 'BNB',
+        "decimals": 18
+    },
+    "blockExplorerUrl": "https://testnet.bscscan.com/"
 }
 
 export const max_width = ''

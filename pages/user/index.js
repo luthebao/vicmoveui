@@ -12,17 +12,18 @@ import ButtonLink from '../../components/button/btnlink';
 import { HiOutlineLightningBolt } from "react-icons/hi";
 import SectionContainer from '../../containers/section/section';
 import BoxCard from '../../components/card/box';
+import { useSelector } from 'react-redux';
 
 
 const ProfileIndex = () => {
-
+    const { pages } = useSelector(state => state)
     const { data: session, status } = useSession()
 
     if (status === "loading")
         return <LoadingContainer />
     if (session)
         return (
-            <LayoutMenu active="profile">
+            <LayoutMenu active="profile" session={session}>
                 <HeaderBack title='profile' />
                 <div className='flex flex-col items-center mb-12'>
                     <div className='relative'>
@@ -36,10 +37,10 @@ const ProfileIndex = () => {
                     </div>
                     <div className='mt-6 text-center'>
                         <TextHeader size='sm' className='text-center'>{session.user.name}</TextHeader>
-                        {/* <div className='flex justify-center'>
+                        <div className='flex justify-center'>
                             <img className='text-vicm-green-500' src={"/images/icons/wallet.svg"} />
-                            <div className='ml-4 text-vicm-green-500'>Create Wallet</div>
-                        </div> */}
+                            <div className='ml-4 text-vicm-green-500'>{pages.detail?.accountdetail?.address.slice(0, 7)}...{pages.detail?.accountdetail?.address.slice(pages.detail?.accountdetail?.address.length-7, pages.detail?.accountdetail?.address.length)} </div>
+                        </div>
                         <div className='flex'>
                             <ButtonLink href='/' size='md' className='mx-2 inline-block items-center bg-primary mt-4 text-white px-5'>
                                 <AiFillEdit className='text-2xl pb-1 inline' />&nbsp; Edit
@@ -79,6 +80,15 @@ const ProfileIndex = () => {
             </LayoutMenu>
         )
     return <WelcomePage />
+}
+
+export async function getServerSideProps(context) {
+    
+    return {
+        props: {
+
+        }
+    }
 }
 
 

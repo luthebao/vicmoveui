@@ -15,7 +15,7 @@ export default function MarketIndex() {
 
     if (session) {
         return (
-            <LayoutMenu active={"bag"}>
+            <LayoutMenu active={"bag"} session={session}>
                 <HeaderBack title="Encrusted" />
                 <SectionContainer className='basis-full mb-10'>
                     <div className="flex flex-wrap">
