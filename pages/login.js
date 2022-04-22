@@ -31,7 +31,7 @@ const LoginPage = () => {
     }
 
     return (
-        <BackgroundContainer type='light' className='text-center'>
+        <BackgroundContainer type='light' className='text-center '>
             <PageNavigateBtn>
                 <Link href={"/"}>
                     <a>
@@ -65,6 +65,7 @@ const LoginPage = () => {
                 <HyperLink path='#'>Click here</HyperLink>
             </div>
             <div className='text-divider font-semibold py-8'>OR</div>
+
             <ButtonDefault className='w-full bg-[#FF5733]'
                 callback={() => {
                     signIn("google", {
@@ -74,10 +75,6 @@ const LoginPage = () => {
             >
                 Sign in with Google
             </ButtonDefault>
-            {/* <div className='flex justify-center'>
-                <img src={"/images/logo/fingerprint.png"} width='80' />
-            </div>
-            <div>Scan</div> */}
         </BackgroundContainer>
     )
 }

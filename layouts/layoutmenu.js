@@ -19,13 +19,6 @@ const LayoutMenu = ({ children, active, session }) => {
         }
     }, [session])
 
-    useEffect(() => {
-        if (pages.detail && pages.detail.accountdetail && (pages.detail.accountdetail.address === "" || pages.detail.accountdetail.address === null)) {
-            router.push("/user/addwallet")
-        }
-    }, [pages]);
-
-
     return (
         <BackgroundContainer type='light-2' padding='none' hasMenu={true} className="min-h-[100vh]">
 
