@@ -98,19 +98,17 @@ export default function Home() {
                             pages && pages.detail && pages.detail.boxs && pages.detail.boxs.map(val => (
                                 <BoxCard key={`boxindex-${val.id}`} className='inline-block text-center mr-4'>
                                     <img src={`/images/box/${val.type === 0 ? "walking" : val.type === 1 ? "running" : val.type === 2 ? "cycling" : "versatile"}.png`} width={115} />
-                                    <Link href={`/user/bag/box/${val.id}/detail`}>
+                                    {/* <Link href={`/user/bag/box/${val.id}/detail`}>
                                         <button className="rounded-full text-xs px-6 py-1 shadow-2xl border-2 uppercase btn text-white hover:opacity-90 bg-vicm-green-600">Open</button>
-                                    </Link>
+                                    </Link> */}
                                 </BoxCard>
                             ))
                         }
                         <BoxCard key={`boxindex-getmore`} className='inline-block text-center mr-4 w-[147px] h-full'>
                             <FiPlus className="text-[115px] m-auto" />
-                            <Link href={`/user/market`}>
-                                <a target={"_blank"} rel="noreferrer">
-                                    <button className="rounded-full text-xs px-6 py-1 shadow-2xl border-2 uppercase btn text-white hover:opacity-90 bg-vicm-green-600">Get more </button>
-                                </a>
-                            </Link>
+                            <a href="https://marketplace.vicmove.com/" target={"_blank"} rel="noreferrer">
+                                <button className="rounded-full text-xs px-6 py-1 shadow-2xl border-2 uppercase btn text-white hover:opacity-90 bg-vicm-green-600">Get more </button>
+                            </a>
                         </BoxCard>
                     </VerticalListContainer>
                 </SectionContainer>
@@ -122,7 +120,7 @@ export default function Home() {
 }
 
 export async function getServerSideProps(context) {
-    
+
     return {
         props: {
 

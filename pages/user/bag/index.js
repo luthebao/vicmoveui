@@ -29,13 +29,13 @@ export default function BagIndex() {
                 <AppBar position="static" className="w-auto mx-auto bg-vicm-green-90 mb-[20px] rounded-full border-[2px] border-white normal-case">
                     <Tabs className="normal-case" value={tabindex} onChange={(event, newValue) => setTabindex(newValue)} aria-label="simple tabs example" TabIndicatorProps={{ style: { backgroundColor: "transparent" } }}>
                         <Tab value={0} className={tabindex === 0 ? "bg-vicm-green-600 rounded-full text-white normal-case" : "text-white normal-case"} label="Sneaker" />
-                        <Tab value={1} className={tabindex === 1 ? "bg-vicm-green-600 rounded-full text-white normal-case" : "text-white normal-case"} label="Box" />
+                        {/* <Tab value={1} className={tabindex === 1 ? "bg-vicm-green-600 rounded-full text-white normal-case" : "text-white normal-case"} label="Box" /> */}
                         <Tab value={2} className={tabindex === 2 ? "bg-vicm-green-600 rounded-full text-white normal-case" : "text-white normal-case"} label="Gem" />
                     </Tabs>
                 </AppBar>
                 <SectionContainer className='basis-full mb-10'>
                     {tabindex === 0 && <SneakersList data={pages.detail?.sneakers || []} />}
-                    {tabindex === 1 && <BoxesList data={pages.detail?.boxs || []} />}
+                    {/* {tabindex === 1 && <BoxesList data={pages.detail?.boxs || []} />} */}
                     {tabindex === 2 && <BoxesList data={pages.detail?.boxs || []} />}
                 </SectionContainer>
             </LayoutMenu>
