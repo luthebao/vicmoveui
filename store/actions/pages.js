@@ -16,6 +16,12 @@ export const authSuccess = (detail) => {
     }
 }
 
+export const authFail = () => {
+    return {
+        type: actionTypes.AUTH_SUCCESS,
+    }
+}
+
 
 export const handleGetDetail = (id) => {
     return async dispatch => {
@@ -55,8 +61,9 @@ export const handleGetDetail = (id) => {
                         brand
                         accid
                         createat
+                        type
+                    }
                 }
-              }
             `,
             variables: {
                 "accountdetailId": id
@@ -65,6 +72,8 @@ export const handleGetDetail = (id) => {
         if (acc_detail && acc_detail.data && acc_detail.data.accountdetail)
         {
             dispatch(authSuccess(acc_detail.data))
+        } else {
+            dispatch(authFail())
         }
     }
 }

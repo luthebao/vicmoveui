@@ -1,4 +1,5 @@
 import { Backdrop, CircularProgress } from "@mui/material"
+import { signOut } from "next-auth/react"
 import { useRouter } from "next/router"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -18,6 +19,13 @@ const LayoutMenu = ({ children, active, session }) => {
             dispatch(handleGetDetail(session.id))
         }
     }, [session])
+
+    useEffect(() => {
+        if (pages.authstatus < 0)
+        {
+            signOut()
+        }
+    }, [pages])
 
     return (
         <BackgroundContainer type='light-2' padding='none' hasMenu={true} className="min-h-[100vh]">
