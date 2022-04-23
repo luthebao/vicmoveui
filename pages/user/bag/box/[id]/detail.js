@@ -38,6 +38,8 @@ export default function SneakerDetail(props) {
     }, [pages])
 
     const handleOpenBox = async () => {
+        toast("Coming soon")
+        return
         setOpening(true)
         try {
             const fet_unbox = await fetch("/api/user/openbox",{
