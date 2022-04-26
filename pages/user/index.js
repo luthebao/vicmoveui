@@ -43,7 +43,7 @@ const ProfileIndex = () => {
                         </label>
                     </div>
                     <div className='mt-6 text-center'>
-                        <TextHeader size='sm' className='text-center'>{session.user.name}</TextHeader>
+                        <TextHeader size='sm' className='text-center truncate'>{session.user.name || session.user.email}</TextHeader>
                         {pages.detail?.accountdetail?.address && <div className='flex justify-center'>
                             <img className='text-vicm-green-500' src={"/images/icons/wallet.svg"} />
                             <div className='ml-4 w-1/2 text-vicm-green-500 truncate'>

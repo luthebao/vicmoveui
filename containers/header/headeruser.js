@@ -13,8 +13,8 @@ const HeaderUser = ({ session, signOut }) => {
             <Link href={"/user"}>
                 <div className='flex items-center'>
                     <UserAvatar src={session.user.image} />
-                    <span className='ml-4 text-black'>
-                        {session.user.name}
+                    <span className='ml-4 text-black truncate'>
+                        {session.user.name || session.user.email}
                     </span>
                 </div>
             </Link>
