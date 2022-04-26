@@ -1,7 +1,7 @@
 export const production = true
 
 export const urls = {
-    "uri": production ? "https://marketplace.vicmove.com/" : "http://localhost:3000/",
+    "uri": production ? "https://app.vicmove.com/" : "http://localhost:3000/",
     "api": production ? "http://10.201.0.199" : "https://testapi.vicmove.com"
 }
 
