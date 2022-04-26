@@ -16,13 +16,11 @@ import { DiVim } from "react-icons/di";
 import { useDispatch, useSelector } from 'react-redux';
 import { useAppContext } from '../../utils/store';
 import BuyEnergyPopup from '../../components/item/popup/fillenergy';
-import { handleGetDetail } from '../../store/actions/pages';
 
 
 const ProfileIndex = () => {
     const { pages } = useSelector(state => state)
     const { data: session, status } = useSession()
-    const dispatch = useDispatch()
     const { noti_popup, info_account } = useAppContext()
     const [popup, setPopup] = noti_popup
     const [loadAccount, infoAccount] = info_account
