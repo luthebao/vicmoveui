@@ -55,12 +55,22 @@ export default function Home() {
     }, [session])
 
     useEffect(() => {
-        if (sneakers && sneakers.data) {
-            const getcurrent = localStorage.getItem("currentShoes")
-            if (getcurrent && pages.detail) {
-                setCurrentShoes((sneakers && sneakers.data && sneakers.data.sneakers.find(val => val.id === Number(getcurrent))) || null)
-            }
-        }
+
+        if (session)
+            new Promise(async (resolve, reject) => {
+                if (sneakers && sneakers.data) {
+                    const getcurrent = localStorage.getItem("currentShoes")
+                    if (getcurrent && pages.detail) {
+                        setCurrentShoes((sneakers && sneakers.data && sneakers.data.sneakers.find(val => val.id === Number(getcurrent))) || null)
+                    }
+                }
+
+                resolve(true);
+            }).then(() => {
+                setChecking(false)
+            }).catch(() => {
+                setChecking(false)
+            })
     }, [sneakers])
 
     if (status === "loading" || checking)
@@ -88,7 +98,7 @@ export default function Home() {
                         <BoxCard className='box-decoration flex flex-col w-full md:w-1/2 p-[6px] m-[4px]'>
                             <div className='flex justify-between'>
                                 <ProgressBar min={currentShoes.exp} max={currentShoes.maxExp} className='w-1/3'
-                                 />
+                                />
                                 <div className="bg-vicm-green-600 text-white rounded-full px-1 flex text-xs">
                                     <p className="my-auto px-2 text-xs">Lv: {currentShoes.level}</p>
                                 </div>
