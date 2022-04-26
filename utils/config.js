@@ -1,4 +1,4 @@
-export const production = false
+export const production = true
 
 export const urls = {
     "uri": production ? "https://marketplace.vicmove.com/" : "http://localhost:3000/",
