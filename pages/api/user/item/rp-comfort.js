@@ -1,5 +1,5 @@
 import Cors from "micro-cors";
-import { apis, urls } from "../../../utils/config";
+import { apis, urls } from "../../../../utils/config";
 const cors = Cors()
 
 export default cors(async function handler(req, res) {
@@ -10,7 +10,7 @@ export default cors(async function handler(req, res) {
         }
 
         try {
-            const fet_add = await fetch(apis.market_buybox, {
+            const fet_add = await fetch(apis.item_repair_comfort, {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',

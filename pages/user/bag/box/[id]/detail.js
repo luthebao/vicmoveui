@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { Backdrop, CircularProgress } from "@mui/material";
 import { handleGetDetail } from "../../../../../store/actions/pages";
+import { useAppContext } from "../../../../../utils/store";
 
 
 export default function SneakerDetail(props) {
@@ -24,25 +25,48 @@ export default function SneakerDetail(props) {
     const { pages } = useSelector(state => state)
     const dispatch = useDispatch()
 
+    const { acc_boxes } = useAppContext()
+    const [getBoxes, boxes] = acc_boxes
+
     useEffect(() => {
-        new Promise(async (resolve, reject) => {
-            if (props.id && pages && pages.detail && pages.detail.boxs) {
-                setInfo(pages.detail.boxs.find(val => val.id === Number(props.id)))
-            }
-            resolve(true);
-        }).then(() => {
-            setChecking(false)
-        }).catch(() => {
-            setChecking(false)
-        })
-    }, [pages])
+        if (session)
+            new Promise(async (resolve, reject) => {
+                if (boxes && boxes.data) {
+                    boxes.refetch({
+                        variables: {
+                            "accountdetailId": session.id,
+                        }
+                    })
+                } else {
+                    getBoxes({
+                        variables: {
+                            "accountdetailId": session.id,
+                        }
+                    })
+                }
+                if (props.id && pages && pages.detail && pages.detail.boxs) {
+                    // setInfo(pages.detail.boxs.find(val => val.id === Number(props.id)))
+                }
+                resolve(true);
+            }).then(() => {
+                setChecking(false)
+            }).catch(() => {
+                setChecking(false)
+            })
+    }, [session])
+
+    useEffect(() => {
+        if (boxes && boxes.data && props.id) {
+            setInfo(boxes.data.boxs.find(val => val.id === Number(props.id)))
+        }
+    }, [boxes])
 
     const handleOpenBox = async () => {
-        toast("Coming soon")
-        return
+        // toast("Coming soon")
+        // return
         setOpening(true)
         try {
-            const fet_unbox = await fetch("/api/user/openbox",{
+            const fet_unbox = await fetch("/api/user/openbox", {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
@@ -98,21 +122,21 @@ export default function SneakerDetail(props) {
                     </BoxCard>}
                     {
                         result && <BoxCard className='flex flex-col justify-between ' type='flat-border' style={{ 'padding': '1rem' }}>
-                        <div className='flex justify-between'>
-                            <Chip className='mb-2 bg-vicm-green-600 text-white'>
-                                <AiFillTags className='text-2xl mr-2' /> #{result.id}
-                            </Chip>
-                            <Chip className='text-sm bg-vicm-green-90 text-vicm-violet-100 capitalize'>
-                                <img src={"/images/icons/foot.svg"} className='mr-2' />
-                                {result.type === 0 ? "walking" : result.type === 1 ? "running" : result.type === 2 ? "cycling" : "versatile"}
-                            </Chip>
-                        </div>
-                        <div >
-                            <div className='image-decoration mt-4'>
-                                <img src={`/images/s/${result.img}.png`} />
+                            <div className='flex justify-between'>
+                                <Chip className='mb-2 bg-vicm-green-600 text-white'>
+                                    <AiFillTags className='text-2xl mr-2' /> #{result.id}
+                                </Chip>
+                                <Chip className='text-sm bg-vicm-green-90 text-vicm-violet-100 capitalize'>
+                                    <img src={"/images/icons/foot.svg"} className='mr-2' />
+                                    {result.type === 0 ? "walking" : result.type === 1 ? "running" : result.type === 2 ? "cycling" : "versatile"}
+                                </Chip>
                             </div>
-                        </div>
-                    </BoxCard>
+                            <div >
+                                <div className='image-decoration mt-4'>
+                                    <img src={`/images/s/${result.img}.png`} />
+                                </div>
+                            </div>
+                        </BoxCard>
                     }
                     <Backdrop open={opening}>
                         <div className='flex justify-center m-auto flex-col'>

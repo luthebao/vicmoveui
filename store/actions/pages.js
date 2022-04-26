@@ -1,6 +1,7 @@
 import * as actionTypes from './actionTypes'
 import apolloClient from "../../graphql/client"
 import { gql } from '@apollo/client'
+import { get_account } from '../../graphql/query'
 
 export const authStart = () => {
     return {
@@ -27,44 +28,7 @@ export const handleGetDetail = (id) => {
     return async dispatch => {
         dispatch(authStart())
         const acc_detail = await apolloClient.query({
-            query: gql`
-                query Accountinfo($accountdetailId: Int!) {
-                    accountdetail(id: $accountdetailId) {
-                        id
-                        piecebox
-                        vim
-                        createat
-                        status
-                        energy
-                        address
-                    }
-                    boxs(accid: $accountdetailId) {
-                        id
-                        accid
-                        buyboxid
-                        type
-                        status
-                        buyat
-                        unboxat
-                    }
-                    sneakers(accid: $accountdetailId) {
-                        id
-                        nftid
-                        level
-                        exp
-                        comfort
-                        stamina
-                        lucky
-                        fabric
-                        sole
-                        img
-                        brand
-                        accid
-                        createat
-                        type
-                    }
-                }
-            `,
+            query: get_account,
             variables: {
                 "accountdetailId": id
             }

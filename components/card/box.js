@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const BoxCard = ({ children, className, type, style }) => {
+const BoxCard = ({ children, className, type, style, callback }) => {
     let classes = '';
     switch (type) {
         case 'flat':
@@ -14,7 +14,7 @@ const BoxCard = ({ children, className, type, style }) => {
             break;
     }
     return (
-        <div
+        <div onClick={callback}
             style={style}
             className={classes + 'rounded-3xl relative px-4 py-4 bg-white ' + (className || '')}>
             {children}
@@ -24,7 +24,8 @@ const BoxCard = ({ children, className, type, style }) => {
 
 BoxCard.propTypes = {
     style: PropTypes.instanceOf(Object),
-    className: PropTypes.string
+    className: PropTypes.string,
+    callback: PropTypes.func,
 };
 
 

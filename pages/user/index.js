@@ -12,12 +12,19 @@ import ButtonLink from '../../components/button/btnlink';
 import { HiOutlineLightningBolt } from "react-icons/hi";
 import SectionContainer from '../../containers/section/section';
 import BoxCard from '../../components/card/box';
+import { DiVim } from "react-icons/di";
 import { useSelector } from 'react-redux';
+import Link from 'next/link';
+import { useAppContext } from '../../utils/store';
+import BuyEnergyPopup from '../../components/item/popup/fillenergy';
 
 
 const ProfileIndex = () => {
     const { pages } = useSelector(state => state)
     const { data: session, status } = useSession()
+    const { noti_popup } = useAppContext()
+    const [popup, setPopup] = noti_popup
+
 
     if (status === "loading")
         return <LoadingContainer />
@@ -39,11 +46,11 @@ const ProfileIndex = () => {
                         <TextHeader size='sm' className='text-center'>{session.user.name}</TextHeader>
                         <div className='flex justify-center'>
                             <img className='text-vicm-green-500' src={"/images/icons/wallet.svg"} />
-                            <div className='ml-4 text-vicm-green-500'>{pages.detail?.accountdetail?.address.slice(0, 7)}...{pages.detail?.accountdetail?.address.slice(pages.detail?.accountdetail?.address.length-7, pages.detail?.accountdetail?.address.length)} </div>
+                            <div className='ml-4 text-vicm-green-500'>{pages.detail?.accountdetail?.address.slice(0, 7)}...{pages.detail?.accountdetail?.address.slice(pages.detail?.accountdetail?.address.length - 7, pages.detail?.accountdetail?.address.length)} </div>
                         </div>
                         <div className='flex'>
                             <ButtonLink href='/' size='md' className='mx-2 inline-block items-center bg-primary mt-4 text-white px-5'>
-                                <AiFillEdit className='text-2xl pb-1 inline' />&nbsp; Edit
+                                <AiFillEdit className='text-2xl pb-1 inline' />&nbsp;Edit
                             </ButtonLink>
                             <button className='mx-2 inline-block items-center bg-primary mt-4 text-white px-5 rounded-xl px-2 py-2 shadow-2xl uppercase btn hover:opacity-90' onClick={() => signOut({ redirect: true, callbackUrl: "/" })}>
                                 <FiLogOut className='text-2xl pb-1 inline' />&nbsp;Logout
@@ -52,15 +59,34 @@ const ProfileIndex = () => {
                     </div>
                 </div>
                 <SectionContainer className='basis-full shadow-t-lg p-8' bgColor='bg-white'>
-                    <BoxCard className='mb-8'>
+                    <a href="https://marketplace.vicmove.com/" target={"_blank"} rel="noreferrer">
+                        <BoxCard className='mb-8'>
+                            <div className='flex justify-between'>
+                                <div className='rounded-full shadow-t-lg border-2 border-gray-300 h-16 w-16 flex items-center justify-center'>
+                                    <DiVim className='text-3xl text-vicm-green-500' />
+                                </div>
+                                <div className='grow ml-6'>
+                                    <div className='text-gray-700'>VIM (account)</div>
+                                    <LinearProgress className='my-2' variant="determinate" color='success' value={100} />
+                                    <div>{(pages.detail && pages.detail.accountdetail.vim) || 0}</div>
+                                </div>
+                            </div>
+                        </BoxCard>
+                    </a>
+                    <BoxCard className='mb-8' callback={() => {
+                        setPopup({
+                            title: "Buy Energy",
+                            render: <BuyEnergyPopup session={session} onClose={() => setPopup(null)} />
+                        })
+                    }}>
                         <div className='flex justify-between'>
                             <div className='rounded-full shadow-t-lg border-2 border-gray-300 h-16 w-16 flex items-center justify-center'>
                                 <HiOutlineLightningBolt className='text-3xl text-vicm-green-500' />
                             </div>
                             <div className='grow ml-6'>
                                 <div className='text-gray-700'>Energy</div>
-                                <LinearProgress className='my-2' variant="determinate" color='success' value={80} />
-                                <div>50/60</div>
+                                <LinearProgress className='my-2' variant="determinate" color='success' value={((pages.detail && pages.detail.accountdetail.energy) || 0) * 100 / ((pages.detail && pages.detail.accountdetail.maxE) || 1)} />
+                                <div>{(pages.detail && pages.detail.accountdetail.energy) || 0}/{(pages.detail && pages.detail.accountdetail.maxE) || 1}</div>
                             </div>
                         </div>
                     </BoxCard>
@@ -71,8 +97,8 @@ const ProfileIndex = () => {
                             </div>
                             <div className='grow ml-6'>
                                 <div className='text-gray-700'>Box Pieces</div>
-                                <LinearProgress className='my-2' variant="determinate" color='success' value={80} />
-                                <div>200</div>
+                                <LinearProgress className='my-2' variant="determinate" color='success' value={100} />
+                                <div>{(pages.detail && pages.detail.accountdetail.piecebox) || 0}</div>
                             </div>
                         </div>
                     </BoxCard>
@@ -83,7 +109,7 @@ const ProfileIndex = () => {
 }
 
 export async function getServerSideProps(context) {
-    
+
     return {
         props: {
 

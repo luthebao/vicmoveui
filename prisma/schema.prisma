@@ -36,6 +36,34 @@ model account {
   status   String   @default("active") @db.Text
   energy   Int?     @default(0)
   address  String?  @db.Text
+  maxE     Int      @default(0)
+  maxExp   Int      @default(0)
+}
+
+model activity {
+  id       Int      @id @default(autoincrement())
+  accid    Int      @default(0)
+  type     String?  @db.Text
+  createat DateTime @default(now()) @db.DateTime(0)
+  endat    DateTime @default(now()) @db.DateTime(0)
+  status   String?  @db.Text
+  piecebox Int      @default(0)
+  shoesid  Int      @default(0)
+  step     Int      @default(0)
+  distance Float    @default(0)
+
+  @@index([id], map: "accid")
+  @@index([shoesid], map: "shoesid")
+}
+
+model ativitylog {
+  id         Int      @id @default(autoincrement())
+  activityid Int      @default(0)
+  step       Int      @default(0)
+  distance   Float    @default(0)
+  createat   DateTime @default(now()) @db.DateTime(0)
+
+  @@index([activityid], map: "activityid")
 }
 
 model box {
@@ -69,20 +97,23 @@ model login_token {
 }
 
 model shoes {
-  id       Int      @id @default(autoincrement())
-  nftid    BigInt?
-  level    Int      @default(1)
-  exp      Int      @default(0)
-  comfort  Int      @default(0)
-  stamina  Int      @default(0)
-  lucky    Int      @default(0)
-  fabric   String   @default("") @db.Text
-  sole     String   @default("") @db.Text
-  createat DateTime @default(now()) @db.DateTime(0)
-  brand    String?  @default("") @db.Text
-  img      String?  @db.Text
-  accid    Int
-  type     Int?     @default(-1)
+  id         Int      @id @default(autoincrement())
+  nftid      BigInt?
+  level      Int      @default(1)
+  exp        Int      @default(0)
+  comfort    Int      @default(0)
+  stamina    Int      @default(0)
+  lucky      Int      @default(0)
+  fabric     String   @default("") @db.Text
+  sole       String   @default("") @db.Text
+  createat   DateTime @default(now()) @db.DateTime(0)
+  brand      String?  @default("") @db.Text
+  img        String?  @db.Text
+  accid      Int
+  type       Int?     @default(-1)
+  maxExp     Int      @default(0)
+  maxComfort Int      @default(0)
+  maxStamina Int      @default(0)
 }
 
 model vimlog {

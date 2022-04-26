@@ -18,6 +18,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { AppBar, Tab, Tabs } from "@mui/material";
+import { useAppContext } from "../utils/store";
 
 export default function Home() {
     const { data: session, status } = useSession()
@@ -26,19 +27,41 @@ export default function Home() {
     const { pages } = useSelector(state => state)
     const [tabindex, setTabindex] = useState(0)
 
+    // context
+    const { acc_sneakers, acc_boxes } = useAppContext()
+    const [getSneakers, sneakers] = acc_sneakers
+    const [getBoxes, boxes] = acc_boxes
+
     useEffect(() => {
-        new Promise(async (resolve, reject) => {
+        if (session)
+            new Promise(async (resolve, reject) => {
+                await getSneakers({
+                    variables: {
+                        "accountdetailId": session.id
+                    }
+                })
+                getBoxes({
+                    variables: {
+                        "accountdetailId": session.id
+                    }
+                })
+
+                resolve(true);
+            }).then(() => {
+                setChecking(false)
+            }).catch(() => {
+                setChecking(false)
+            })
+    }, [session])
+
+    useEffect(() => {
+        if (sneakers && sneakers.data) {
             const getcurrent = localStorage.getItem("currentShoes")
             if (getcurrent && pages.detail) {
-                setCurrentShoes(pages.detail.sneakers.find(val => val.id === Number(getcurrent)) || null)
+                setCurrentShoes((sneakers && sneakers.data && sneakers.data.sneakers.find(val => val.id === Number(getcurrent))) || null)
             }
-            resolve(true);
-        }).then(() => {
-            setChecking(false)
-        }).catch(() => {
-            setChecking(false)
-        })
-    }, [session, pages])
+        }
+    }, [sneakers])
 
     if (status === "loading" || checking)
         return <LoadingContainer />
@@ -47,12 +70,12 @@ export default function Home() {
         return (
             <LayoutMenu session={session} active={"profile"}>
                 <HeaderUser session={session} />
-                {currentShoes && <AppBar position="static" className="w-auto mx-auto bg-vicm-green-90 mb-[20px] rounded-full border-[2px] border-white normal-case block md:hidden">
+                {/* {currentShoes && <AppBar position="static" className="w-auto mx-auto bg-vicm-green-90 mb-[20px] rounded-full border-[2px] border-white normal-case block md:hidden">
                     <Tabs className="normal-case" value={tabindex} onChange={(event, newValue) => setTabindex(newValue)} aria-label="simple tabs example" TabIndicatorProps={{ style: { backgroundColor: "transparent" } }}>
                         <Tab value={0} className={tabindex === 0 ? "bg-vicm-green-600 rounded-full text-white normal-case" : "text-white normal-case"} label="Current" />
                         <Tab value={1} className={tabindex === 1 ? "bg-vicm-green-600 rounded-full text-white normal-case" : "text-white normal-case"} label="Upgrade" />
                     </Tabs>
-                </AppBar>}
+                </AppBar>} */}
                 <SectionContainer className='basis-full'>
                     {currentShoes === null &&
                         <BoxCard className='box-decoration flex justify-center w-full md:w-1/2'>
@@ -64,7 +87,8 @@ export default function Home() {
                     {currentShoes &&
                         <BoxCard className='box-decoration flex flex-col w-full md:w-1/2 p-[6px] m-[4px]'>
                             <div className='flex justify-between'>
-                                <ProgressBar percentage={100} className='w-1/3' />
+                                <ProgressBar min={currentShoes.exp} max={currentShoes.maxExp} className='w-1/3'
+                                 />
                                 <div className="bg-vicm-green-600 text-white rounded-full px-1 flex text-xs">
                                     <p className="my-auto px-2 text-xs">Lv: {currentShoes.level}</p>
                                 </div>
@@ -76,8 +100,8 @@ export default function Home() {
                             </div>
                             <div className='flex flex-col absolute top-16'>
                                 <CircleNumber className='mb-2 border-red-300' size='sm'>{currentShoes.comfort}</CircleNumber>
-                                <CircleNumber className='mb-2 border-yellow-300' size='sm'>{currentShoes.lucky}</CircleNumber>
                                 <CircleNumber className='mb-2 border-emerald-300' size='sm'>{currentShoes.stamina}</CircleNumber>
+                                <CircleNumber className='mb-2 border-yellow-300' size='sm'>{currentShoes.lucky}</CircleNumber>
                             </div>
                             <Link href={`/user/bag/item/${currentShoes.id}/detail`}>
                                 <img className='mt-12 ml-10' src={`/images/s/${currentShoes.img}.png`} />
@@ -95,12 +119,12 @@ export default function Home() {
                     <TextHeader size='sm' className='mt-8'>Shoes Box</TextHeader>
                     <VerticalListContainer className={"mb-5 noscroll"}>
                         {
-                            pages && pages.detail && pages.detail.boxs && pages.detail.boxs.map(val => (
+                            boxes && boxes.data && boxes.data.boxs.map(val => (
                                 <BoxCard key={`boxindex-${val.id}`} className='inline-block text-center mr-4'>
                                     <img src={`/images/box/${val.type === 0 ? "walking" : val.type === 1 ? "running" : val.type === 2 ? "cycling" : "versatile"}.png`} width={115} />
-                                    {/* <Link href={`/user/bag/box/${val.id}/detail`}>
+                                    <Link href={`/user/bag/box/${val.id}/detail`}>
                                         <button className="rounded-full text-xs px-6 py-1 shadow-2xl border-2 uppercase btn text-white hover:opacity-90 bg-vicm-green-600">Open</button>
-                                    </Link> */}
+                                    </Link>
                                 </BoxCard>
                             ))
                         }

@@ -1,14 +1,33 @@
+import { useEffect } from "react";
 import BoxCardBag from "../../../components/card/bag/box";
-import ItemCardBag from "../../../components/card/itembag";
-import { shoes_data } from "../../../utils/data";
+import { useAppContext } from "../../../utils/store";
 
 
-export default function BoxesList({ data }) {
+export default function BoxesList({ accid }) {
+
+    const { acc_boxes } = useAppContext()
+    const [getBoxes, boxes] = acc_boxes
+
+    useEffect(() => {
+        if (boxes && boxes.data) {
+            boxes.refetch({
+                variables: {
+                    "accountdetailId": accid,
+                }
+            })
+        } else {
+            getBoxes({
+                variables: {
+                    "accountdetailId": accid,
+                }
+            })
+        }
+    }, [accid])
 
     return (
         <div className="flex flex-wrap">
             {
-                data.map(val => <BoxCardBag {...val} />)
+                boxes && boxes.data && boxes.data.boxs.map(val => <BoxCardBag {...val} />)
             }
         </div>
     )

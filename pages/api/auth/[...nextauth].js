@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 import NextAuth from 'next-auth'
 import CredentialProvider from "next-auth/providers/credentials"
 import GoogleProvider from "next-auth/providers/google";
-import { urls } from '../../../utils/config';
+import { apis, urls } from '../../../utils/config';
 
 export default NextAuth({
     providers: [
@@ -17,16 +17,30 @@ export default NextAuth({
                     label: "Password", type: "password"
                 },
             },
-            authorize: (credentials) => {
+            authorize: async (credentials) => {
+                const fet_login = await fetch(apis.account_sign_in, {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    method: "POST",
+                    body: JSON.stringify({
+                        "email": credentials.email,
+                        "password": credentials.password,
+                    })
+                })
+                console.log({
+                    "email": credentials.email,
+                    "password": credentials.password,
+                })
+                const res_login = await fet_login.json()
+                console.log(res_login)
                 // database look up
-                if (
-                    credentials.email === "admin@domain.com" &&
-                    credentials.password === "admin"
-                ) {
+                if (res_login.code === 1 && res_login.data) {
                     return {
-                        id: 2,
-                        name: "Admin",
-                        email: "admin@domain.com",
+                        id: res_login.data.id,
+                        name: res_login.data.accInfo.name,
+                        email: res_login.data.accInfo.email,
                     };
                 }
 
@@ -88,7 +102,7 @@ export default NextAuth({
             if (account.provider === "google") {
                 try {
                     const token = jwt.sign(user, "bao*&^234dep)@$38@6trai!#5@55@", { algorithm: 'HS256' });
-                    const user_fetch = await fetch(urls.api + "/api/Account/signinwithgoogle", {
+                    const user_fetch = await fetch(apis.account_sign_in_google, {
                         headers: {
                             'Accept': 'application/json',
                             'Content-Type': 'application/json',

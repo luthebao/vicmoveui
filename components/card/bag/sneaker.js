@@ -26,8 +26,10 @@ const SneakerCardBag = ({ id, nftid, img, level, type }) => {
                     </div>
                 </div>
                 <div className="flex flex-wrap justify-between sm:justify-around">
-                    <button className='bg-vicm-yellow-100 text-white rounded-full py-[5px] px-[19px] text-xs sm:text-base'>Sell</button>
-                    <button className='bg-vicm-red-100 text-white rounded-full py-[5px] px-[19px] text-xs sm:text-base'>Repair</button>
+                    <button className='bg--vicm-yellow-100 bg-transparent text-white rounded-full py-[5px] px-[19px] text-xs sm:text-base'></button>
+                    <Link href={`/user/bag/item/${id}/detail`}>
+                        <button className='bg-vicm-red-100 text-white rounded-full py-[5px] px-[19px] text-xs sm:text-base'>Repair</button>
+                    </Link>
                 </div>
             </div>
         </div>

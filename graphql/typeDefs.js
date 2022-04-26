@@ -19,6 +19,8 @@ export const typeDefs = gql`
         status: String
         energy: Int
         address: String
+        maxE: Int
+        maxExp: Int
     }
 
     type Box {
@@ -45,6 +47,9 @@ export const typeDefs = gql`
         img: String
         accid: Int
         type: Int
+        maxExp: Int
+        maxComfort: Int
+        maxStamina: Int
         createat: Date
     }
 
