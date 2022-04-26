@@ -34,7 +34,7 @@ const RepairComfort = ({ onClose, itemid, session }) => {
 
     return (
         <div className="flex flex-col text-center">
-            <p className="py-5">Are you sure to repair 30 Comfort with 30 VIM ?</p>
+            <p className="py-5">Are you sure to repair 30 Comfort with 20 VIM ?</p>
             <div className="flex justify-evenly">
                 <ButtonDefault className='bg-primary h-12' size='md' callback={handleRepair}>Confirm</ButtonDefault>
                 <ButtonDefault className='bg-vicm-red-100 h-12' size='md' callback={onClose}>Cancel</ButtonDefault>

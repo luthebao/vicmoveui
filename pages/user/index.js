@@ -13,15 +13,17 @@ import { HiOutlineLightningBolt } from "react-icons/hi";
 import SectionContainer from '../../containers/section/section';
 import BoxCard from '../../components/card/box';
 import { DiVim } from "react-icons/di";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
 import { useAppContext } from '../../utils/store';
 import BuyEnergyPopup from '../../components/item/popup/fillenergy';
+import { handleGetDetail } from '../../store/actions/pages';
 
 
 const ProfileIndex = () => {
     const { pages } = useSelector(state => state)
     const { data: session, status } = useSession()
+    const dispatch = useDispatch()
     const { noti_popup } = useAppContext()
     const [popup, setPopup] = noti_popup
 
@@ -76,7 +78,12 @@ const ProfileIndex = () => {
                     <BoxCard className='mb-8' callback={() => {
                         setPopup({
                             title: "Buy Energy",
-                            render: <BuyEnergyPopup session={session} onClose={() => setPopup(null)} />
+                            render: <BuyEnergyPopup session={session} onClose={() => {
+                                setPopup(null)
+                                if (session) {
+                                    dispatch(handleGetDetail(session?.id))
+                                }
+                            }} />
                         })
                     }}>
                         <div className='flex justify-between'>

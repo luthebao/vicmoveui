@@ -62,6 +62,9 @@ const UpgradeLevelPopup = ({ onClose, itemid, session, level }) => {
     const [processing, setProcessing] = useState(false)
 
     const handleRepair = async () => {
+        if (level >= 50)
+            return
+            
         setProcessing(true)
         const fet_rp = await fetch("/api/user/item/up-level", {
             headers: {

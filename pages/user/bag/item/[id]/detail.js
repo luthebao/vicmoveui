@@ -147,18 +147,18 @@ export default function SneakerDetail(props) {
                                         <span className='text-xs'>Comfort</span>
                                     </div>
                                     <div>
-                                        <CircleNumber className='mb-2 border-yellow-300 flex flex-col' size='lg'>
-                                            <p>{info.lucky}</p>
-                                        </CircleNumber>
-                                        <span className='text-xs'>Lucky</span>
-                                    </div>
-                                    <div>
                                         <CircleNumber className='mb-2 border-emerald-300 flex flex-col' size='lg'>
                                             <p className="text-sm">{info.stamina}</p>
                                             <hr className="w-2/3" />
                                             <p className="text-sm">{info.maxStamina}</p>
                                         </CircleNumber>
                                         <span className='text-xs'>Stamina</span>
+                                    </div>
+                                    <div>
+                                        <CircleNumber className='mb-2 border-yellow-300 flex flex-col' size='lg'>
+                                            <p>{info.lucky}</p>
+                                        </CircleNumber>
+                                        <span className='text-xs'>Lucky</span>
                                     </div>
                                     <div>
                                         <CircleNumber className='mb-2 border-gray-300' size='lg' border='thin'>?</CircleNumber>

@@ -13,6 +13,9 @@ query Accountinfo($accountdetailId: Int!) {
         maxE
         maxExp
     }
+    sneakers(accid: $accountdetailId) {
+        id
+    }
 }`
 
 export const get_account_sneakers = gql`
