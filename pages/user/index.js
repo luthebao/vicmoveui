@@ -14,7 +14,6 @@ import SectionContainer from '../../containers/section/section';
 import BoxCard from '../../components/card/box';
 import { DiVim } from "react-icons/di";
 import { useDispatch, useSelector } from 'react-redux';
-import Link from 'next/link';
 import { useAppContext } from '../../utils/store';
 import BuyEnergyPopup from '../../components/item/popup/fillenergy';
 import { handleGetDetail } from '../../store/actions/pages';
@@ -24,9 +23,10 @@ const ProfileIndex = () => {
     const { pages } = useSelector(state => state)
     const { data: session, status } = useSession()
     const dispatch = useDispatch()
-    const { noti_popup } = useAppContext()
+    const { noti_popup, info_account } = useAppContext()
     const [popup, setPopup] = noti_popup
-
+    const [loadAccount, infoAccount] = info_account
+    
 
     if (status === "loading")
         return <LoadingContainer />
@@ -81,7 +81,11 @@ const ProfileIndex = () => {
                             render: <BuyEnergyPopup session={session} onClose={() => {
                                 setPopup(null)
                                 if (session) {
-                                    dispatch(handleGetDetail(session?.id))
+                                    loadAccount({
+                                        variables: {
+                                            "accountdetailId": session.id
+                                        }
+                                    })
                                 }
                             }} />
                         })
@@ -90,7 +94,7 @@ const ProfileIndex = () => {
                             <div className='rounded-full shadow-t-lg border-2 border-gray-300 h-16 w-16 flex items-center justify-center'>
                                 <HiOutlineLightningBolt className='text-3xl text-vicm-green-500' />
                             </div>
-                            
+
                             <div className='grow ml-6'>
                                 <div className='text-gray-700'>Energy</div>
                                 <LinearProgress className='my-2' variant="determinate" color='success' value={((pages.detail && pages.detail.accountdetail.energy) || 0) * 100 / ((pages.detail && pages.detail.sneakers.length * 30) || 1)} />
