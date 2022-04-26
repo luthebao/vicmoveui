@@ -20,6 +20,7 @@ import { GiConverseShoe } from 'react-icons/gi';
 import { Backdrop, CircularProgress } from "@mui/material";
 import RepairComfort from "../../../../../components/item/popup/repaircomfort";
 import RepairStamina from "../../../../../components/item/popup/repairstamina";
+import UpgradeLevelPopup from "../../../../../components/item/popup/upgradelevel";
 
 
 export default function SneakerDetail(props) {
@@ -89,7 +90,21 @@ export default function SneakerDetail(props) {
                                 <Chip className='text-sm mx-auto bg-vicm-green-600 text-white capitalize justify-center'>
                                     Lvl {info.level}
                                 </Chip>
-                                <ProgressBar min={info.exp} max={info.maxExp} className='ml-2 w-24' />
+                                <ProgressBar min={info.exp} max={info.maxExp} className='ml-2 w-24'
+                                    upgrade={() => {
+                                        setPopup({
+                                            title: "Upgrade level",
+                                            render: <UpgradeLevelPopup session={session} level={info.level} itemid={info.id} onClose={() => {
+                                                setPopup(null)
+                                                sneakers.refetch({
+                                                    variables: {
+                                                        "accountdetailId": session.id
+                                                    }
+                                                })
+                                            }} />
+                                        })
+                                    }}
+                                />
                             </div>
                         </div>
                         <div>
@@ -177,14 +192,28 @@ export default function SneakerDetail(props) {
                             <ButtonDefault className='bg-red-300 h-12' size='md' callback={() => {
                                 setPopup({
                                     title: "Confirm to repair",
-                                    render: <RepairComfort session={session} itemid={Number(props.id)} onClose={() => setPopup(null)} />
+                                    render: <RepairComfort session={session} itemid={Number(props.id)} onClose={() => {
+                                        setPopup(null)
+                                        sneakers.refetch({
+                                            variables: {
+                                                "accountdetailId": session.id,
+                                            }
+                                        })
+                                    }} />
                                 })
                             }}>Repair</ButtonDefault>
 
                             <ButtonDefault className='bg-emerald-300 h-12' size='md' callback={() => {
                                 setPopup({
                                     title: "Confirm to repair",
-                                    render: <RepairStamina session={session} itemid={Number(props.id)} onClose={() => setPopup(null)} />
+                                    render: <RepairStamina session={session} itemid={Number(props.id)} onClose={() => {
+                                        setPopup(null)
+                                        sneakers.refetch({
+                                            variables: {
+                                                "accountdetailId": session.id,
+                                            }
+                                        })
+                                    }} />
                                 })
                             }}>Repair</ButtonDefault>
                         </div>

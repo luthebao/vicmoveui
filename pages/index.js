@@ -19,6 +19,7 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 import { AppBar, Tab, Tabs } from "@mui/material";
 import { useAppContext } from "../utils/store";
+import UpgradeLevelPopup from "../components/item/popup/upgradelevel";
 
 export default function Home() {
     const { data: session, status } = useSession()
@@ -28,9 +29,10 @@ export default function Home() {
     const [tabindex, setTabindex] = useState(0)
 
     // context
-    const { acc_sneakers, acc_boxes } = useAppContext()
+    const { acc_sneakers, acc_boxes, noti_popup } = useAppContext()
     const [getSneakers, sneakers] = acc_sneakers
     const [getBoxes, boxes] = acc_boxes
+    const [popup, setPopup] = noti_popup
 
     useEffect(() => {
         if (session) {
@@ -90,6 +92,19 @@ export default function Home() {
                         <BoxCard className='box-decoration flex flex-col w-full md:w-1/2 p-[6px] m-[4px]'>
                             <div className='flex justify-between'>
                                 <ProgressBar min={currentShoes.exp} max={currentShoes.maxExp} className='w-1/3'
+                                    upgrade={() => {
+                                        setPopup({
+                                            title: "Upgrade level",
+                                            render: <UpgradeLevelPopup session={session} level={currentShoes.level} itemid={currentShoes.id} onClose={() => {
+                                                setPopup(null)
+                                                sneakers.refetch({
+                                                    variables: {
+                                                        "accountdetailId": session.id
+                                                    }
+                                                })
+                                            }} />
+                                        })
+                                    }}
                                 />
                                 <div className="bg-vicm-green-600 text-white rounded-full px-1 flex text-xs">
                                     <p className="my-auto px-2 text-xs">Lv: {currentShoes.level}</p>

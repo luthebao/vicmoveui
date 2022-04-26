@@ -3,8 +3,61 @@ import { useState } from "react"
 import { toast } from "react-toastify"
 import ButtonDefault from "../../button/default"
 
+const needVIM = [
+    10,
+    10,
+    10,
+    10,
+    10,
+    20,
+    20,
+    20,
+    20,
+    20,
+    30,
+    30,
+    30,
+    30,
+    30,
+    40,
+    40,
+    40,
+    40,
+    40,
+    50,
+    50,
+    50,
+    50,
+    50,
+    60,
+    60,
+    60,
+    60,
+    60,
+    70,
+    70,
+    70,
+    70,
+    70,
+    80,
+    80,
+    80,
+    80,
+    80,
+    90,
+    90,
+    90,
+    90,
+    90,
+    100,
+    100,
+    100,
+    100,
+    100,
+]
 
-const UpgradeLevelPopup = ({ onClose, itemid, session }) => {
+
+const UpgradeLevelPopup = ({ onClose, itemid, session, level }) => {
 
     const [processing, setProcessing] = useState(false)
 
@@ -34,7 +87,7 @@ const UpgradeLevelPopup = ({ onClose, itemid, session }) => {
 
     return (
         <div className="flex flex-col text-center">
-            <p className="py-5">Are you sure to repair 30 Stamina with 30 VIM ?</p>
+            <p className="py-5">Are you sure to use {needVIM[level]} VIM to upgrade level ?</p>
             <div className="flex justify-evenly">
                 <ButtonDefault className='bg-primary h-12' size='md' callback={handleRepair}>Confirm</ButtonDefault>
                 <ButtonDefault className='bg-vicm-red-100 h-12' size='md' callback={onClose}>Cancel</ButtonDefault>
