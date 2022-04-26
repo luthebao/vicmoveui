@@ -33,44 +33,36 @@ export default function Home() {
     const [getBoxes, boxes] = acc_boxes
 
     useEffect(() => {
-        if (session)
-            new Promise(async (resolve, reject) => {
-                await getSneakers({
-                    variables: {
-                        "accountdetailId": session.id
-                    }
-                })
-                getBoxes({
-                    variables: {
-                        "accountdetailId": session.id
-                    }
-                })
-
-                resolve(true);
-            }).then(() => {
-                setChecking(false)
-            }).catch(() => {
-                setChecking(false)
+        if (session) {
+            getSneakers({
+                variables: {
+                    "accountdetailId": session.id
+                }
             })
+            getBoxes({
+                variables: {
+                    "accountdetailId": session.id
+                }
+            })
+        }
     }, [session])
 
     useEffect(() => {
 
-        if (session)
-            new Promise(async (resolve, reject) => {
-                if (sneakers && sneakers.data) {
-                    const getcurrent = localStorage.getItem("currentShoes")
-                    if (getcurrent && pages.detail) {
-                        setCurrentShoes((sneakers && sneakers.data && sneakers.data.sneakers.find(val => val.id === Number(getcurrent))) || null)
-                    }
+        new Promise(async (resolve, reject) => {
+            if (sneakers && sneakers.data) {
+                const getcurrent = localStorage.getItem("currentShoes")
+                if (getcurrent && pages.detail) {
+                    setCurrentShoes((sneakers && sneakers.data && sneakers.data.sneakers.find(val => val.id === Number(getcurrent))) || null)
                 }
+            }
+            resolve(true);
+        }).then(() => {
+            setChecking(false)
+        }).catch(() => {
+            setChecking(false)
+        })
 
-                resolve(true);
-            }).then(() => {
-                setChecking(false)
-            }).catch(() => {
-                setChecking(false)
-            })
     }, [sneakers])
 
     if (status === "loading" || checking)
