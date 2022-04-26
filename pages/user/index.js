@@ -90,10 +90,11 @@ const ProfileIndex = () => {
                             <div className='rounded-full shadow-t-lg border-2 border-gray-300 h-16 w-16 flex items-center justify-center'>
                                 <HiOutlineLightningBolt className='text-3xl text-vicm-green-500' />
                             </div>
+                            
                             <div className='grow ml-6'>
                                 <div className='text-gray-700'>Energy</div>
-                                <LinearProgress className='my-2' variant="determinate" color='success' value={((pages.detail && pages.detail.accountdetail.energy) || 0) * 100 / ((pages.detail && pages.detail.accountdetail.maxE) || 1)} />
-                                <div>{(pages.detail && pages.detail.accountdetail.energy) || 0}/{(pages.detail && pages.detail.accountdetail.maxE) || 1}</div>
+                                <LinearProgress className='my-2' variant="determinate" color='success' value={((pages.detail && pages.detail.accountdetail.energy) || 0) * 100 / ((pages.detail && pages.detail.sneakers.length * 30) || 1)} />
+                                <div>{(pages.detail && pages.detail.accountdetail.energy) || 0}/{(pages.detail && pages.detail.sneakers.length * 30) || 1}</div>
                             </div>
                         </div>
                     </BoxCard>
