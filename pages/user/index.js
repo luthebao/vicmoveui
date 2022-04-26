@@ -24,7 +24,7 @@ const ProfileIndex = () => {
     const { noti_popup, info_account } = useAppContext()
     const [popup, setPopup] = noti_popup
     const [loadAccount, infoAccount] = info_account
-    
+
 
     if (status === "loading")
         return <LoadingContainer />
@@ -44,11 +44,13 @@ const ProfileIndex = () => {
                     </div>
                     <div className='mt-6 text-center'>
                         <TextHeader size='sm' className='text-center'>{session.user.name}</TextHeader>
-                        <div className='flex justify-center'>
+                        {pages.detail?.accountdetail?.address && <div className='flex justify-center'>
                             <img className='text-vicm-green-500' src={"/images/icons/wallet.svg"} />
-                            <div className='ml-4 text-vicm-green-500'>{pages.detail?.accountdetail?.address.slice(0, 7)}...{pages.detail?.accountdetail?.address.slice(pages.detail?.accountdetail?.address.length - 7, pages.detail?.accountdetail?.address.length)} </div>
-                        </div>
-                        <div className='flex'>
+                            <div className='ml-4 w-1/2 text-vicm-green-500 truncate'>
+                                {pages.detail?.accountdetail?.address}
+                            </div>
+                        </div>}
+                        <div className='flex justify-center'>
                             <ButtonLink href='/' size='md' className='mx-2 inline-block items-center bg-primary mt-4 text-white px-5'>
                                 <AiFillEdit className='text-2xl pb-1 inline' />&nbsp;Edit
                             </ButtonLink>
@@ -68,7 +70,7 @@ const ProfileIndex = () => {
                                 <div className='grow ml-6'>
                                     <div className='text-gray-700'>VIM (account)</div>
                                     <LinearProgress className='my-2' variant="determinate" color='success' value={100} />
-                                    <div>{(pages.detail && pages.detail.accountdetail.vim) || 0}</div>
+                                    <div>{pages.detail ? pages.detail.accountdetail.vim : 0}</div>
                                 </div>
                             </div>
                         </BoxCard>
@@ -79,11 +81,13 @@ const ProfileIndex = () => {
                             render: <BuyEnergyPopup session={session} onClose={() => {
                                 setPopup(null)
                                 if (session) {
-                                    loadAccount({
-                                        variables: {
-                                            "accountdetailId": session.id
-                                        }
-                                    })
+                                    setTimeout(() => {
+                                        loadAccount({
+                                            variables: {
+                                                "accountdetailId": session.id
+                                            }
+                                        })
+                                    }, 2000)
                                 }
                             }} />
                         })
@@ -96,7 +100,7 @@ const ProfileIndex = () => {
                             <div className='grow ml-6'>
                                 <div className='text-gray-700'>Energy</div>
                                 <LinearProgress className='my-2' variant="determinate" color='success' value={((pages.detail && pages.detail.accountdetail.energy) || 0) * 100 / ((pages.detail && pages.detail.sneakers.length * 30) || 1)} />
-                                <div>{(pages.detail && pages.detail.accountdetail.energy) || 0}/{(pages.detail && pages.detail.sneakers.length * 30) || 1}</div>
+                                <div>{pages.detail ? pages.detail.accountdetail.energy : 0}/{pages.detail ? pages.detail.sneakers.length * 30 : 1}</div>
                             </div>
                         </div>
                     </BoxCard>
