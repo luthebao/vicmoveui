@@ -170,11 +170,11 @@ export default function SneakerDetail(props) {
                                 <div>Body Parts</div>
                                 <div className='grid4'>
                                     <div>
-                                        <GiConverseShoe className="h-[50px] w-auto" />
+                                        <img src={"/images/icons/body.png"} className='h-[50px] w-auto pb-2' />
                                         <span className='text-xs'>{info.fabric}</span>
                                     </div>
                                     <div>
-                                        <img src={"/images/icons/foot.svg"} className='h-[50px] w-auto pb-2' />
+                                        <img src={"/images/icons/sole.png"} className='h-[50px] w-auto pb-2' />
                                         <span className='text-xs'>{info.sole}</span>
                                     </div>
                                     <div>
