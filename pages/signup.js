@@ -6,7 +6,7 @@ import InputDefault from "../components/input/default";
 import ButtonDefault from "../components/button/default";
 import { signIn, useSession } from "next-auth/react"
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import Home from ".";
@@ -18,6 +18,10 @@ const SignupPage = () => {
     const [password, setPassword] = useState("")
     const [password1, setPassword1] = useState("")
     const { data: status } = useSession()
+
+    useEffect(() => {
+        console.log(status)
+    }, [status]);
 
     const handleErrorLogin = (type) => {
         if (type.status === 200) {

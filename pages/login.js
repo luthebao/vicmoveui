@@ -47,7 +47,7 @@ const LoginPage = () => {
             <form onSubmit={(e) => {
                 e.preventDefault()
                 signIn("credentials", {
-                    redirect: "/",
+                    redirect: false,
                     email: email,
                     password: password,
                 }).then(data => {

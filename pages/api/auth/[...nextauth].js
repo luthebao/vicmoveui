@@ -29,12 +29,7 @@ export default NextAuth({
                         "password": credentials.password,
                     })
                 })
-                console.log({
-                    "email": credentials.email,
-                    "password": credentials.password,
-                })
                 const res_login = await fet_login.json()
-                console.log(res_login)
                 // database look up
                 if (res_login.code === 1 && res_login.data) {
                     return {
