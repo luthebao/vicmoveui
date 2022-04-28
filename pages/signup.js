@@ -53,7 +53,7 @@ const SignupPage = () => {
         if (res_signup && res_signup.code === 1) {
             toast("Signup successful!")
             signIn("credentials", {
-                redirect: false,
+                redirect: "/",
                 email: email,
                 password: password,
             }).then(data => {

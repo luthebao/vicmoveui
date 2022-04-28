@@ -20,8 +20,6 @@ const LoginPage = () => {
     const [password, setPassword] = useState("")
     const { data: status } = useSession()
 
-
-
     const handleErrorLogin = (type) => {
         if (type.status === 200) {
             router.push("/")
@@ -49,7 +47,7 @@ const LoginPage = () => {
             <form onSubmit={(e) => {
                 e.preventDefault()
                 signIn("credentials", {
-                    redirect: false,
+                    redirect: "/",
                     email: email,
                     password: password,
                 }).then(data => {
@@ -76,7 +74,7 @@ const LoginPage = () => {
             <ButtonDefault className='w-full bg-[#FF5733]'
                 callback={() => {
                     signIn("google", {
-                        redirect: false,
+                        redirect: "/",
                     })
                 }}
             >
@@ -84,24 +82,6 @@ const LoginPage = () => {
             </ButtonDefault>
         </BackgroundContainer>
     )
-}
-
-export async function getServerSideProps(context) {
-    // const ss = await getSession(context)
-    // if (ss) {
-    //     return {
-    //         redirect: {
-    //             destination: '/',
-    //             permanent: true,
-    //         },
-    //     }
-    // }
-
-    return {
-        props: {
-
-        }
-    }
 }
 
 export default LoginPage
