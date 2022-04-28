@@ -159,12 +159,3 @@ export default function Home() {
 
     return <WelcomePage />
 }
-
-export async function getServerSideProps(context) {
-
-    return {
-        props: {
-
-        }
-    }
-}

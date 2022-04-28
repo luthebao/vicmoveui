@@ -100,23 +100,4 @@ const SignupPage = () => {
     )
 }
 
-export async function getServerSideProps(context) {
-    // const ss = await getSession(context)
-
-    // if (ss) {
-    //     return {
-    //         redirect: {
-    //             destination: '/',
-    //             permanent: true,
-    //         },
-    //     }
-    // }
-
-    return {
-        props: {
-
-        }
-    }
-}
-
 export default SignupPage
