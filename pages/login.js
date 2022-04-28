@@ -74,7 +74,8 @@ const LoginPage = () => {
             <ButtonDefault className='w-full bg-[#FF5733]'
                 callback={() => {
                     signIn("google", {
-                        redirect: "/",
+                        redirect: true,
+                        callbackUrl: "/"
                     })
                 }}
             >

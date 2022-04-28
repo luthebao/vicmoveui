@@ -92,7 +92,8 @@ const SignupPage = () => {
             </form>
             <div className='text-divider font-semibold py-8'>OR</div>
             <ButtonDefault type='submit' className='w-full bg-[#FF5733]' callback={() => signIn("google", {
-                redirect: "/"
+                redirect: true,
+                callbackUrl: "/"
             })}>
                 Login with Google
             </ButtonDefault>
