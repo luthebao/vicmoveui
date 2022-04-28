@@ -4,11 +4,12 @@ import PageNavigateBtn from "../components/button/pagenavigate";
 import Header from "../components/header/default";
 import InputDefault from "../components/input/default";
 import ButtonDefault from "../components/button/default";
-import { getSession, signIn } from "next-auth/react"
+import { signIn, useSession } from "next-auth/react"
 import Link from "next/link";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
+import Home from ".";
 
 const SignupPage = () => {
 
@@ -16,6 +17,7 @@ const SignupPage = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [password1, setPassword1] = useState("")
+    const { data: status } = useSession()
 
     const handleErrorLogin = (type) => {
         if (type.status === 200) {
@@ -64,6 +66,9 @@ const SignupPage = () => {
         }
     }
 
+    if (status === "authenticated")
+        return <Home />
+
     return (
         <BackgroundContainer type='light' className='text-center'>
             <PageNavigateBtn>
@@ -96,16 +101,16 @@ const SignupPage = () => {
 }
 
 export async function getServerSideProps(context) {
-    const ss = await getSession(context)
+    // const ss = await getSession(context)
 
-    if (ss) {
-        return {
-            redirect: {
-                destination: '/',
-                permanent: true,
-            },
-        }
-    }
+    // if (ss) {
+    //     return {
+    //         redirect: {
+    //             destination: '/',
+    //             permanent: true,
+    //         },
+    //     }
+    // }
 
     return {
         props: {

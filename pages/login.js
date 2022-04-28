@@ -7,16 +7,20 @@ import ButtonDefault from "../components/button/default";
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import HyperLink from "../components/text/hyperlink";
-import { signIn, getSession } from "next-auth/react"
+import { signIn, useSession } from "next-auth/react"
 import Link from "next/link";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
+import Home from ".";
 
 const LoginPage = () => {
     const router = useRouter()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const { data: status } = useSession()
+
+
 
     const handleErrorLogin = (type) => {
         if (type.status === 200) {
@@ -29,6 +33,9 @@ const LoginPage = () => {
             toast("Can not authenticate with this email")
         }
     }
+
+    if (status === "authenticated")
+        return <Home />
 
     return (
         <BackgroundContainer type='light' className='text-center '>
@@ -80,16 +87,15 @@ const LoginPage = () => {
 }
 
 export async function getServerSideProps(context) {
-    const ss = await getSession(context)
-
-    if (ss) {
-        return {
-            redirect: {
-                destination: '/',
-                permanent: true,
-            },
-        }
-    }
+    // const ss = await getSession(context)
+    // if (ss) {
+    //     return {
+    //         redirect: {
+    //             destination: '/',
+    //             permanent: true,
+    //         },
+    //     }
+    // }
 
     return {
         props: {
