@@ -88,7 +88,7 @@ export default function SneakerDetail(props) {
                                         <CircleNumber className='mb-2 border-yellow-300' size='lg'>
                                             {info.stats.lucky + info.gems.reduce((a, b) => a + (b.stat || 0), 0)}
                                         </CircleNumber>
-                                        <span className='text-xs'>Lucky</span>
+                                        <span className='text-xs'>Luck</span>
                                     </div>
                                     <div>
                                         <CircleNumber className='mb-2 border-emerald-300' size='lg'>

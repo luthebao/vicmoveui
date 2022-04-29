@@ -99,7 +99,7 @@ export default function SneakerDetail(props) {
     if (session) {
         return (
             <LayoutMenu active={"bag"} session={session}>
-                <HeaderBack title="Bag" />
+                <HeaderBack title="Box" />
                 <SectionContainer className='basis-full mb-10' >
                     {info && <BoxCard className='flex flex-col justify-between ' type='flat-border' style={{ 'padding': '1rem' }}>
                         <div className='flex justify-between'>
@@ -140,7 +140,9 @@ export default function SneakerDetail(props) {
                     }
                     <Backdrop open={opening}>
                         <div className='flex justify-center m-auto flex-col'>
-                            <p className="text-white font-bold w-2/3 m-auto text-center">Please do not refresh this page while system is processing</p>
+                            <p className="text-white font-bold w-2/3 m-auto text-center">
+                                Do not refresh this page while system is processing
+                            </p>
                             <CircularProgress className="m-auto text-white" color="inherit" />
                         </div>
                     </Backdrop>

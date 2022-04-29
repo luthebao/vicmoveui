@@ -14,7 +14,7 @@ export default function ChangeShose() {
 
     if (session) {
         return (
-            <LayoutMenu active={"bag"} session={session}>
+            <LayoutMenu active={"Storage"} session={session}>
                 <HeaderBack />
                 <SectionContainer className='basis-full mb-10'>
                     <ChangeShoseList />

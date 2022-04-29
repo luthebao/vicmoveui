@@ -31,7 +31,7 @@ const BuyEnergyPopup = ({ onClose, session }) => {
 
     return (
         <div className="flex flex-col text-center">
-            <p className="py-5">Are you sure buy 30 Energy with 20 VIM ?</p>
+            <p className="py-5">Confirm buying 30 Energy with 20 VIM ?</p>
             <div className="flex justify-evenly">
                 <ButtonDefault className='bg-primary h-12' size='md' callback={handleRepair}>Confirm</ButtonDefault>
                 <ButtonDefault className='bg-vicm-red-100 h-12' size='md' callback={onClose}>Cancel</ButtonDefault>

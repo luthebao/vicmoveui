@@ -90,7 +90,7 @@ const UpgradeLevelPopup = ({ onClose, itemid, session, level }) => {
 
     return (
         <div className="flex flex-col text-center">
-            <p className="py-5">Are you sure to use {needVIM[level]} VIM to upgrade level ?</p>
+            <p className="py-5">Confirm using {needVIM[level]} VIM to level up ?</p>
             <div className="flex justify-evenly">
                 <ButtonDefault className='bg-primary h-12' size='md' callback={handleRepair}>Confirm</ButtonDefault>
                 <ButtonDefault className='bg-vicm-red-100 h-12' size='md' callback={onClose}>Cancel</ButtonDefault>

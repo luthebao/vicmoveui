@@ -11,7 +11,7 @@ const MenuExpand = () => {
     return (
         <BackgroundContainer type='gradient'>
             <HeaderBack title=" " />
-            <TextHeader size='md-left' className='drop-shadow' textColor='text-white'>Every Things <br /> You Need To Know</TextHeader>
+            <TextHeader size='md-left' className='drop-shadow' textColor='text-white'>Everything <br /> You Need To Know</TextHeader>
             <div className='bg-white opacity-50 h-2 w-8 mt-4'></div>
             <BoxCard className='mt-12 bg-vicm-green-300'>
 

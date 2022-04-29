@@ -73,7 +73,7 @@ export default function SneakerDetail(props) {
     if (session) {
         return (
             <LayoutMenu active={"bag"} session={session}>
-                <HeaderBack title="Bag" />
+                <HeaderBack title="Sneaker" />
                 <SectionContainer className='basis-full mb-10'>
                     {info && <BoxCard className='flex flex-col justify-between' type='flat-border' style={{ 'minHeight': '80vw', 'padding': '1rem' }}>
                         <div className='flex justify-between'>
@@ -158,7 +158,7 @@ export default function SneakerDetail(props) {
                                         <CircleNumber className='mb-2 border-yellow-300 flex flex-col' size='lg'>
                                             <p>{info.lucky}</p>
                                         </CircleNumber>
-                                        <span className='text-xs'>Lucky</span>
+                                        <span className='text-xs'>Luck</span>
                                     </div>
                                     <div>
                                         <CircleNumber className='mb-2 border-gray-300' size='lg' border='thin'>?</CircleNumber>

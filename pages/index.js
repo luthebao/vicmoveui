@@ -111,7 +111,7 @@ export default function Home() {
                                 </div>
                                 <Link href={"/user/bag/changeshose"}>
                                     <button className='bg-vicm-green-600 w-1/4 rounded-full text-xs shadow-2xl text-white hover:opacity-90 px-1' size='sm'>
-                                        Change
+                                        Switch
                                     </button>
                                 </Link>
                             </div>

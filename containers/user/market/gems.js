@@ -14,7 +14,7 @@ export default function GemsListMarket(props) {
                     </div>
                     <div className="mx-auto my-4">
                         <div className="rounded-4xl">
-                            <p className="text-vicm-gray-100 text-xs px-4 py-1">Lucky +3</p>
+                            <p className="text-vicm-gray-100 text-xs px-4 py-1">Luck +3</p>
                         </div>
                     </div>
                     <div className="flex flex-wrap justify-between sm:justify-around">
@@ -33,7 +33,7 @@ export default function GemsListMarket(props) {
                     </div>
                     <div className="mx-auto my-4">
                         <div className="rounded-4xl">
-                            <p className="text-vicm-gray-100 text-xs px-4 py-1">Lucky +2</p>
+                            <p className="text-vicm-gray-100 text-xs px-4 py-1">Luck +2</p>
                         </div>
                     </div>
                     <div className="flex flex-wrap justify-between sm:justify-around">
@@ -52,7 +52,7 @@ export default function GemsListMarket(props) {
                     </div>
                     <div className="mx-auto my-4">
                         <div className="rounded-4xl">
-                            <p className="text-vicm-gray-100 text-xs px-4 py-1">Lucky +1</p>
+                            <p className="text-vicm-gray-100 text-xs px-4 py-1">Luck +1</p>
                         </div>
                     </div>
                     <div className="flex flex-wrap justify-between sm:justify-around">

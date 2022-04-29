@@ -14,7 +14,7 @@ const EncrustGemCard = ({ id, type, level, pic }) => {
                 </div>
                 <div className="mx-auto my-4">
                     <div className="rounded-4xl">
-                        <p className="text-vicm-gray-100 text-xs px-4 py-1 capitalize">lucky +{level}</p>
+                        <p className="text-vicm-gray-100 text-xs px-4 py-1 capitalize">luck +{level}</p>
                     </div>
                 </div>
                 <div className="flex justify-center">

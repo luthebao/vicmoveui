@@ -37,7 +37,9 @@ const ChangeShoseCard = ({ id, nftid, img, level, type }) => {
                     </div>
                 </div>
                 <div className="flex justify-center">
-                    <button className='bg-vicm-green-600 text-white rounded-full py-[5px] px-[19px] text-xs sm:text-base' onClick={handleChangeCurrentShoes}>Apply</button>
+                    <button className='bg-vicm-green-600 text-white rounded-full py-[5px] px-[19px] text-xs sm:text-base' onClick={handleChangeCurrentShoes}>
+                        Equip
+                    </button>
                 </div>
             </div>
         </div>

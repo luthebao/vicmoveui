@@ -68,7 +68,7 @@ const ProfileIndex = () => {
                                     <DiVim className='text-3xl text-vicm-green-500' />
                                 </div>
                                 <div className='grow ml-6'>
-                                    <div className='text-gray-700'>VIM (account)</div>
+                                    <div className='text-gray-700'>VIM</div>
                                     <LinearProgress className='my-2' variant="determinate" color='success' value={100} />
                                     <div>{pages.detail ? pages.detail.accountdetail.vim : 0}</div>
                                 </div>

@@ -22,7 +22,7 @@ const Menu = ({ className, active }) => {
                     // document.location = `/runnative?shoesid=${id}&token=${session.token}`
                     route.push(`/runnative?shoesid=${id}&token=${session.token}`)
                 } else {
-                    toast("Please equip shoes")
+                    toast("Please equip a sneaker first!!!")
                 }
                 resolve(true);
             }).then(() => {
