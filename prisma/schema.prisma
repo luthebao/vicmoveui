@@ -30,7 +30,7 @@ model accactionlog {
 
 model account {
   id       Int      @id @default(autoincrement())
-  piecebox Int      @default(0)
+  piecebox Float    @default(0)
   vim      Float    @default(0)
   createat DateTime @default(now()) @db.DateTime(0)
   status   String   @default("active") @db.Text
@@ -47,7 +47,7 @@ model activity {
   createat DateTime @default(now()) @db.DateTime(0)
   endat    DateTime @default(now()) @db.DateTime(0)
   status   String?  @db.Text
-  piecebox Int      @default(0)
+  piecebox Float    @default(0)
   shoesid  Int      @default(0)
   step     Int      @default(0)
   distance Float    @default(0)
@@ -62,6 +62,7 @@ model ativitylog {
   step       Int      @default(0)
   distance   Float    @default(0)
   createat   DateTime @default(now()) @db.DateTime(0)
+  piecebox   Float    @default(0)
 
   @@index([activityid], map: "activityid")
 }
@@ -101,8 +102,8 @@ model shoes {
   nftid      BigInt?
   level      Int      @default(1)
   exp        Int      @default(0)
-  comfort    Int      @default(0)
-  stamina    Int      @default(0)
+  comfort    Float    @default(0)
+  stamina    Float    @default(0)
   lucky      Int      @default(0)
   fabric     String   @default("") @db.Text
   sole       String   @default("") @db.Text

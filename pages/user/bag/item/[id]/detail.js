@@ -140,7 +140,7 @@ export default function SneakerDetail(props) {
                                 <div className='grid4'>
                                     <div>
                                         <CircleNumber className='mb-2 border-red-300 flex flex-col' size='lg'>
-                                            <p className="text-sm">{info.comfort}</p>
+                                            <p className="text-sm">{parseInt(info.comfort)}</p>
                                             <hr className="w-2/3" />
                                             <p className="text-sm">{info.maxComfort}</p>
                                         </CircleNumber>
@@ -148,7 +148,7 @@ export default function SneakerDetail(props) {
                                     </div>
                                     <div>
                                         <CircleNumber className='mb-2 border-emerald-300 flex flex-col' size='lg'>
-                                            <p className="text-sm">{info.stamina}</p>
+                                            <p className="text-sm">{parseInt(info.stamina)}</p>
                                             <hr className="w-2/3" />
                                             <p className="text-sm">{info.maxStamina}</p>
                                         </CircleNumber>

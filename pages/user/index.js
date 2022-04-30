@@ -112,7 +112,7 @@ const ProfileIndex = () => {
                             <div className='grow ml-6'>
                                 <div className='text-gray-700'>Box Pieces</div>
                                 <LinearProgress className='my-2' variant="determinate" color='success' value={100} />
-                                <div>{(pages.detail && pages.detail.accountdetail.piecebox) || 0}</div>
+                                <div>{(pages.detail && parseFloat(pages.detail.accountdetail.piecebox).toFixed(1) ) || 0}</div>
                             </div>
                         </div>
                     </BoxCard>

@@ -13,7 +13,7 @@ export const typeDefs = gql`
 
     type AccountDetail {
         id: Int
-        piecebox: Int
+        piecebox: Float
         vim: Float
         createat: Date
         status: String
@@ -38,8 +38,8 @@ export const typeDefs = gql`
         nftid: Long
         level: Int
         exp: Int
-        comfort: Int
-        stamina: Int
+        comfort: Float
+        stamina: Float
         lucky: Int
         fabric: String
         sole: String

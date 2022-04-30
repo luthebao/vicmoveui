@@ -116,8 +116,8 @@ export default function Home() {
                                 </Link>
                             </div>
                             <div className='flex flex-col absolute top-16'>
-                                <CircleNumber className='mb-2 border-red-300' size='sm'>{currentShoes.comfort}</CircleNumber>
-                                <CircleNumber className='mb-2 border-emerald-300' size='sm'>{currentShoes.stamina}</CircleNumber>
+                                <CircleNumber className='mb-2 border-red-300' size='sm'>{parseInt(currentShoes.comfort)}</CircleNumber>
+                                <CircleNumber className='mb-2 border-emerald-300' size='sm'>{parseInt(currentShoes.stamina)}</CircleNumber>
                                 <CircleNumber className='mb-2 border-yellow-300' size='sm'>{currentShoes.lucky}</CircleNumber>
                             </div>
                             <Link href={`/user/bag/item/${currentShoes.id}/detail`}>
