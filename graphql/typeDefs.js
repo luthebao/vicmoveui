@@ -65,6 +65,27 @@ export const typeDefs = gql`
         balance: Float    
     }
 
+    type WithdrawRequest {
+        id: Int
+        accid: Int
+        amount: Float
+        fee: Float
+        status: String
+        createAt: Date
+        tranhash: String
+    }
+
+    type WithdrawRequest2 {
+        id: Int
+        accid: Int
+        amount: Float
+        fee: Float
+        status: String
+        createAt: Date
+        tranhash: String
+        address: String
+    }
+
     type Config {
         box0price: Float
         box1price: Float
@@ -79,6 +100,9 @@ export const typeDefs = gql`
         boxs(accid: Int!): [Box],
         sneaker(id: Int!): Shoes,
         sneakers(accid: Int!): [Shoes],
+        activities(token: String!, page: Int, size: Int): [VimLog],
+        withdraws(token: String!): [WithdrawRequest],
+        withdraws2(token: String!): [WithdrawRequest2],
         config: Config
     }
 `;

@@ -10,11 +10,6 @@ query Accountinfo($accountdetailId: Int!) {
         status
         energy
         address
-        maxE
-        maxExp
-    }
-    sneakers(accid: $accountdetailId) {
-        id
     }
 }`
 
@@ -24,20 +19,17 @@ query AccountSneaker($accountdetailId: Int!) {
         id
         nftid
         level
-        comfort
         exp
+        comfort
         stamina
         lucky
-        sole
         fabric
-        brand
+        sole
         img
+        brand
         accid
-        type
-        maxExp
-        maxComfort
-        maxStamina
         createat
+        type
     }
 }`
 
@@ -68,25 +60,30 @@ query Box($boxId: Int!) {
 }`
 
 
-export const get_shoes_detail = gql`
-query Sneaker($sneakerId: Int!) {
-    sneaker(id: $sneakerId) {
+export const get_activities_account = gql`
+query Activities($token: String!, $page: Int, $size: Int) {
+    activities(token: $token, page: $page, size: $size) {
         id
-        nftid
-        level
-        comfort
-        exp
-        stamina
-        lucky
-        sole
-        fabric
-        brand
-        img
         accid
+        amount
         type
-        maxExp
-        maxComfort
-        maxStamina
+        refid
+        description
         createat
+        sync
+        balance
+    }
+}`
+
+export const get_withdraw_request = gql`
+query Withdraws($token: String!) {
+    withdraws(token: $token) {
+        id
+        accid
+        amount
+        fee
+        status
+        createAt
+        tranhash
     }
 }`

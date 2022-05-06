@@ -1,6 +1,18 @@
-import { PrismaClient } from "@prisma/client"
-
+const jwt = require('jsonwebtoken');
+// import { PrismaClient } from "@prisma/client"
 // const prisma = new PrismaClient()
+
+const secret_jwt = "bao*&^234dep)@$38@6trai!#5@55@"
+
+const admins = [
+    'luthebao1997@gmail.com',
+    'vytiendung@gmail.com',
+    'tonytran.etheking@gmail.com',
+    'dungta.tad@gmail.com',
+    'leanhminh1997@gmail.com',
+    'lehoanganh7497@gmail.com',
+    'hoainamhotline@gmail.com',
+]
 
 export const resolvers = {
     Query: {
@@ -52,5 +64,57 @@ export const resolvers = {
                 id: 1
             }
         }),
+        activities: async (parent, agrs, ctx) => {
+            try {
+                const decoded = jwt.verify(agrs.token, secret_jwt)
+                const results = await ctx.prisma.vimlog.findMany({
+                    where: {
+                        accid: decoded.id,
+                    },
+                    orderBy: {
+                        id: 'desc',
+                    },
+                    skip: agrs?.page ? (agrs?.page - 1) * (agrs?.size ? agrs?.size : 10) : 0,
+                    take: agrs?.size ? agrs?.size : 10
+                })
+                return results
+            } catch (error) {
+                return null
+            }
+        },
+        withdraws: async (parent, agrs, ctx) => {
+            try {
+                const decoded = jwt.verify(agrs.token, secret_jwt)
+                const results = await ctx.prisma.withdrawrequest.findMany({
+                    where: {
+                        accid: decoded.id,
+                    },
+                    orderBy: {
+                        id: 'desc',
+                    },
+                    take: 5
+                })
+                return results
+            } catch (error) {
+                return null
+            }
+        },
+        withdraws2: async (parent, agrs, ctx) => {
+            
+            try {
+                const decoded = jwt.verify(agrs.token, secret_jwt)
+                if (!admins.includes(decoded.email)) {
+                    return []
+                }
+                const results = await ctx.prisma.withdrawrequest.findMany({
+                    orderBy: {
+                        id: 'desc',
+                    },
+                })
+                return results
+            } catch (error) {
+                return []
+            }
+        },
     },
 }

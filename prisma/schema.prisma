@@ -63,6 +63,9 @@ model ativitylog {
   distance   Float    @default(0)
   createat   DateTime @default(now()) @db.DateTime(0)
   piecebox   Float    @default(0)
+  accid      Int      @default(0)
+  shoesid    Int      @default(0)
+  shoeslevel Int      @default(0)
 
   @@index([activityid], map: "activityid")
 }
@@ -127,6 +130,19 @@ model vimlog {
   createat    DateTime @default(now()) @db.DateTime(0)
   sync        Boolean  @default(false)
   balance     Float    @default(0)
+
+  @@index([accid], map: "accid")
+}
+
+model withdrawrequest {
+  id       Int      @id @default(autoincrement())
+  accid    Int      @default(0)
+  amount   Float    @default(0)
+  fee      Float    @default(0)
+  status   String   @default("") @db.Text
+  createAt DateTime @default(now()) @db.DateTime(0)
+  tranhash String?  @db.Text
+  address  String   @default("") @db.Text
 
   @@index([accid], map: "accid")
 }

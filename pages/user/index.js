@@ -16,6 +16,7 @@ import { DiVim } from "react-icons/di";
 import { useDispatch, useSelector } from 'react-redux';
 import { useAppContext } from '../../utils/store';
 import BuyEnergyPopup from '../../components/item/popup/fillenergy';
+import Link from 'next/link';
 
 
 const ProfileIndex = () => {
@@ -99,22 +100,24 @@ const ProfileIndex = () => {
 
                             <div className='grow ml-6'>
                                 <div className='text-gray-700'>Energy</div>
-                                <LinearProgress className='my-2' variant="determinate" color='success' value={((pages.detail && pages.detail.accountdetail.energy) || 0) * 100 / ((pages.detail && pages.detail.sneakers.length * 30) || 1)} />
-                                <div>{pages.detail ? pages.detail.accountdetail.energy : 0}/{pages.detail ? pages.detail.sneakers.length * 30 : 1}</div>
+                                <LinearProgress className='my-2' variant="determinate" color='success' value={((pages.detail && pages.detail.accountdetail.energy) || 0) * 100 / ((pages.detail && pages.detail.sneakers.length * 10) || 1)} />
+                                <div>{pages.detail && pages.detail.sneakers && pages.detail.sneakers.length > 0 ? pages.detail.accountdetail.energy : 0}/{pages.detail ? pages.detail.sneakers.length * 10 : 1}</div>
                             </div>
                         </div>
                     </BoxCard>
                     <BoxCard className='mb-8'>
-                        <div className='flex justify-between'>
-                            <div className='rounded-full shadow-t-lg border-2 border-gray-300 h-16 w-16 flex items-center justify-center'>
-                                <FaPuzzlePiece className='text-3xl text-vicm-green-500' />
+                        <Link href={`/user/breed`}>
+                            <div className='flex justify-between'>
+                                <div className='rounded-full shadow-t-lg border-2 border-gray-300 h-16 w-16 flex items-center justify-center'>
+                                    <FaPuzzlePiece className='text-3xl text-vicm-green-500' />
+                                </div>
+                                <div className='grow ml-6'>
+                                    <div className='text-gray-700'>Box Pieces</div>
+                                    <LinearProgress className='my-2' variant="determinate" color='success' value={100} />
+                                    <div>{(pages.detail && parseFloat(pages.detail.accountdetail.piecebox).toFixed(1)) || 0}</div>
+                                </div>
                             </div>
-                            <div className='grow ml-6'>
-                                <div className='text-gray-700'>Box Pieces</div>
-                                <LinearProgress className='my-2' variant="determinate" color='success' value={100} />
-                                <div>{(pages.detail && parseFloat(pages.detail.accountdetail.piecebox).toFixed(1) ) || 0}</div>
-                            </div>
-                        </div>
+                        </Link>
                     </BoxCard>
                 </SectionContainer>
             </LayoutMenu>
