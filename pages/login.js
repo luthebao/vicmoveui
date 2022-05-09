@@ -83,10 +83,7 @@ const LoginPage = () => {
             </ButtonDefault>
             <ButtonDefault className='w-full bg-black mt-3'
                 callback={() => {
-                    signIn("apple", {
-                        redirect: true,
-                        callbackUrl: "/"
-                    })
+                    signIn("apple")
                 }}
             >
                  Sign in with Apple

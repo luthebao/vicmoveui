@@ -97,11 +97,8 @@ const SignupPage = () => {
             })}>
                 Sign in with Google
             </ButtonDefault>
-            
-            <ButtonDefault type='submit' className='w-full bg-black mt-3' callback={() => signIn("apple", {
-                redirect: true,
-                callbackUrl: "/"
-            })}>
+
+            <ButtonDefault type='submit' className='w-full bg-black mt-3' callback={() => signIn("apple")}>
                  Sign in with Apple
             </ButtonDefault>
             {/* <div className='flex justify-center'>
