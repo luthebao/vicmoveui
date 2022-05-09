@@ -9,17 +9,21 @@ export const apis = {
     "account_sign_up": urls.api + "/api/Account/signup",
     "account_sign_in": urls.api + "/api/Account/signin",
     "account_sign_in_google": urls.api + "/api/Account/signinwithgoogle",
+    "account_sign_in_apple": urls.api + "/api/Account/signinwithapple",
+
     "account_set_wallet": urls.api + "/api/Account/setWalletAddress",
     "account_get_info": urls.api + "/api/Account/getInfo",
-    "account_refill_energy": urls.api + "/api/Account/buybackEnergy",
     "market_buybox": urls.api + "/api/Market/buyBox",
     "market_unbox": urls.api + "/api/Market/unbox",
     "market_deposit_vim": urls.api + "/api/Market/depositVIM",
+    "market_withdraw_vim": urls.api + "/api/WithdrawRequest/createRequest",
     "market_coundown": urls.api + "/api/Market/countDownBox",
+
     "item_repair_comfort": urls.api + "/api/Shoes/buybackComfort",
     "item_repair_stamina": urls.api + "/api/Shoes/buybackStamina",
     "item_upgrade_level": urls.api + "/api/Shoes/upgradeShoes",
-    "fake": urls.api + "",
+
+    "fake": urls.api + "/",
 }
 
 export const bsc_chain = {

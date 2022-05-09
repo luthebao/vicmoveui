@@ -95,7 +95,14 @@ const SignupPage = () => {
                 redirect: true,
                 callbackUrl: "/"
             })}>
-                Login with Google
+                Sign in with Google
+            </ButtonDefault>
+            
+            <ButtonDefault type='submit' className='w-full bg-black mt-3' callback={() => signIn("apple", {
+                redirect: true,
+                callbackUrl: "/"
+            })}>
+                 Sign in with Apple
             </ButtonDefault>
             {/* <div className='flex justify-center'>
                 <img src={"/images/logo/fingerprint.png"} width='80' />

@@ -81,6 +81,16 @@ const LoginPage = () => {
             >
                 Sign in with Google
             </ButtonDefault>
+            <ButtonDefault className='w-full bg-black mt-3'
+                callback={() => {
+                    signIn("apple", {
+                        redirect: true,
+                        callbackUrl: "/"
+                    })
+                }}
+            >
+                 Sign in with Apple
+            </ButtonDefault>
         </BackgroundContainer>
     )
 }
