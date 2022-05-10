@@ -101,6 +101,7 @@ const SignupPage = () => {
             <ButtonDefault type='submit' className='w-full bg-black mt-3' callback={() => signIn("apple")}>
                  Sign in with Apple
             </ButtonDefault>
+            
             {/* <div className='flex justify-center'>
                 <img src={"/images/logo/fingerprint.png"} width='80' />
             </div>

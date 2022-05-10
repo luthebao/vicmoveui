@@ -8,8 +8,6 @@ import GoogleProvider from "next-auth/providers/google";
 import AppleProvider from "next-auth/providers/apple";
 import { apis } from '../../../utils/config';
 
-
-
 export default async function auth(req, res) {
     const jwt_secret = "bao*&^234dep)@$38@6trai!#5@55@"
 
@@ -136,7 +134,7 @@ export default async function auth(req, res) {
                         const user_result = await user_fetch.json()
                         if (user_result.code === 1 && user_result.data) {
                             user.id = user_result.data.id
-                            return profile.email_verified
+                            return true
                         }
                         else
                             return false
@@ -157,7 +155,7 @@ export default async function auth(req, res) {
                         const user_result = await user_fetch.json()
                         if (user_result.code === 1 && user_result.data) {
                             user.id = user_result.data.id
-                            return profile.email_verified
+                            return true
                         }
                         else
                             return false
