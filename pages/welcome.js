@@ -13,7 +13,7 @@ const WelcomePage = () => (
         <h1 className="text-5xl py-2">VICMOVE</h1>
 
         <p>
-            Top Move to Earn Game & NFT Game on Binance Smart Chain - Beta version
+            Top Fitness and Healthy App for beginners - Beta version
         </p>
 
         <ParagraphDecoration />
