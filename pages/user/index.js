@@ -45,12 +45,12 @@ const ProfileIndex = () => {
                     </div>
                     <div className='mt-6 text-center'>
                         <TextHeader size='sm' className='text-center truncate'>{session.user.name || session.user.email}</TextHeader>
-                        {pages.detail?.accountdetail?.address && <div className='flex justify-center'>
+                        { false && pages.detail?.accountdetail?.address && <div className='flex justify-center'>
                             <img className='text-vicm-green-500' src={"/images/icons/wallet.svg"} />
                             <div className='ml-4 w-1/2 text-vicm-green-500 truncate'>
                                 {pages.detail?.accountdetail?.address}
                             </div>
-                        </div>}
+                        </div> }
                         <div className='flex justify-center'>
                             <ButtonLink href='/' size='md' className='mx-2 inline-block items-center bg-primary mt-4 text-white px-5'>
                                 <AiFillEdit className='text-2xl pb-1 inline' />&nbsp;Edit
