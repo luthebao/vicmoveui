@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { toast } from "react-toastify";
 import ItemCardMarket from "../../../components/card/market/itemmarket";
-import { shoes_data } from "../../../utils/data"
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import Web3 from "web3";
 import { providers } from "ethers";

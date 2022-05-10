@@ -11,7 +11,6 @@ import ProgressBar from "../../../../components/card/progressbar";
 import CircleNumber from "../../../../components/text/circlenumber";
 import ButtonDefault from "../../../../components/button/default";
 import React, { useEffect, useState } from "react";
-import { shoes_data } from '../../../../utils/data'
 import { FiPlus } from 'react-icons/fi';
 import Link from "next/link";
 import { toast } from "react-toastify";
@@ -25,7 +24,7 @@ export default function SneakerDetail(props) {
     useEffect(() => {
         new Promise(async (resolve, reject) => {
             if (props.id) {
-                setInfo(shoes_data.find(val => val.id === Number(props.id)))
+                
             }
             resolve(true);
         }).then(() => {

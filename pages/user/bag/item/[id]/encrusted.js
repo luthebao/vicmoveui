@@ -5,7 +5,6 @@ import LayoutMenu from "../../../../../layouts/layoutmenu";
 import WelcomePage from "../../../../welcome";
 import HeaderBack from "../../../../../containers/header/headerback";
 import EncrustGemCard from "../../../../../components/card/bag/encrustgem";
-import { shoes_data } from '../../../../../utils/data'
 
 export default function MarketIndex() {
     const { data: session, status } = useSession()
@@ -19,9 +18,7 @@ export default function MarketIndex() {
                 <HeaderBack title="Encrusted" />
                 <SectionContainer className='basis-full mb-10'>
                     <div className="flex flex-wrap">
-                    {
-                        shoes_data.filter(val => val.type === "gem").map(val => <EncrustGemCard key={`encrust-${val.type}-${val.id}`} {...val} />)
-                    }
+                    
                     </div>
                 </SectionContainer>
             </LayoutMenu>

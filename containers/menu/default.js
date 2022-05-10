@@ -5,7 +5,6 @@ import { BiUser } from "react-icons/bi";
 import { SiAzurefunctions } from "react-icons/si";
 import { FiShoppingCart } from 'react-icons/fi';
 import { GiConverseShoe } from 'react-icons/gi';
-import { shoes_data } from '../../utils/data';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import { useSession } from "next-auth/react"
