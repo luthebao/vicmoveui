@@ -20,6 +20,7 @@ import { useSelector } from "react-redux";
 import { AppBar, Tab, Tabs } from "@mui/material";
 import { useAppContext } from "../utils/store";
 import UpgradeLevelPopup from "../components/item/popup/upgradelevel";
+import { toast } from "react-toastify";
 
 export default function Home() {
     const { data: session, status } = useSession()
@@ -147,8 +148,11 @@ export default function Home() {
                         }
                         <BoxCard key={`boxindex-getmore`} className='inline-block text-center mr-4 w-[147px] h-full'>
                             <FiPlus className="text-[115px] m-auto" />
-                            <a href="https://marketplace.vicmove.com/" target={"_blank"} rel="noreferrer">
+                            {/* <a href="https://marketplace.vicmove.com/" target={"_blank"} rel="noreferrer">
                                 <button className="rounded-full text-xs px-6 py-1 shadow-2xl border-2 uppercase btn text-white hover:opacity-90 bg-vicm-green-600">Get more </button>
+                            </a> */}
+                            <a target={"_blank"} rel="noreferrer" onClick={() => toast("We don not have event to claim boxes right now")}>
+                                <button className="rounded-full text-xs px-6 py-1 shadow-2xl border-2 uppercase btn text-white hover:opacity-90 bg-vicm-green-600">Get more</button>
                             </a>
                         </BoxCard>
                     </VerticalListContainer>

@@ -62,7 +62,7 @@ const ProfileIndex = () => {
                     </div>
                 </div>
                 <SectionContainer className='basis-full shadow-t-lg p-8' bgColor='bg-white'>
-                    <a href="https://marketplace.vicmove.com/" target={"_blank"} rel="noreferrer">
+                    {/* <a href="https://marketplace.vicmove.com/" target={"_blank"} rel="noreferrer">
                         <BoxCard className='mb-8'>
                             <div className='flex justify-between'>
                                 <div className='rounded-full shadow-t-lg border-2 border-gray-300 h-16 w-16 flex items-center justify-center'>
@@ -75,23 +75,23 @@ const ProfileIndex = () => {
                                 </div>
                             </div>
                         </BoxCard>
-                    </a>
+                    </a> */}
                     <BoxCard className='mb-8' callback={() => {
-                        setPopup({
-                            title: "Buy Energy",
-                            render: <BuyEnergyPopup session={session} onClose={() => {
-                                setPopup(null)
-                                if (session) {
-                                    setTimeout(() => {
-                                        loadAccount({
-                                            variables: {
-                                                "accountdetailId": session.id
-                                            }
-                                        })
-                                    }, 2000)
-                                }
-                            }} />
-                        })
+                        // setPopup({
+                        //     title: "Buy Energy",
+                        //     render: <BuyEnergyPopup session={session} onClose={() => {
+                        //         setPopup(null)
+                        //         if (session) {
+                        //             setTimeout(() => {
+                        //                 loadAccount({
+                        //                     variables: {
+                        //                         "accountdetailId": session.id
+                        //                     }
+                        //                 })
+                        //             }, 2000)
+                        //         }
+                        //     }} />
+                        // })
                     }}>
                         <div className='flex justify-between'>
                             <div className='rounded-full shadow-t-lg border-2 border-gray-300 h-16 w-16 flex items-center justify-center'>
