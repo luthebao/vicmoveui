@@ -24,12 +24,12 @@ query AccountSneaker($accountdetailId: Int!) {
         id
         nftid
         level
-        comfort
         exp
+        comfort
         stamina
         lucky
-        sole
         fabric
+        sole
         brand
         img
         accid
@@ -38,6 +38,9 @@ query AccountSneaker($accountdetailId: Int!) {
         maxComfort
         maxStamina
         createat
+        countchild
+        nextclone
+        parentsid
     }
 }`
 
@@ -74,12 +77,12 @@ query Sneaker($sneakerId: Int!) {
         id
         nftid
         level
-        comfort
         exp
+        comfort
         stamina
         lucky
-        sole
         fabric
+        sole
         brand
         img
         accid
@@ -88,5 +91,8 @@ query Sneaker($sneakerId: Int!) {
         maxComfort
         maxStamina
         createat
+        countchild
+        nextclone
+        parentsid
     }
 }`

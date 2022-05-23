@@ -22,6 +22,7 @@ export const apis = {
     "item_repair_comfort": urls.api + "/api/Shoes/buybackComfort",
     "item_repair_stamina": urls.api + "/api/Shoes/buybackStamina",
     "item_upgrade_level": urls.api + "/api/Shoes/upgradeShoes",
+    "item_breed": urls.api + "/api/Shoes/cloneShoes",
 
     "fake": urls.api + "/",
 }

@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 import { useAppContext } from '../../../utils/store';
 import { GiConverseShoe } from 'react-icons/gi';
 import { ImArrowDown } from "react-icons/im";
+import Link from 'next/link';
 
 
 const ProfileIndex = () => {
@@ -44,7 +45,9 @@ const ProfileIndex = () => {
                         <BoxCard className='mb-8'>
                             <div className='flex justify-between relative'>
                                 <div className='h-16 w-16 flex items-center justify-center relative'>
-                                    <GiConverseShoe className='text-3xl text-vicm-green-500' />
+                                    <Link href={`/user/breed/list`}>
+                                        <GiConverseShoe className='text-3xl text-vicm-green-500' />
+                                    </Link>
                                 </div>
                             </div>
                         </BoxCard>
@@ -64,7 +67,7 @@ const ProfileIndex = () => {
                         </BoxCard>
                     </div>
                     <div className='flex justify-evenly'>
-                        <p>Coming soon</p>
+                        <p>Pick a sneaker to breed</p>
                     </div>
                 </div>
             </LayoutMenu>

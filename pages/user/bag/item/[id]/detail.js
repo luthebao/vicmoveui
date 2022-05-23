@@ -92,18 +92,18 @@ export default function SneakerDetail(props) {
                                 </Chip>
                                 <ProgressBar min={info.exp} max={info.maxExp} className='ml-2 w-24'
                                     upgrade={() => {
-                                        toast("Function is under developement")
-                                        // setPopup({
-                                        //     title: "Upgrade level",
-                                        //     render: <UpgradeLevelPopup session={session} level={info.level} itemid={info.id} onClose={() => {
-                                        //         setPopup(null)
-                                        //         sneakers.refetch({
-                                        //             variables: {
-                                        //                 "accountdetailId": session.id
-                                        //             }
-                                        //         })
-                                        //     }} />
-                                        // })
+                                        // toast("Function is under developement")
+                                        setPopup({
+                                            title: "Upgrade level",
+                                            render: <UpgradeLevelPopup session={session} level={info.level} itemid={info.id} onClose={() => {
+                                                setPopup(null)
+                                                sneakers.refetch({
+                                                    variables: {
+                                                        "accountdetailId": session.id
+                                                    }
+                                                })
+                                            }} />
+                                        })
                                     }}
                                 />
                             </div>
@@ -189,7 +189,7 @@ export default function SneakerDetail(props) {
                                 </div>
                             </BoxCard>
                         </div>
-                        {/* <div className='flex justify-around items-center mt-6'>
+                        <div className='flex justify-around items-center mt-6'>
                             <ButtonDefault className='bg-red-300 h-12' size='md' callback={() => {
                                 setPopup({
                                     title: "Confirm to repair",
@@ -217,7 +217,7 @@ export default function SneakerDetail(props) {
                                     }} />
                                 })
                             }}>Repair</ButtonDefault>
-                        </div> */}
+                        </div>
                     </BoxCard>}
                     {info && info.type === "box" && <BoxCard className='flex flex-col justify-between' type='flat-border' style={{ 'minHeight': '80vw', 'padding': '1rem' }}>
                         <div className='flex justify-between'>

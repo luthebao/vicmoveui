@@ -51,6 +51,9 @@ export const typeDefs = gql`
         maxComfort: Int
         maxStamina: Int
         createat: Date
+        countchild: Int
+        nextclone: Date
+        parentsid: Int
     }
 
     type VimLog {
@@ -102,7 +105,6 @@ export const typeDefs = gql`
         sneakers(accid: Int!): [Shoes],
         activities(token: String!, page: Int, size: Int): [VimLog],
         withdraws(token: String!): [WithdrawRequest],
-        withdraws2(token: String!): [WithdrawRequest2],
         config: Config
     }
 `;

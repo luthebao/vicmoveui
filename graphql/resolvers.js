@@ -99,22 +99,5 @@ export const resolvers = {
                 return null
             }
         },
-        withdraws2: async (parent, agrs, ctx) => {
-            
-            try {
-                const decoded = jwt.verify(agrs.token, secret_jwt)
-                if (!admins.includes(decoded.email)) {
-                    return []
-                }
-                const results = await ctx.prisma.withdrawrequest.findMany({
-                    orderBy: {
-                        id: 'desc',
-                    },
-                })
-                return results
-            } catch (error) {
-                return []
-            }
-        },
     },
 }

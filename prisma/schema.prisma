@@ -101,23 +101,28 @@ model login_token {
 }
 
 model shoes {
-  id         Int      @id @default(autoincrement())
+  id         Int       @id @default(autoincrement())
   nftid      BigInt?
-  level      Int      @default(1)
-  exp        Int      @default(0)
-  comfort    Float    @default(0)
-  stamina    Float    @default(0)
-  lucky      Int      @default(0)
-  fabric     String   @default("") @db.Text
-  sole       String   @default("") @db.Text
-  createat   DateTime @default(now()) @db.DateTime(0)
-  brand      String?  @default("") @db.Text
-  img        String?  @db.Text
+  level      Int       @default(1)
+  exp        Int       @default(0)
+  comfort    Float     @default(0)
+  stamina    Float     @default(0)
+  lucky      Int       @default(0)
+  fabric     String    @default("") @db.Text
+  sole       String    @default("") @db.Text
+  createat   DateTime  @default(now()) @db.DateTime(0)
+  brand      String?   @default("") @db.Text
+  img        String?   @db.Text
   accid      Int
-  type       Int?     @default(-1)
-  maxExp     Int      @default(0)
-  maxComfort Int      @default(0)
-  maxStamina Int      @default(0)
+  type       Int?      @default(-1)
+  maxExp     Int       @default(0)
+  maxComfort Int       @default(0)
+  maxStamina Int       @default(0)
+  countchild Int       @default(0)
+  nextclone  DateTime? @db.DateTime(0)
+  parentsid  Int       @default(0)
+
+  @@index([parentsid], map: "parentsid")
 }
 
 model vimlog {
