@@ -106,7 +106,7 @@ const BreedInfo = ({ sneakerId }) => {
                                 <div className='h-16 w-16 flex items-center justify-center relative'>
                                     {
                                         child ?
-                                            <Link href={`/user/bag`}>
+                                            <Link href={`/user/bag/item/${child.id}/detail`}>
                                                 <img src={`/images/s/${child.img}.png`} />
                                             </Link>
                                             :
@@ -117,23 +117,25 @@ const BreedInfo = ({ sneakerId }) => {
                         </BoxCard>
                     </div>
                     <div className='flex justify-evenly'>
-                        <ButtonDefault className='bg-[#FF5733] h-12' size='md' callback={() => {
-                            setPopup({
-                                title: "Confirm to breed",
-                                render: <ConfirmBreedPopup session={session} itemid={info.id} itemtype={info.type}
-                                    onChild={setChild}
-                                    onClose={() => {
-                                        setPopup(null)
-                                        sneakers.refetch({
-                                            variables: {
-                                                "accountdetailId": session.id
-                                            }
-                                        })
-                                    }} />
-                            })
-                        }}>
-                            Breed
-                        </ButtonDefault>
+                        {
+                            child === null && <ButtonDefault className='bg-[#FF5733] h-12' size='md' callback={() => {
+                                setPopup({
+                                    title: "Confirm to breed",
+                                    render: <ConfirmBreedPopup session={session} itemid={info.id} itemtype={info.type}
+                                        onChild={setChild}
+                                        onClose={() => {
+                                            setPopup(null)
+                                            sneakers.refetch({
+                                                variables: {
+                                                    "accountdetailId": session.id
+                                                }
+                                            })
+                                        }} />
+                                })
+                            }}>
+                                Breed
+                            </ButtonDefault>
+                        }
                     </div>
                 </div>
             </LayoutMenu>
