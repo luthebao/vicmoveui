@@ -107,7 +107,7 @@ const BreedInfo = ({ sneakerId }) => {
                                     {
                                         child ?
                                             <Link href={`/user/bag`}>
-                                                <GiCardRandom className='text-3xl text-vicm-green-500' />
+                                                <img src={`/images/s/${child.img}.png`} />
                                             </Link>
                                             :
                                             <GiConverseShoe className='text-3xl text-vicm-green-500' />
@@ -117,10 +117,10 @@ const BreedInfo = ({ sneakerId }) => {
                         </BoxCard>
                     </div>
                     <div className='flex justify-evenly'>
-                        <ButtonDefault className='bg-emerald-300 h-12' size='md' callback={() => {
+                        <ButtonDefault className='bg-[#FF5733] h-12' size='md' callback={() => {
                             setPopup({
                                 title: "Confirm to breed",
-                                render: <ConfirmBreedPopup session={session} itemid={info.id}
+                                render: <ConfirmBreedPopup session={session} itemid={info.id} itemtype={info.type}
                                     onChild={setChild}
                                     onClose={() => {
                                         setPopup(null)

@@ -57,7 +57,7 @@ const needVIM = [
 ]
 
 
-const ConfirmBreedPopup = ({ onClose, itemid, session, onChild }) => {
+const ConfirmBreedPopup = ({ onClose, itemid, session, onChild, itemtype }) => {
 
     const [processing, setProcessing] = useState(false)
 
@@ -89,7 +89,13 @@ const ConfirmBreedPopup = ({ onClose, itemid, session, onChild }) => {
 
     return (
         <div className="flex flex-col text-center">
-            <p className="py-5">Confirm to breed with this sneaker ?</p>
+            {
+                itemtype === 3 ?
+                    <p className="py-5">Confirm to use 1200 VIM to breed with this sneaker ?</p>
+                    : 
+                    <p className="py-5">Confirm to breed with this sneaker ?</p>
+
+            }
             <div className="flex justify-evenly">
                 <ButtonDefault className='bg-primary h-12' size='md' callback={handleRepair}>Confirm</ButtonDefault>
                 <ButtonDefault className='bg-vicm-red-100 h-12' size='md' callback={onClose}>Cancel</ButtonDefault>
