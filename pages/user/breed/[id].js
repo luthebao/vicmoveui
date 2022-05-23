@@ -11,7 +11,7 @@ import { useAppContext } from '../../../utils/store';
 import { GiConverseShoe, GiCardRandom } from 'react-icons/gi';
 import { ImArrowDown } from "react-icons/im";
 import ButtonDefault from "../../../components/button/default";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import ConfirmBreedPopup from '../../../components/item/popup/confirmbreed';
 import Link from 'next/link';
 
