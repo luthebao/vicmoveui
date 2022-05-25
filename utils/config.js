@@ -6,6 +6,7 @@ export const urls = {
 }
 
 export const apis = {
+    "account_refill_energy": urls.api + "/api/Account/buybackEnergy",
     "account_sign_up": urls.api + "/api/Account/signup",
     "account_sign_in": urls.api + "/api/Account/signin",
     "account_sign_in_google": urls.api + "/api/Account/signinwithgoogle",
